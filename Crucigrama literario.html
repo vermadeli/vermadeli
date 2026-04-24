@@ -79,9 +79,9 @@ exolve-begin
     7  —¡Jean Valjean! —24601. (nombre y apellido)
     9 *".íuqa odinev saírbah on o ,olratse sebeD" "?acol yotse euq sebas omóc¿" :nóiccudarT* ”.ereh emoc evah t’ndluow uoy ro ,eb tsum uoY “ ”? dam m’I wonk uoy od woH“
     11 Lequel examen doit donc (...) nous démontrer infailliblement l’homme plus heureux dans le vice que dans la vertu *<i>Traducción: examen que (...) debe demostrarnos infaliblemente que el hombre es más feliz en el vicio que en la virtud</i>
-    15 Mas lo que más le fatigaba era el no verse armado caballero, por parecerle que no se podría poner legítimamente en aventura alguna, sin recebir la orden de caballería.
-    16 .anuncio mi por juzgar isépod/gloria mi de y ,íall édej que/memoria la a tomeírem/;renuncio relataros a/historia la asíd aquellos De
-    17 Sólo es poeta aquel que siente que la vida no es natural/que es asombro/descubrimiento revelación/que no es normal estar vivo.   <br> <br>     Y voy a poner otra cita de ella porque me apetece: era difícil no sentir que la vida puede ser bella/a veces/como una pausa/como una tregua que la muerte/le concede al goce.
+    14 Mas lo que más le fatigaba era el no verse armado caballero, por parecerle que no se podría poner legítimamente en aventura alguna, sin recebir la orden de caballería.
+    15 .anuncio mi por juzgar isépod/gloria mi de y ,íall édej que/memoria la a tomeírem/;renuncio relataros a/historia la asíd aquellos De
+    16 Sólo es poeta aquel que siente que la vida no es natural/que es asombro/descubrimiento revelación/que no es normal estar vivo.   <br>     Y voy a poner otra cita de ella porque me apetece: era difícil no sentir que la vida puede ser bella/a veces/como una pausa/como una tregua que la muerte/le concede al goce.
 
 
   exolve-down:
@@ -12032,21 +12032,7 @@ a.xlv-link:hover {
     display: none;
   }
 }
-.timer-display {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 9998;
-  background-color: #4c6ef5;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  min-width: 80px;
-  text-align: center;
-}
+
 .congratulations-modal {
   position: fixed;
   top: 50%;
@@ -12165,55 +12151,14 @@ a.xlv-link:hover {
 <script>
   createExolve(puzzleText);
   
-  // Timer functionality
-  let timerInterval = null;
-  let elapsedSeconds = 0;
-  
-  function formatTime(seconds) {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    
-    if (hours > 0) {
-      return `${hours}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    }
-    return `${minutes}:${String(secs).padStart(2, '0')}`;
-  }
-  
-  function startTimer() {
-    const timerDisplay = document.createElement('div');
-    timerDisplay.className = 'timer-display';
-    timerDisplay.id = 'timer-display';
-    timerDisplay.textContent = '⏱️ 0:00';
-    document.body.appendChild(timerDisplay);
-    
-    timerInterval = setInterval(() => {
-      elapsedSeconds++;
-      timerDisplay.textContent = '⏱️ ' + formatTime(elapsedSeconds);
-    }, 1000);
-  }
-  
-  function stopTimer() {
-    if (timerInterval) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-    }
-  }
-  
-  // Start timer when page loads
-  setTimeout(startTimer, 100);
-  
   // Congratulations message when puzzle is completed
   document.addEventListener('exolve', function(event) {
     if (event.detail.filled === event.detail.toFill && event.detail.knownCorrect) {
-      stopTimer();
       showCongratulations();
     }
   });
   
   function showCongratulations() {
-    const finalTime = formatTime(elapsedSeconds);
-    
     // Create confetti
     function createConfetti() {
       const confettiCount = 50;
@@ -12247,7 +12192,6 @@ a.xlv-link:hover {
     modal.innerHTML = `
       <h1>🎉 ¡Felicidades! 🎉</h1>
       <p>¡Has resuelto el crucigrama!</p>
-      <p style="color: #4c6ef5; font-size: 20px; font-weight: bold;">⏱️ Tiempo: ${finalTime}</p>
       <button onclick="location.reload()">Volver a empezar</button>
     `;
     
