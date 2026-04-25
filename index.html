@@ -258,8 +258,12 @@
       // Mostrar contenido de la pestaña
       const tabId = this.getAttribute('data-tab');
       document.getElementById(tabId).classList.add('active');
+    });
+  });
 
-      <script>
+</script>
+
+    <script>
     // Guardar posición al hacer scroll
     window.addEventListener('scroll', () => {
         sessionStorage.setItem('scrollPosition', window.scrollY);
@@ -271,11 +275,8 @@
             window.scrollTo(0, sessionStorage.getItem('scrollPosition'));
         }
     });
-
-
-  });
-  });
 </script>
+
 
 </body>
 </html>
