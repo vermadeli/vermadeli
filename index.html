@@ -16,18 +16,13 @@
     }
 
     :root {
-      --primary-color: #6366f1;
-      --primary-dark: #4f46e5;
-      --secondary-color: #ec4899;
-      --text-dark: #1f2937;
-      --text-light: #6b7280;
-      --bg-light: #f9fafb;
-      --bg-white: #ffffff;
-      --border-color: #e5e7eb;
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-      --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+      --primary-color: #ff6b6b;
+      --primary-dark: #ee5a52;
+      --secondary-color: #4ecdc4;
+      --accent-color: #ffe66d;
+      --text-dark: #2c3e50;
+      --text-light: #555;
+      --bg-overlay: rgba(255, 255, 255, 0.92);
     }
 
     html {
@@ -36,24 +31,28 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: var(--bg-light);
+      background-image: url("fondo.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       color: var(--text-dark);
       line-height: 1.6;
+      min-height: 100vh;
     }
 
-    /* Barra de navegación mejorada */
+    /* Barra de navegación */
     .navbar {
-      background: var(--bg-white);
+      background: rgba(44, 62, 80, 0.95);
+      backdrop-filter: blur(10px);
       padding: 0;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: var(--shadow-md);
-      border-bottom: 2px solid var(--border-color);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
     .navbar-container {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -62,9 +61,9 @@
     }
 
     .navbar-logo {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
-      color: var(--primary-color);
+      color: #fff;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -84,29 +83,28 @@
 
     .navbar a {
       display: block;
-      padding: 18px 24px;
-      color: var(--text-light);
+      padding: 18px 22px;
+      color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
       font-size: 15px;
       font-weight: 500;
       transition: all 0.3s ease;
       border-bottom: 3px solid transparent;
-      position: relative;
     }
 
     .navbar a:hover {
-      color: var(--primary-color);
+      color: #fff;
       border-bottom-color: var(--primary-color);
     }
 
     .navbar a.active {
-      color: var(--primary-color);
+      color: #fff;
       border-bottom-color: var(--primary-color);
     }
 
     /* Contenedor principal */
     .main-container {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 20px;
     }
@@ -114,7 +112,7 @@
     /* Contenedor de pestañas */
     .tab-content {
       display: none;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.4s ease;
     }
 
     .tab-content.active {
@@ -124,26 +122,30 @@
     @keyframes fadeIn {
       from {
         opacity: 0;
+        transform: translateY(10px);
       }
       to {
         opacity: 1;
+        transform: translateY(0);
       }
     }
 
     .container {
-      background: var(--bg-white);
-      border-radius: 12px;
-      box-shadow: var(--shadow-lg);
-      padding: 50px 40px;
+      background: var(--bg-overlay);
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      padding: 40px 35px;
       margin: 30px 0;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(5px);
     }
 
     h1 {
-      font-size: 48px;
+      font-size: 42px;
       font-weight: 700;
       color: var(--text-dark);
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -151,68 +153,60 @@
     }
 
     h2 {
-      font-size: 28px;
-      color: var(--text-dark);
-      margin-top: 40px;
-      margin-bottom: 20px;
+      font-size: 24px;
+      color: var(--primary-color);
+      margin-top: 30px;
+      margin-bottom: 15px;
       font-weight: 600;
-      position: relative;
-      padding-bottom: 15px;
-    }
-
-    h2:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-      border-radius: 2px;
     }
 
     p {
-      font-size: 16px;
-      line-height: 1.8;
+      font-size: 15px;
+      line-height: 1.7;
       color: var(--text-light);
-      margin: 20px 0;
+      margin: 15px 0;
     }
 
     .intro-text {
-      font-size: 17px;
+      font-size: 15px;
       text-align: center;
       color: var(--text-light);
-      margin: 30px 0;
-      padding: 30px;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+      margin: 20px 0;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(78, 205, 196, 0.08));
       border-radius: 10px;
-      border-left: 4px solid var(--primary-color);
+      border-left: 3px solid var(--primary-color);
+    }
+
+    .intro-text p {
+      margin: 0;
     }
 
     /* Tarjetas de crucigramas */
     .crossword-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 25px;
-      margin: 25px 0;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      border-radius: 8px;
+      padding: 18px;
+      margin: 15px 0;
       transition: all 0.3s ease;
       cursor: pointer;
     }
 
     .crossword-card:hover {
-      box-shadow: var(--shadow-xl);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
       border-color: var(--primary-color);
       transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.85);
     }
 
     .crossword-card a {
       display: block;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 600;
       color: var(--primary-color);
       text-decoration: none;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       transition: color 0.3s ease;
     }
 
@@ -223,64 +217,109 @@
     .crossword-date {
       font-size: 13px;
       color: var(--text-light);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 5px;
     }
 
     .crossword-description {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-light);
-      line-height: 1.6;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-color);
+      line-height: 1.5;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     /* Sección vacía */
     .empty-state {
       text-align: center;
-      padding: 60px 20px;
+      padding: 50px 20px;
       color: var(--text-light);
     }
 
     .empty-state-icon {
-      font-size: 64px;
-      margin-bottom: 20px;
-      opacity: 0.5;
+      font-size: 56px;
+      margin-bottom: 15px;
+      opacity: 0.6;
     }
 
     .empty-state-title {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 600;
       color: var(--text-dark);
       margin-bottom: 10px;
     }
 
     .empty-state-text {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-light);
     }
 
     /* Videos */
     .video-section {
-      margin: 50px 0 30px 0;
+      margin: 35px 0 25px 0;
+    }
+
+    .video-section h2 {
+      margin-top: 0;
+    }
+
+    .video-info {
+      text-align: center;
+      color: var(--text-light);
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .video-info strong {
+      color: var(--text-dark);
     }
 
     .video-container {
       display: flex;
       justify-content: center;
-      margin: 30px 0;
+      margin: 20px 0;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     }
 
     .video-container iframe {
       width: 100%;
-      height: 400px;
+      height: 350px;
       border: none;
+    }
+
+    hr {
+      margin: 25px 0;
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.3), transparent);
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, rgba(255, 107, 107, 0.15), rgba(78, 205, 196, 0.15));
+      padding: 0 4px;
+      border-radius: 3px;
+      font-weight: 500;
+      color: var(--primary-color);
+    }
+
+    .important-note {
+      background: linear-gradient(135deg, rgba(255, 102, 99, 0.08), rgba(78, 205, 196, 0.08));
+      border-left: 3px solid var(--primary-color);
+      padding: 18px;
+      border-radius: 8px;
+      margin: 25px 0;
+      color: var(--text-dark);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .important-note strong {
+      color: var(--primary-color);
     }
 
     @media (max-width: 768px) {
@@ -289,15 +328,15 @@
       }
       
       .container {
-        padding: 30px 20px;
+        padding: 25px 20px;
       }
 
       h1 {
-        font-size: 36px;
+        font-size: 32px;
       }
 
       h2 {
-        font-size: 22px;
+        font-size: 20px;
       }
 
       .navbar-container {
@@ -315,30 +354,6 @@
       }
     }
 
-    hr {
-      margin: 40px 0;
-      border: none;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-color), transparent);
-    }
-
-    .highlight {
-      background: linear-gradient(120deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
-      padding: 0 4px;
-      border-radius: 4px;
-    }
-
-    .important-note {
-      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(99, 102, 241, 0.1));
-      border-left: 4px solid var(--secondary-color);
-      padding: 20px;
-      border-radius: 8px;
-      margin: 30px 0;
-      color: var(--text-dark);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
   </style>
 
 </head>
@@ -348,8 +363,7 @@
 <div class="navbar">
   <div class="navbar-container">
     <a href="#" class="navbar-logo">
-      <span>🧩📝🪶</span>
-      <span>Vermadeli</span>
+      🧩📝🪶 Vermadeli
     </a>
     <ul>
       <li><a href="#crucigramas" class="tab-link active" data-tab="crucigramas">🧩 Crucigramas</a></li>
@@ -366,55 +380,43 @@
       <h1>🧩 Crucigramas</h1>
 
       <div class="intro-text">
-        <p style="margin: 0;">
-          ¡Hola! Aquí encontraréis <span class="highlight">crucigramas inéditos</span> que publico como mínimo semanalmente. Mi fuente de inspiración son los clásicos de Mambrino para El País, aunque todo el contenido es de cosecha propia. ¡Espero que los disfrutéis! 😉
+        <p>
+          ¡Hola! Aquí encontraréis <span class="highlight">crucigramas inéditos</span> que publico como mínimo semanalmente. Mi fuente de inspiración son los clásicos de Mambrino para El País.
         </p>
       </div>
 
       <div class="important-note">
-        <strong>⚠️ Importante:</strong> Ignora la numeración que aparece en la parte superior del crucigrama y las definiciones emergentes. Utiliza siempre las definiciones fijas en la parte inferior. <strong>Excepción:</strong> En el crucigrama del 8 de mayo, sí debes hacer caso a la numeración.
+        <strong>⚠️ Importante:</strong> Ignora la numeración que aparece en la parte superior del crucigrama. Utiliza siempre las definiciones fijas en la parte inferior.
       </div>
-
-      <hr>
 
       <div class="crossword-card">
         <a href="crucigrama prueba.html">👉 Crucigrama de Prueba</a>
         <div class="crossword-date">📅 18 de abril</div>
-        <div class="crossword-description">
-          Tu primer crucigrama para familiarizarte con el formato.
-        </div>
+        <div class="crossword-description">Tu primer crucigrama para familiarizarte con el formato.</div>
       </div>
 
       <div class="crossword-card">
         <a href="crucigrama 1.html">👉 Crucigrama #1</a>
         <div class="crossword-date">📅 24 de abril de 2026</div>
-        <div class="crossword-description">
-          Formato estándar. Las rayas verticales separan las definiciones: pasa al de debajo en las verticales o al de la derecha en las horizontales.
-        </div>
+        <div class="crossword-description">Formato estándar. Las rayas verticales separan las definiciones.</div>
       </div>
 
       <div class="crossword-card">
         <a href="Crucigrama literario.html">👉 Crucigrama Literario</a>
         <div class="crossword-date">📅 24 de abril</div>
-        <div class="crossword-description">
-          Especial de literatura: averigua el autor al que pertenece cada cita. Pon solo el apellido a menos que se indique lo contrario.
-        </div>
+        <div class="crossword-description">Especial de literatura: averigua el autor al que pertenece cada cita.</div>
       </div>
 
       <div class="crossword-card">
         <a href="crucigrama 2.html">👉 Crucigrama #2</a>
         <div class="crossword-date">📅 6 de mayo</div>
-        <div class="crossword-description">
-          Segundo crucigrama con el formato estándar mejorado.
-        </div>
+        <div class="crossword-description">Segundo crucigrama con formato estándar mejorado.</div>
       </div>
 
       <div class="crossword-card">
         <a href="crucigrama 3.html">👉 Crucigrama #3</a>
         <div class="crossword-date">📅 8 de mayo</div>
-        <div class="crossword-description">
-          ✅ <strong>En este SÍ debes hacer caso a la numeración</strong> que viene en el crucigrama.
-        </div>
+        <div class="crossword-description">✅ <strong>En este SÍ debes hacer caso a la numeración</strong> del crucigrama.</div>
       </div>
 
     </div>
@@ -428,18 +430,13 @@
       <h1>📝 Blog</h1>
 
       <div class="intro-text">
-        <p style="margin: 0;">
-          Un espacio para reflexiones, historias y todo un poco. Aquí compartiremos artículos variados sobre diferentes temas.
-        </p>
+        <p>Un espacio para reflexiones, historias y mucho más. Aquí compartiremos artículos variados sobre diferentes temas.</p>
       </div>
 
       <div class="empty-state">
         <div class="empty-state-icon">✍️</div>
         <div class="empty-state-title">Próximamente</div>
-        <div class="empty-state-text">
-          Los artículos del blog están en preparación. <br>
-          <strong>¡Vuelve pronto para leer contenido nuevo!</strong>
-        </div>
+        <div class="empty-state-text">Los artículos del blog están en preparación.<br><strong>¡Vuelve pronto!</strong></div>
       </div>
 
     </div>
@@ -453,50 +450,38 @@
       <h1>📹 Al Rescate de la Poesía</h1>
 
       <div class="intro-text">
-        <p style="margin: 0;">
-          Una colección de vídeos que rescatan la belleza de la poesía a través de interpretaciones emotivas y literarias.
-        </p>
+        <p>Una colección de vídeos que rescatan la belleza de la poesía a través de interpretaciones emotivas y literarias.</p>
       </div>
-
-      <hr>
 
       <div class="video-section">
         <h2>Montevideo</h2>
-        <p style="text-align: center; color: var(--text-light); margin-bottom: 20px;">
-          <strong>Cristina Peri Rossi</strong> (2001)
-        </p>
+        <div class="video-info"><strong>Cristina Peri Rossi</strong> (2001)</div>
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/MWSBSf2TQtQ" title="Montevideo - Cristina Peri Rossi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/MWSBSf2TQtQ" title="Montevideo - Cristina Peri Rossi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         </div>
       </div>
 
       <div class="video-section">
         <h2>Único</h2>
-        <p style="text-align: center; color: var(--text-light); margin-bottom: 20px;">
-          <strong>Javier Velaza</strong> (2024)
-        </p>
+        <div class="video-info"><strong>Javier Velaza</strong> (2024)</div>
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/_bGIM0adXjI" title="Único - Javier Velaza" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/_bGIM0adXjI" title="Único - Javier Velaza" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         </div>
       </div>
 
       <div class="video-section">
         <h2>Ausencia</h2>
-        <p style="text-align: center; color: var(--text-light); margin-bottom: 20px;">
-          <strong>Conde de Abascal</strong> (1999)
-        </p>
+        <div class="video-info"><strong>Conde de Abascal</strong> (1999)</div>
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/f9AI7dbvPww" title="Ausencia - Conde de Abascal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/f9AI7dbvPww" title="Ausencia - Conde de Abascal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         </div>
       </div>
 
       <div class="video-section">
         <h2>Soneto: El Poeta Pide a su Amor que le Escriba</h2>
-        <p style="text-align: center; color: var(--text-light); margin-bottom: 20px;">
-          <strong>Federico García Lorca</strong> (1935)
-        </p>
+        <div class="video-info"><strong>Federico García Lorca</strong> (1935)</div>
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/zHmh5ygo-e0?si=mUc4vN-NZxfNzle9" title="Soneto: El Poeta Pide a su Amor que le Escriba - Lorca" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/zHmh5ygo-e0?si=mUc4vN-NZxfNzle9" title="Soneto - Lorca" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         </div>
       </div>
 
@@ -510,20 +495,13 @@
     link.addEventListener('click', function(e) {
       e.preventDefault();
       
-      // Remover clase active de todos los links
       document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
-      
-      // Remover clase active de todos los contenidos
       document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
       
-      // Añadir clase active al link clickeado
       this.classList.add('active');
-      
-      // Mostrar contenido de la pestaña
       const tabId = this.getAttribute('data-tab');
       document.getElementById(tabId).classList.add('active');
       
-      // Scroll suave hacia arriba
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
