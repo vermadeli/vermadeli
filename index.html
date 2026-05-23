@@ -142,6 +142,43 @@
       color: var(--primary-color);
     }
 
+    .subscribe-section {
+      margin-top: 40px;
+      padding: 25px;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(78, 205, 196, 0.08));
+      border-radius: 15px;
+      border: 1px solid rgba(255, 107, 107, 0.2);
+    }
+
+    .subscribe-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+    }
+
+    .subscribe-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .subscribe-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+    }
+
     /* ========== MODAL DE IMAGEN ========== */
     
     .modal {
@@ -524,8 +561,8 @@
       }
 
       .logo-image {
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
       }
 
       .options-grid {
@@ -586,9 +623,8 @@
       <img src="tu-logo.png" alt="Vermadeli Logo" class="logo-image" id="logoImage">
     </div>
     
-    <h1 class="landing-title">VermaDeli</h1>
-    <p class="landing-subtitle">¡Hola! Soy Alicia, una apasionada de la Música, los juegos (de toda clase), la Literatura y el Arte en general. <br> Me gusta mucho aprender, escribir, comunicar de cualquier forma y crear todo tipo de pasatiempos y es esto lo que vais a encontrar en mi página web. Espero que os guste.
-      <br> ¡Bienvenidos a mi mundo!🧚🏻‍♀️🍃</p>
+    <h1 class="landing-title">Vermadeli</h1>
+    <p class="landing-subtitle">Bienvenido a mi espacio personal dedicado a la creatividad, las palabras y el entretenimiento</p>
     
     <div class="options-grid">
       <a href="#" class="option-card" data-tab="crucigramas">
@@ -601,8 +637,13 @@
       </a>
       <a href="#" class="option-card" data-tab="vídeos poesía">
         <span class="option-icon">📹</span>
-        <span class="option-title">Vídeos de poesía</span>
+        <span class="option-title">Poesía</span>
       </a>
+    </div>
+
+    <div class="subscribe-section">
+      <div class="subscribe-title">📬 No te pierdas mis novedades</div>
+      <a href="https://vermadeli.substack.com" target="_blank" class="subscribe-button">Suscribirse al newsletter</a>
     </div>
   </div>
 </div>
@@ -625,7 +666,7 @@
     <ul id="navTabs">
       <li><a href="#crucigramas" class="tab-link active" data-tab="crucigramas">🧩 Crucigramas</a></li>
       <li><a href="#blog" class="tab-link" data-tab="blog">📝 Blog</a></li>
-      <li><a href="#vídeos poesía" class="tab-link" data-tab="vídeos poesía">📹 Vídeos de poesía</a></li>
+      <li><a href="#vídeos poesía" class="tab-link" data-tab="vídeos poesía">📹 Poesía</a></li>
     </ul>
   </div>
 </nav>
@@ -638,8 +679,8 @@
 
       <div class="intro-text">
         <p>
-          Aquí encontraréis crucigramas que intento publicar como mínimo semanalmente. Mi fuente de inspiración son los clásicos de Mambrino para El País pero son todos de cosecha propia, tanto las parrillas como las definiciones.          <br>
-         <br>
+          ¡Hola! Aquí encontraréis crucigramas que intento publicar como mínimo semanalmente. Mi fuente de inspiración son los clásicos de Mambrino para El País pero son todos de cosecha propia[...]
+          <br>
           Espero que disfrutéis resolviéndolos tanto como yo fabricándolos 😊
         </p>
       </div>
@@ -711,9 +752,10 @@
         <p>Acceso directo a los vídeos de mi canal de YouTube (Al rescate de la poesía).
           <br>
           <br>
-          Vivimos en una sociedad en la que la lectura está cada vez más olvidada: nadie tiene un rato para sentarse y leer un libro que merezca la pena, y si es de poesía todavía menos porque requiere una pausa y una abstracción que con nuestro ritmo de vida tan acelerado y nuestra sed de consumo constante es impensable. Además, lo poco que leemos suele encajar también con este modo de vida: se prioriza el consumo fácil, lo que está a la moda y no nos saca de la zona de confort frente a la calidad, de forma que se está perdiendo mucha literatura (poesía, en el caso que me ocupa) que es maravillosa pero que se desconoce, cae en el olvido o simplemente se conoce pero está siendo reemplazada por otros elementos.          <br>
+          Vivimos en una sociedad en la que la lectura está cada vez más olvidada: nadie tiene un rato para sentarse y leer un libro que merezca la pena, y si es de poesía todavía menos porque req[...]
           <br>
-          Con este proyecto pretendo acercar la poesía al público, sobre todo esas obras incontestables que muchas veces son desconocidas y merecen ser rescatadas. Y para ello hago vídeos en los que recito poemas que previamente he explicado, intentando así generar un oasis de pausa, belleza y calma en la vorágine de las redes sociales. 
+          Con este proyecto pretendo acercar la poesía al público, sobre todo esas obras incontestables que muchas veces son desconocidas y merecen ser rescatadas. Y para ello hago vídeos en los qu[...]
+          <br>
           <br>
           Estos son solo algunos, pero en YouTube hay más, ¡anímate a echar un vistazo haciendo <a href="https://www.youtube.com/@Aliix99">click aquí</a>! 😉
         </p>
@@ -722,28 +764,28 @@
       <div class="video-section">
         <h2>Montevideo (Cristina Peri Rossi, 2001)</h2>
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/MWSBSf2TQtQ" title="Montevideo - Cristina Peri Rossi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/MWSBSf2TQtQ" title="Montevideo - Cristina Peri Rossi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-pictu[...]
         </div>
       </div>
 
       <div class="video-section">
         <h2>Único (Javier Velaza, 2024)</h2>
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/_bGIM0adXjI" title="Único - Javier Velaza" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/_bGIM0adXjI" title="Único - Javier Velaza" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowf[...]
         </div>
       </div>
 
       <div class="video-section">
         <h2>Ausencia (Conde de Abascal, 1999)</h2>
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/f9AI7dbvPww" title="Ausencia - Conde de Abascal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/f9AI7dbvPww" title="Ausencia - Conde de Abascal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" a[...]
         </div>
       </div>
 
       <div class="video-section">
         <h2>Soneto: El Poeta Pide a su Amor que le Escriba (Federico García Lorca, 1935)</h2>
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/zHmh5ygo-e0?si=mUc4vN-NZxfNzle9" title="Soneto - Lorca" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/zHmh5ygo-e0?si=mUc4vN-NZxfNzle9" title="Soneto - Lorca" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-pic[...]
         </div>
       </div>
 
