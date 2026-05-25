@@ -79,6 +79,8 @@ exolve-end
 ======REPLACE WITH YOUR PUZZLE ABOVE======
 `;
 
+
+
 /**
  * The Exolve code creates only the following names at global scope:
  *
@@ -465,7 +467,7 @@ function Exolve(puzzleSpec,
     'hint-bulb': '&#128161;',
     'submit': 'Submit',
     'submit.hover': 'Submit the solution!',
-    'setter-by': 'por',
+    'setter-by': 'By',
     'curr-clue-prev': '&lt;',
     'curr-clue-prev.hover': 'Previous clue.',
     'curr-clue-next': '&gt;',
@@ -564,18 +566,17 @@ function Exolve(puzzleSpec,
         'to squares.',
     'placeholder-copy': '&#8690;',
     'placeholder-copy.hover': 'Copy into currently highlighted squares.',
-    'confirm-clear-all': 'Are you sure you want to clear every entry!?',
+    'confirm-clear-all': 'Estás seguro de que quieres borrarlo todo!?',
     'confirm-clear-all-orphans1': 'Are you sure you want to clear every ' +
         'entry!?  (Placeholder entries in clues will not be cleared. To clear ' +
         'the placeholders, click on clear-all again after clearing the grid.)',
     'confirm-clear-all-orphans2': 'Are you sure you want to clear every ' +
         'entry including all the placeholder entries in clues!?',
-    'confirm-check-all': 'Are you sure you want to clear mistakes everywhere!?',
+    'confirm-check-all': 'Estás seguro de que quieres corregir todos los errores!?',
     'confirm-mismatched-copy': 'Are you sure you want to do this mismatched ' +
         'copy (#letters-from : #squares-to)? ',
     'confirm-show-ninas': 'Are you sure you want to reveal the nina(s)!?',
-    'confirm-reveal-all': 'Are you sure you want to reveal the whole ' +
-        'solution!?',
+    'confirm-reveal-all': 'Estás seguro de que quieres revelar todas las soluciones!?',
     'confirm-submit': 'Are you sure you are ready to submit!?',
     'confirm-incomplete-submit': 'Are you sure you want to submit an ' +
         'INCOMPLETE solution!?',
@@ -721,6 +722,7 @@ function Exolve(puzzleSpec,
   this.useWebifi = false;
   this.hltOverwrittenMillis = 5000;
   this.colourOnlyCellBottom = false;
+  this.ignoreUnclued = true;
 
   this.createPuzzle();
 }
@@ -9838,6 +9840,8 @@ Exolve.prototype.makeNotesPanel = function() {
       width: 95%;
     }
     </style>
+    
+  
     <div contenteditable=true id="${this.prefix}-overall-notes"
         class="xlv-overall-notes">
     </div>
@@ -11229,7 +11233,7 @@ Exolve.prototype.createPuzzle = function() {
   /**
    * Done after all "inputty" element creation.
    */
-  this.checkPhoniness();
+  // this.checkPhoniness(); // Disabled to use native mobile keyboard
 
   this.applyStyles();
 
@@ -12004,11 +12008,190 @@ a.xlv-link:hover {
     display: none;
   }
 }
+.congratulations-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 3px solid #51cf66;
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  z-index: 10000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.5s ease-out;
+}
+@keyframes popIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+.congratulations-modal h1 {
+  color: #51cf66;
+  font-size: 36px;
+  margin: 0 0 15px 0;
+}
+.congratulations-modal p {
+  color: #333;
+  font-size: 18px;
+  margin: 10px 0;
+}
+.congratulations-modal button {
+  background-color: #51cf66;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: bold;
+}
+.congratulations-modal button:hover {
+  background-color: #40c057;
+}
+.congratulations-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+.admin-mode-button:hover {
+  background-color: #40c057;
+}
+/* Hide copy placeholder button and underline */
+.xlv-nobr .xlv-small-button {
+  display: none !important;
+}
+.xlv-incluefill {
+  display: none !important;
+}
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+@keyframes confetti-swing {
+  0%, 100% {
+    transform: translateX(0) translateY(-10vh) rotate(0deg);
+  }
+  50% {
+    transform: translateX(100px) translateY(50vh) rotate(360deg);
+  }
+}
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  z-index: 9990;
+  pointer-events: none;
+}
+.confetti.type1 {
+  animation: confetti-fall 3s ease-in forwards;
+  background: #ff6b6b;
+}
+.confetti.type2 {
+  animation: confetti-fall 3.5s ease-in forwards;
+  background: #51cf66;
+}
+.confetti.type3 {
+  animation: confetti-fall 4s ease-in forwards;
+  background: #4c6ef5;
+}
+.confetti.type4 {
+  animation: confetti-fall 3.2s ease-in forwards;
+  background: #ffd43b;
+}
+.confetti.type5 {
+  animation: confetti-fall 3.8s ease-in forwards;
+  background: #ff922b;
+}
 </style>
 </head>
 <body>
 <script>
   createExolve(puzzleText);
+  
+   
+  // Congratulations message when puzzle is completed
+  document.addEventListener('exolve', function(event) {
+    if (event.detail.filled === event.detail.toFill && event.detail.knownCorrect) {
+      ;
+      showCongratulations();
+    }
+  });
+  
+  function showCongratulations() {
+    const finalTime = formatTime(elapsedSeconds);
+    
+    // Create confetti
+    function createConfetti() {
+      const confettiCount = 50;
+      const confettiTypes = ['type1', 'type2', 'type3', 'type4', 'type5'];
+      
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti ' + confettiTypes[Math.floor(Math.random() * confettiTypes.length)];
+        
+        // Random horizontal position
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '-10px';
+        
+        // Random rotation
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        // Random delay for staggered effect
+        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+        
+        document.body.appendChild(confetti);
+      }
+    }
+    
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'congratulations-overlay';
+    
+    // Create modal
+    const modal = document.createElement('div');
+    modal.className = 'congratulations-modal';
+    modal.innerHTML = `
+      <h1>🎉 ¡Felicidades! 🎉</h1>
+      <p>¡Has resuelto el crucigrama!</p>
+      <p style="color: #4c6ef5; font-size: 20px; font-weight: bold;">⏱️ Tiempo: ${finalTime}</p>
+      <button onclick="location.reload()">Volver a empezar</button>
+    `;
+    
+    document.body.appendChild(overlay);
+    document.body.appendChild(modal);
+    
+    // Start confetti animation
+    createConfetti();
+    
+    // Close on overlay click
+    overlay.addEventListener('click', function() {
+      overlay.remove();
+      modal.remove();
+      // Remove confetti
+      document.querySelectorAll('.confetti').forEach(el => el.remove());
+    });
+  }
+  
+  // Set up numbering after a short delay to ensure grid is rendered
+  // Disabled - no cell number editing
 </script>
 </body>
 </html>
