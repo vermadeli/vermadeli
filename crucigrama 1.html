@@ -137,6 +137,8 @@ exolve-end
 ======REPLACE WITH YOUR PUZZLE ABOVE======
 `;
 
+
+
 /**
  * The Exolve code creates only the following names at global scope:
  *
@@ -622,18 +624,17 @@ function Exolve(puzzleSpec,
         'to squares.',
     'placeholder-copy': '&#8690;',
     'placeholder-copy.hover': 'Copy into currently highlighted squares.',
-    'confirm-clear-all': 'Are you sure you want to clear every entry!?',
+    'confirm-clear-all': 'Estás seguro de que quieres borrarlo todo!?',
     'confirm-clear-all-orphans1': 'Are you sure you want to clear every ' +
         'entry!?  (Placeholder entries in clues will not be cleared. To clear ' +
         'the placeholders, click on clear-all again after clearing the grid.)',
     'confirm-clear-all-orphans2': 'Are you sure you want to clear every ' +
         'entry including all the placeholder entries in clues!?',
-    'confirm-check-all': 'Are you sure you want to clear mistakes everywhere!?',
+    'confirm-check-all': 'Estás seguro de que quieres corregir todos los errores!?',
     'confirm-mismatched-copy': 'Are you sure you want to do this mismatched ' +
         'copy (#letters-from : #squares-to)? ',
     'confirm-show-ninas': 'Are you sure you want to reveal the nina(s)!?',
-    'confirm-reveal-all': 'Are you sure you want to reveal the whole ' +
-        'solution!?',
+    'confirm-reveal-all': 'Estás seguro de que quieres revelar todas las soluciones!?',
     'confirm-submit': 'Are you sure you are ready to submit!?',
     'confirm-incomplete-submit': 'Are you sure you want to submit an ' +
         'INCOMPLETE solution!?',
@@ -11290,7 +11291,7 @@ Exolve.prototype.createPuzzle = function() {
   /**
    * Done after all "inputty" element creation.
    */
-  this.checkPhoniness();
+  // this.checkPhoniness(); // Disabled to use native mobile keyboard
 
   this.applyStyles();
 
@@ -12064,7 +12065,7 @@ a.xlv-link:hover {
   .xlv-concise-clue {
     display: none;
   }
-  
+}
 .congratulations-modal {
   position: fixed;
   top: 50%;
@@ -12183,22 +12184,7 @@ a.xlv-link:hover {
 <script>
   createExolve(puzzleText);
   
-  // Timer functionality
-  let timerInterval = null;
-  let elapsedSeconds = 0;
-  
-  function formatTime(seconds) {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    
-    if (hours > 0) {
-      return `${hours}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    }
-    return `${minutes}:${String(secs).padStart(2, '0')}`;
-  }
-  
-  
+   
   // Congratulations message when puzzle is completed
   document.addEventListener('exolve', function(event) {
     if (event.detail.filled === event.detail.toFill && event.detail.knownCorrect) {
@@ -12243,6 +12229,7 @@ a.xlv-link:hover {
     modal.innerHTML = `
       <h1>🎉 ¡Felicidades! 🎉</h1>
       <p>¡Has resuelto el crucigrama!</p>
+      <p style="color: #4c6ef5; font-size: 20px; font-weight: bold;">⏱️ Tiempo: ${finalTime}</p>
       <button onclick="location.reload()">Volver a empezar</button>
     `;
     
