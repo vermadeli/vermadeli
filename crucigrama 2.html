@@ -141,6 +141,7 @@ exolve-end
 
 
 
+
 /**
  * The Exolve code creates only the following names at global scope:
  *
@@ -611,9 +612,9 @@ function Exolve(puzzleSpec,
     'saving-url': 'URL',
     'shuffle': 'Jotting pad: (click here to shuffle)',
     'shuffle.hover': 'Shuffle selected text (or all text, if none selected).',
-    'across-letter': 'h',
+    'across-letter': 'a',
     'back-letter': 'b',
-    'down-letter': 'v',
+    'down-letter': 'd',
     'up-letter': 'u',
     '3d-ac': 'ac',
     '3d-ba': 'ba',
@@ -626,18 +627,17 @@ function Exolve(puzzleSpec,
         'to squares.',
     'placeholder-copy': '&#8690;',
     'placeholder-copy.hover': 'Copy into currently highlighted squares.',
-    'confirm-clear-all': 'Are you sure you want to clear every entry!?',
+    'confirm-clear-all': 'Estás seguro de que quieres borrarlo todo!?',
     'confirm-clear-all-orphans1': 'Are you sure you want to clear every ' +
         'entry!?  (Placeholder entries in clues will not be cleared. To clear ' +
         'the placeholders, click on clear-all again after clearing the grid.)',
     'confirm-clear-all-orphans2': 'Are you sure you want to clear every ' +
         'entry including all the placeholder entries in clues!?',
-    'confirm-check-all': 'Are you sure you want to clear mistakes everywhere!?',
+    'confirm-check-all': 'Estás seguro de que quieres corregir todos los errores!?',
     'confirm-mismatched-copy': 'Are you sure you want to do this mismatched ' +
         'copy (#letters-from : #squares-to)? ',
     'confirm-show-ninas': 'Are you sure you want to reveal the nina(s)!?',
-    'confirm-reveal-all': 'Are you sure you want to reveal the whole ' +
-        'solution!?',
+    'confirm-reveal-all': 'Estás seguro de que quieres revelar todas las soluciones!?',
     'confirm-submit': 'Are you sure you are ready to submit!?',
     'confirm-incomplete-submit': 'Are you sure you want to submit an ' +
         'INCOMPLETE solution!?',
@@ -11294,7 +11294,7 @@ Exolve.prototype.createPuzzle = function() {
   /**
    * Done after all "inputty" element creation.
    */
-  this.checkPhoniness();
+  // this.checkPhoniness(); // Disabled to use native mobile keyboard
 
   this.applyStyles();
 
@@ -12060,7 +12060,15 @@ a.xlv-link:hover {
   .xlv-curr-clue .xlv-concise-clue {
     display: none;
   }
-
+}
+@media print {
+  .xlv-long-clue {
+    display: inline;
+  }
+  .xlv-concise-clue {
+    display: none;
+  }
+}
 .congratulations-modal {
   position: fixed;
   top: 50%;
@@ -12179,11 +12187,11 @@ a.xlv-link:hover {
 <script>
   createExolve(puzzleText);
   
-
-  
+   
   // Congratulations message when puzzle is completed
   document.addEventListener('exolve', function(event) {
     if (event.detail.filled === event.detail.toFill && event.detail.knownCorrect) {
+      ;
       showCongratulations();
     }
   });
