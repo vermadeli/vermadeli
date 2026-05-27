@@ -74,13 +74,28 @@ h2{
 
 .clue{
   display:flex;
-  align-items:center;
-  gap:12px;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
   background:white;
-  padding:12px;
+  padding:16px;
   border-radius:10px;
   margin:12px auto;
   max-width:1100px;
+}
+
+.clue-answer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  width:100%;
+  margin-top:4px;
+}
+
+.clue-label{
+  width:100%;
+  min-width:auto;
+  font-weight:bold;
 }
 
 .clue-label{
@@ -111,7 +126,7 @@ h2{
 }
 
 .clue-number{
-  font-size:11px;
+  font-size:10pt;
   color:#666;
   margin-top:3px;
 }
@@ -263,11 +278,253 @@ h2{
   font-size:28px;
   cursor:pointer;
 }
+
+@media print{
+
+  @page{
+    size:A4 landscape;
+    margin:10mm;
+  }
+
+  html,
+  body{
+    width:100%;
+    margin:0;
+    padding:0;
+    background:white !important;
+    color:black;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  h2{
+    text-align:center;
+    font-size:24pt;
+    margin-bottom:8mm;
+  }
+
+  #printBtn,
+  .hint-btn,
+  #celebrationOverlay,
+  #hintModal{
+    display:none !important;
+  }
+
+  /* DAMERO */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(13, 19mm);
+    gap:0;
+
+    width:max-content;
+    margin:0 auto 10mm auto;
+
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+
+  .cell,
+  .black{
+    width:19mm;
+    height:12mm;
+
+    border:1px solid black;
+    border-radius:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
+
+  .cell{
+    background:white !important;
+    position:relative;
+  }
+
+  /* negras realmente negras al imprimir */
+  .black{
+    background:#000 !important;
+    color:white !important;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  .number{
+    position:absolute;
+    top:1mm;
+    left:1mm;
+    font-size:7pt;
+    color:black;
+  }
+
+  .letter-input{
+    width:100%;
+    height:100%;
+    border:none;
+    background:transparent;
+    font-size:17pt;
+    font-weight:bold;
+    text-align:center;
+  }
+
+  /* DEFINICIONES */
+  #clues{
+    display:block;
+    width:100%;
+    margin-top:1mm;
+  }
+
+.clue{
+  display:block;
+  background:none;
+  border:none;
+  box-shadow:none;
+  gap:0 !important;
+
+  padding:0;
+  margin:0 0 0.2mm 0;
+
+  page-break-inside:avoid;
+  break-inside:avoid;
+}
+
+.clue-label{
+  font-size:10pt;
+  font-weight:bold;
+  line-height:0.95;
+  margin:0;
+  padding:0;
+}
+
+.clue-answer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.6mm;
+  margin-top:-1.2mm !important;
+
+  width:100%;
+
+  margin:0;
+  padding:0;
+}
+
+.clue-cell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+
+  margin:0;
+  padding:0;
+}
+
+.clue-cell input{
+  width:5mm;
+  height:0.8mm;
+
+  border:none;
+  border-bottom:1px solid black;
+  border-radius:0;
+
+  background:transparent;
+
+  font-size:0;
+  margin:0;
+  padding:0;
+}
+
+.clue-number{
+  font-size:6pt;
+  line-height:0.8;
+  margin-top:0;
+  padding:0;
+  color:black;
+}
+
+.clue-cell input{
+  width:5mm;
+  height:1mm;
+
+  border:none;
+  border-bottom:1px solid black;
+  border-radius:0;
+
+  background:transparent;
+
+  font-size:0;
+  padding:0;
+  margin:0;
+}
+
+}
+
+@media (max-width: 900px){
+
+  body{
+    margin:14px;
+  }
+
+  h2{
+    font-size:26px;
+    margin-bottom:18px;
+  }
+
+  .grid{
+    overflow-x:auto;
+    justify-content:flex-start;
+    padding-bottom:8px;
+  }
+
+  .cell,
+  .black{
+    flex:0 0 auto;
+  }
+
+  .clue{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+    padding:14px;
+  }
+
+  .clue-label{
+    width:100%;
+    min-width:auto;
+    font-size:16px;
+    line-height:1.35;
+  }
+
+  .clue-answer{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    width:100%;
+  }
+
+  .clue-cell input{
+    width:44px;
+    height:44px;
+    font-size:24px;
+  }
+
+  /* números bajo las casillas más visibles */
+  .clue-number{
+    font-size:14px;
+    font-weight:600;
+  }
+
+}
 </style>
 </head>
 <body>
 
 <h2>LATIDO MERMADO 1</h2>
+
+<div style="text-align:center; margin-bottom:20px;">
+  <button onclick="window.print()" id="printBtn" class="continue-btn">
+    🖨 Imprimir
+  </button>
+</div>
 
 <div id="grid" class="grid"></div>
 
@@ -418,7 +675,7 @@ const clueData = [
 },
 {
   letter:"S",
-  text:"En algunos motines de los tercios españoles, hombre nombrado como cabeza de ellos.",
+  text:"En algunos motines de los tercios españoles, hombre nombrado como cabeza de ellos. (plural)",
   hint:"Ese nombramiento es fruto de un consenso; han decidido que sea él",
   cells:[49,72,126,116,29,7,35]
 },
