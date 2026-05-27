@@ -6,108 +6,192 @@
 
 <style>
 body{
-  font-family: Georgia, serif;
-  background:#f6f2e8;
-  margin:30px;
-  color:#2f2f2f;
+  font-family: Georgia, "Times New Roman", serif;
+  background: linear-gradient(180deg,#f7f2e8 0%, #efe7d8 100%);
+  margin:0;
+  padding:32px;
+  color:#2e2a24;
 }
+
+/* TÍTULO */
 
 h2{
   text-align:center;
-  font-size:34px;
-  margin-bottom:30px;
+  font-size:38px;
+  font-weight:600;
+  letter-spacing:.08em;
+  margin:8px 0 28px;
+  color:#3b3025;
 }
+
+/* BOTÓN */
+
+.continue-btn{
+  margin-top:16px;
+  padding:12px 22px;
+  border:none;
+  border-radius:14px;
+  background:#7a654c;
+  color:white;
+  font-size:15px;
+  font-family:inherit;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+  transition:.18s ease;
+}
+
+.continue-btn:hover{
+  background:#65533f;
+  transform:translateY(-1px);
+}
+
+/* CUADRÍCULA */
 
 .grid{
   display:grid;
   grid-template-columns:repeat(13,72px);
-  gap:3px;
+  gap:5px;
   justify-content:center;
-  margin:60px 30px 40px 30px;
+
+  width:max-content;
+  margin:0 auto 42px;
+  padding:26px;
+
+  background:rgba(255,255,255,.45);
+  border-radius:22px;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.65);
 }
+
+/* CASILLAS */
 
 .cell{
   position:relative;
   width:72px;
   height:72px;
-  border:1px solid #777;
-  border-radius:8px;
-  background:white;
+
+  background:#fffdf8;
+
+  border:1px solid #d5c7b5;
+  border-radius:12px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    0 2px 4px rgba(0,0,0,.04);
 }
+
+/* NEGRAS */
 
 .black{
   width:72px;
   height:72px;
-  background:#222;
-  border-radius:8px;
+
+  background:linear-gradient(145deg,#2f2f2f,#171717);
+  border-radius:12px;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  color:white;
-  font-size:32px;
+
+  color:#fff;
+  font-size:30px;
   font-weight:bold;
-  user-select:none;
 }
+
+/* NUMERITOS */
 
 .number{
   position:absolute;
-  top:4px;
-  left:5px;
+  top:6px;
+  left:7px;
   font-size:11px;
-  color:#777;
+  color:#8b7a66;
+  font-weight:600;
 }
+
+/* INPUTS CUADRÍCULA */
 
 .letter-input{
   width:100%;
   height:100%;
+
   border:none;
-  text-align:center;
-  font-size:34px;
   background:transparent;
+
+  text-align:center;
   text-transform:uppercase;
+
+  font-size:34px;
+  font-weight:600;
+  color:#2e2a24;
 }
 
 .letter-input:focus{
   outline:none;
-  background:#fff8d9;
+  background:#fff3c9;
+  border-radius:12px;
 }
+
+/* BLOQUES DE DEFINICIÓN */
 
 .clue{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:10px;
-  background:white;
-  padding:16px;
+  max-width:1120px;
+
+  margin:14px auto;
+  padding:18px 22px;
+
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(8px);
+
+  border:1px solid rgba(170,150,120,.22);
+  border-radius:18px;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.06);
+}
+
+/* TEXTO DEFINICIÓN */
+
+.clue-label{
+  font-size:18px;
+  line-height:1.42;
+  font-weight:600;
+  color:#342b22;
+  margin-bottom:10px;
+}
+
+/* BOTÓN PISTA */
+
+.hint-btn{
+  padding:7px 12px;
+  border:none;
   border-radius:10px;
-  margin:12px auto;
-  max-width:1100px;
+
+  background:#a38762;
+  color:white;
+
+  font-size:13px;
+  font-family:inherit;
+  cursor:pointer;
+
+  transition:.15s ease;
 }
+
+.hint-btn:hover{
+  background:#8a7050;
+}
+
+/* RESPUESTA */
 
 .clue-answer{
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
-  width:100%;
-  margin-top:4px;
+  gap:7px;
+  margin-top:10px;
 }
 
-.clue-label{
-  width:100%;
-  min-width:auto;
-  font-weight:bold;
-}
-
-.clue-label{
-  min-width:260px;
-  font-weight:bold;
-}
-
-.clue-answer{
-  display:flex;
-  gap:4px;
-  flex-wrap:wrap;
-}
+/* CASILLAS RESPUESTA */
 
 .clue-cell{
   display:flex;
@@ -115,76 +199,215 @@ h2{
   align-items:center;
 }
 
+/* INPUT DEFINICIÓN */
+
 .clue-cell input{
   width:42px;
   height:42px;
+
+  border:1px solid #d8cbbd;
+  border-radius:10px;
+
+  background:#fffefb;
+
   font-size:24px;
   text-align:center;
-  border:1px solid #bbb;
-  border-radius:6px;
   text-transform:uppercase;
+
+  transition:.15s ease;
 }
+
+.clue-cell input:focus{
+  outline:none;
+  border-color:#a98b63;
+  box-shadow:0 0 0 3px rgba(169,139,99,.12);
+}
+
+/* NÚMERO BAJO CASILLA */
 
 .clue-number{
-  font-size:10pt;
-  color:#666;
-  margin-top:3px;
+  margin-top:4px;
+  font-size:11px;
+  color:#7b6b58;
+  font-weight:600;
 }
 
-.hint-btn{
-  padding:7px 10px;
-  border:none;
-  border-radius:8px;
-  background:#8a7558;
-  color:white;
-  cursor:pointer;
-  font-size:14px;
-}
-
-.hint-btn:hover{
-  background:#6f5d46;
-}
+/* RESULTADO */
 
 #result{
   text-align:center;
   font-size:28px;
-  margin-top:25px;
+  margin-top:24px;
   color:#2f7d32;
-  font-weight:bold;
 }
+
+/* MODALES */
+
+.hint-content,
+#celebrationBox{
+  background:#fffdf9;
+  border-radius:24px;
+  box-shadow:0 18px 45px rgba(0,0,0,.22);
+}
+
+/* ===== MODAL PISTA ===== */
+
+.hint-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(4px);
+  z-index:9998;
+
+  align-items:center;
+  justify-content:center;
+}
+
+.hint-content{
+  position:relative;
+
+  width:min(520px, 90vw);
+  padding:34px;
+
+  text-align:center;
+
+  background:#fffdf9;
+  border-radius:26px;
+
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+
+  animation:popIn .28s ease;
+}
+
+.hint-content h3{
+  font-size:34px;
+  margin:0 0 12px;
+}
+
+.hint-content p{
+  font-size:22px;
+  line-height:1.45;
+}
+
+.hint-close{
+  position:absolute;
+  top:14px;
+  right:18px;
+
+  border:none;
+  background:none;
+
+  font-size:28px;
+  cursor:pointer;
+}
+
+
+/* ===== CELEBRACIÓN ===== */
 
 #celebrationOverlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.55);
+
   display:none;
   align-items:center;
   justify-content:center;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at top left, rgba(255,0,128,.22), transparent 35%),
+    radial-gradient(circle at top right, rgba(255,220,0,.22), transparent 35%),
+    radial-gradient(circle at bottom left, rgba(0,190,255,.20), transparent 35%),
+    rgba(0,0,0,.58);
+
+  backdrop-filter:blur(6px);
+
   z-index:9999;
 }
 
+#celebrationOverlay::before{
+  content:"🌈     🎉     🎺     ✨     🌈     🎊     🎺     ✨";
+  position:absolute;
+  top:8%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:56px;
+  white-space:nowrap;
+  animation:floatParty 4s ease-in-out infinite;
+}
+
+#celebrationOverlay::after{
+  content:"✨     🎺     🌈     🎉     ✨";
+  position:absolute;
+  bottom:10%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:44px;
+  opacity:.95;
+}
+
 #celebrationBox{
-  background:white;
-  padding:50px 70px;
-  border-radius:24px;
+  position:relative;
+
+  width:min(760px, 92vw);
+
+  padding:54px 64px;
+
+  border-radius:30px;
+
   text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,.35);
-  animation: popIn .5s ease;
+
+  background:
+    radial-gradient(circle at center, #fffdf9 0%, #fff6e9 100%);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.30);
+
+  animation:popWin .45s ease;
 }
 
 #celebrationBox h1{
-  font-size:56px;
+  font-size:68px;
   margin:0;
 }
 
 #celebrationBox p{
-  font-size:28px;
+  font-size:30px;
   margin-top:12px;
 }
 
-@keyframes popIn{
+#closeCelebration{
+  position:absolute;
+  top:16px;
+  right:18px;
+  border:none;
+  background:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+.confetti{
+  position:fixed;
+  top:-30px;
+  width:14px;
+  height:14px;
+  z-index:10000;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:
+      translateY(115vh)
+      rotate(720deg);
+    opacity:0;
+  }
+}
+
+@keyframes popWin{
   from{
-    transform:scale(.7);
+    transform:scale(.72);
     opacity:0;
   }
   to{
@@ -193,90 +416,52 @@ h2{
   }
 }
 
-.confetti{
-  position:fixed;
-  width:12px;
-  height:12px;
-  top:-20px;
-  animation:fall linear forwards;
-  z-index:10000;
-}
-
-@keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(720deg);
-    opacity:0;
+@keyframes floatParty{
+  0%,100%{
+    transform:translateX(-50%) translateY(0);
+  }
+  50%{
+    transform:translateX(-50%) translateY(-10px);
   }
 }
 
-#closeCelebration{
-  position:absolute;
-  top:14px;
-  right:16px;
-  border:none;
-  background:transparent;
-  font-size:28px;
-  cursor:pointer;
-  color:#777;
+@keyframes popIn{
+  from{
+    opacity:0;
+    transform:scale(.85);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
 }
 
-#closeCelebration:hover{
-  color:black;
-}
+/* MÓVIL */
 
-#celebrationBox{
-  position:relative;
-}
+@media (max-width:900px){
 
-.continue-btn{
-  margin-top:18px;
-  padding:12px 20px;
-  border:none;
-  border-radius:10px;
-  background:#6f5d46;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-}
-.hint-modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  z-index:9998;
-  align-items:center;
-  justify-content:center;
-}
+  body{
+    padding:16px;
+  }
 
-.hint-content{
-  background:white;
-  padding:30px;
-  border-radius:18px;
-  max-width:420px;
-  width:90%;
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
-  position:relative;
-  text-align:center;
-}
+  h2{
+    font-size:28px;
+  }
 
-.hint-content h3{
-  margin-top:0;
-  font-size:28px;
-}
+  .grid{
+    overflow-x:auto;
+    justify-content:flex-start;
+    padding:18px;
+  }
 
-.hint-content p{
-  font-size:20px;
-  line-height:1.5;
-}
+  .clue{
+    padding:14px;
+  }
 
-.hint-close{
-  position:absolute;
-  right:12px;
-  top:10px;
-  border:none;
-  background:none;
-  font-size:28px;
-  cursor:pointer;
+  .clue-label{
+    font-size:16px;
+  }
+
 }
 
 @media print{
@@ -399,11 +584,14 @@ h2{
   display:flex;
   flex-wrap:wrap;
   gap:0.6mm;
-  margin-top:-1.2mm !important;
 
   width:100%;
 
-  margin:0;
+  margin-top:-1.2mm !important;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+
   padding:0;
 }
 
@@ -440,79 +628,6 @@ h2{
   color:black;
 }
 
-.clue-cell input{
-  width:5mm;
-  height:1mm;
-
-  border:none;
-  border-bottom:1px solid black;
-  border-radius:0;
-
-  background:transparent;
-
-  font-size:0;
-  padding:0;
-  margin:0;
-}
-
-}
-
-@media (max-width: 900px){
-
-  body{
-    margin:14px;
-  }
-
-  h2{
-    font-size:26px;
-    margin-bottom:18px;
-  }
-
-  .grid{
-    overflow-x:auto;
-    justify-content:flex-start;
-    padding-bottom:8px;
-  }
-
-  .cell,
-  .black{
-    flex:0 0 auto;
-  }
-
-  .clue{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
-    padding:14px;
-  }
-
-  .clue-label{
-    width:100%;
-    min-width:auto;
-    font-size:16px;
-    line-height:1.35;
-  }
-
-  .clue-answer{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    width:100%;
-  }
-
-  .clue-cell input{
-    width:44px;
-    height:44px;
-    font-size:24px;
-  }
-
-  /* números bajo las casillas más visibles */
-  .clue-number{
-    font-size:14px;
-    font-weight:600;
-  }
-
 }
 </style>
 </head>
@@ -537,7 +652,7 @@ h2{
 const values = {};
 
 const solution = {
-133:"M",9:"E",48:"D",80:"R",34:"A",122:"D",
+133:"M",9:"E",98:"D",80:"R",34:"A",122:"D",
 14:"A",36:"L",117:"T",51:"U",69:"R",92:"A",61:"S",
 8:"R",131:"E",59:"M",85:"E",104:"M",44:"O",121:"R",12:"E",
 128:"U",19:"R",101:"D",115:"E",13:"S",
@@ -569,7 +684,7 @@ const clueData = [
   letter:"A",
   text:"Dicho de un animal o de una planta: id en aumento",
   hint:"",
-  cells:[133,9,48,80,34,122]
+  cells:[133,9,98,80,34,122]
 },
 {
   letter:"B",
@@ -713,7 +828,6 @@ function closeHint(){
 
   document.getElementById("hintModal").style.display = "none";
 }
-
 function checkFinished(){
 
   const solved = Object.keys(solution).every(number =>
@@ -724,7 +838,10 @@ function checkFinished(){
 
     celebrationShown = true;
 
-    document.getElementById("celebrationOverlay").style.display="flex";
+    const overlay =
+      document.getElementById("celebrationOverlay");
+
+    overlay.style.display = "flex";
 
     launchConfetti();
 
@@ -741,36 +858,40 @@ function closeCelebration(){
 
 function launchConfetti(){
 
-  const colors = [
-    "#f94144",
-    "#f3722c",
-    "#f9c74f",
-    "#90be6d",
-    "#43aa8b",
-    "#577590",
-    "#d63384"
+  const colors=[
+    "#ff4d6d",
+    "#ffbe0b",
+    "#8338ec",
+    "#3a86ff",
+    "#06d6a0",
+    "#fb5607"
   ];
 
-  for(let i=0;i<180;i++){
+  for(let i=0;i<260;i++){
 
     const piece=document.createElement("div");
+
     piece.className="confetti";
 
     piece.style.left=Math.random()*100+"vw";
-    piece.style.backgroundColor=
+
+    piece.style.background=
       colors[Math.floor(Math.random()*colors.length)];
+
+    piece.style.borderRadius=
+      Math.random()>.5 ? "50%" : "2px";
+
+    piece.style.animationDuration=
+      (3 + Math.random()*2)+"s";
 
     piece.style.transform=
       `rotate(${Math.random()*360}deg)`;
-
-    piece.style.animationDuration=
-      (3 + Math.random()*3)+"s";
 
     document.body.appendChild(piece);
 
     setTimeout(()=>{
       piece.remove();
-    },6000);
+    },5500);
 
   }
 }
