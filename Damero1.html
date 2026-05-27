@@ -436,6 +436,45 @@ h2{
   }
 }
 
+#letterTools{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin:0 0 24px;
+  flex-wrap:wrap;
+}
+
+#letterTools button{
+  padding:8px 14px;
+  border:none;
+  border-radius:10px;
+  background:#a38762;
+  color:white;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.selected-cell{
+  box-shadow:
+    0 0 0 3px rgba(245,180,70,.45) !important;
+}
+
+/* estilos por casilla */
+
+.ink-sepia{
+  color:#2e2a24 !important;
+  font-style:normal;
+}
+
+.ink-blue{
+  color:#2646b3 !important;
+  font-style:normal;
+}
+
+.ink-italic{
+  color:#2e2a24 !important;
+  font-style:italic;
+}
 /* MÓVIL */
 
 @media (max-width:900px){
@@ -641,6 +680,14 @@ h2{
   </button>
 </div>
 
+
+<div id="letterTools">
+  <button type="button" onclick="paintSelected('sepia')">Sepia</button>
+  <button type="button" onclick="paintSelected('blue')">Azul</button>
+  <button type="button" onclick="paintSelected('italic')">Cursiva</button>
+  <button type="button" onclick="paintSelected('clear')">Normal</button>
+</div>
+
 <div id="grid" class="grid"></div>
 
 <div id="clues"></div>
@@ -652,7 +699,7 @@ h2{
 const values = {};
 
 const solution = {
-133:"M",9:"E",48:"D",80:"R",34:"A",122:"D",
+133:"M",9:"E",98:"D",80:"R",34:"A",122:"D",
 14:"A",36:"L",117:"T",51:"U",69:"R",92:"A",61:"S",
 8:"R",131:"E",59:"M",85:"E",104:"M",44:"O",121:"R",12:"E",
 128:"U",19:"R",101:"D",115:"E",13:"S",
@@ -684,7 +731,7 @@ const clueData = [
   letter:"A",
   text:"Dicho de un animal o de una planta: id en aumento",
   hint:"",
-  cells:[133,9,48,80,34,122]
+  cells:[133,9,98,80,34,122]
 },
 {
   letter:"B",
@@ -817,6 +864,8 @@ function sync(number){
 
 let celebrationShown = false;
 
+let selectedInput = null;
+
 function showHint(text){
 
   document.getElementById("hintText").textContent = text;
@@ -828,6 +877,23 @@ function closeHint(){
 
   document.getElementById("hintModal").style.display = "none";
 }
+
+function paintSelected(style){
+
+  if(!selectedInput) return;
+
+  selectedInput.classList.remove(
+    "ink-sepia",
+    "ink-blue",
+    "ink-italic"
+  );
+
+  if(style !== "clear"){
+    selectedInput.classList.add("ink-" + style);
+  }
+}
+
+
 function checkFinished(){
 
   const solved = Object.keys(solution).every(number =>
@@ -906,9 +972,33 @@ function createGridInput(number,label){
   num.textContent=number+" "+label;
 
   const input=document.createElement("input");
+input.addEventListener("focus", ()=>{
+
+  document
+    .querySelectorAll(".selected-cell")
+    .forEach(el =>
+      el.classList.remove("selected-cell")
+    );
+
+  selectedInput = input;
+
+  input.classList.add("selected-cell");
+});
   input.className="letter-input";
   input.maxLength=1;
   input.dataset.number=number;
+input.addEventListener("focus", ()=>{
+
+  document
+    .querySelectorAll(".selected-cell")
+    .forEach(el =>
+      el.classList.remove("selected-cell")
+    );
+
+  selectedInput = input;
+
+  input.classList.add("selected-cell");
+});
 
   input.addEventListener("input",e=>{
     values[number]=e.target.value.toUpperCase();
