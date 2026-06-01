@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>LATIDO MERMADO</title>
+
+<style>
+body{
+  font-family: Georgia, "Times New Roman", serif;
+  background: linear-gradient(180deg,#f7f2e8 0%, #efe7d8 100%);
+  margin:0;
+  padding:32px;
+  color:#2e2a24;
+}
+
+/* TÍTULO */
+
+h2{
+  text-align:center;
+  font-size:38px;
+  font-weight:600;
+  letter-spacing:.08em;
+  margin:8px 0 28px;
+  color:#3b3025;
+}
+
+/* BOTÓN */
+
+.continue-btn{
+  margin-top:16px;
+  padding:12px 22px;
+  border:none;
+  border-radius:14px;
+  background:#7a654c;
+  color:white;
+  font-size:15px;
+  font-family:inherit;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+  transition:.18s ease;
+}
+
+.continue-btn:hover{
+  background:#65533f;
+  transform:translateY(-1px);
+}
+
+/* CUADRÍCULA */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(13,72px);
+  gap:5px;
+  justify-content:center;
+
+  width:max-content;
+  margin:0 auto 42px;
+  padding:26px;
+
+  background:rgba(255,255,255,.45);
+  border-radius:22px;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.65);
+}
+
+/* CASILLAS */
+
+.cell{
+  position:relative;
+  width:72px;
+  height:72px;
+
+  background:#fffdf8;
+
+  border:1px solid #d5c7b5;
+  border-radius:12px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    0 2px 4px rgba(0,0,0,.04);
+}
+
+/* NEGRAS */
+
+.black{
+  width:72px;
+  height:72px;
+
+  background:linear-gradient(145deg,#2f2f2f,#171717);
+  border-radius:12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+  font-size:30px;
+  font-weight:bold;
+}
+
+/* NUMERITOS */
+
+.number{
+  position:absolute;
+  top:6px;
+  left:7px;
+  font-size:11px;
+  color:#8b7a66;
+  font-weight:600;
+}
+
+/* INPUTS CUADRÍCULA */
+
+.letter-input{
+  width:100%;
+  height:100%;
+
+  border:none;
+  background:transparent;
+
+  text-align:center;
+  text-transform:uppercase;
+
+  font-size:34px;
+  font-weight:600;
+  color:#2e2a24;
+}
+
+.letter-input:focus{
+  outline:none;
+  background:#fff3c9;
+  border-radius:12px;
+}
+
+/* BLOQUES DE DEFINICIÓN */
+
+.clue{
+  max-width:1120px;
+
+  margin:14px auto;
+  padding:18px 22px;
+
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(8px);
+
+  border:1px solid rgba(170,150,120,.22);
+  border-radius:18px;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.06);
+}
+
+/* TEXTO DEFINICIÓN */
+
+.clue-label{
+  font-size:18px;
+  line-height:1.42;
+  font-weight:600;
+  color:#342b22;
+  margin-bottom:10px;
+}
+
+/* BOTÓN PISTA */
+
+.hint-btn{
+  padding:7px 12px;
+  border:none;
+  border-radius:10px;
+
+  background:#a38762;
+  color:white;
+
+  font-size:13px;
+  font-family:inherit;
+  cursor:pointer;
+
+  transition:.15s ease;
+}
+
+.hint-btn:hover{
+  background:#8a7050;
+}
+
+/* RESPUESTA */
+
+.clue-answer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
+}
+
+/* CASILLAS RESPUESTA */
+
+.clue-cell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* INPUT DEFINICIÓN */
+
+.clue-cell input{
+  width:42px;
+  height:42px;
+
+  border:1px solid #d8cbbd;
+  border-radius:10px;
+
+  background:#fffefb;
+
+  font-size:24px;
+  text-align:center;
+  text-transform:uppercase;
+
+  transition:.15s ease;
+}
+
+.clue-cell input:focus{
+  outline:none;
+  border-color:#a98b63;
+  box-shadow:0 0 0 3px rgba(169,139,99,.12);
+}
+
+/* NÚMERO BAJO CASILLA */
+
+.clue-number{
+  margin-top:4px;
+  font-size:11px;
+  color:#7b6b58;
+  font-weight:600;
+}
+
+/* RESULTADO */
+
+#result{
+  text-align:center;
+  font-size:28px;
+  margin-top:24px;
+  color:#2f7d32;
+}
+
+/* MODALES */
+
+.hint-content,
+#celebrationBox{
+  background:#fffdf9;
+  border-radius:24px;
+  box-shadow:0 18px 45px rgba(0,0,0,.22);
+}
+
+/* ===== MODAL PISTA ===== */
+
+.hint-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(4px);
+  z-index:9998;
+
+  align-items:center;
+  justify-content:center;
+}
+
+.hint-content{
+  position:relative;
+
+  width:min(520px, 90vw);
+  padding:34px;
+
+  text-align:center;
+
+  background:#fffdf9;
+  border-radius:26px;
+
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+
+  animation:popIn .28s ease;
+}
+
+.hint-content h3{
+  font-size:34px;
+  margin:0 0 12px;
+}
+
+.hint-content p{
+  font-size:22px;
+  line-height:1.45;
+}
+
+.hint-close{
+  position:absolute;
+  top:14px;
+  right:18px;
+
+  border:none;
+  background:none;
+
+  font-size:28px;
+  cursor:pointer;
+}
+
+
+/* ===== CELEBRACIÓN ===== */
+
+#celebrationOverlay{
+  position:fixed;
+  inset:0;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at top left, rgba(255,0,128,.22), transparent 35%),
+    radial-gradient(circle at top right, rgba(255,220,0,.22), transparent 35%),
+    radial-gradient(circle at bottom left, rgba(0,190,255,.20), transparent 35%),
+    rgba(0,0,0,.58);
+
+  backdrop-filter:blur(6px);
+
+  z-index:9999;
+}
+
+#celebrationOverlay::before{
+  content:"🌈     🎉     🎺     ✨     🌈     🎊     🎺     ✨";
+  position:absolute;
+  top:8%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:56px;
+  white-space:nowrap;
+  animation:floatParty 4s ease-in-out infinite;
+}
+
+#celebrationOverlay::after{
+  content:"✨     🎺     🌈     🎉     ✨";
+  position:absolute;
+  bottom:10%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:44px;
+  opacity:.95;
+}
+
+#celebrationBox{
+  position:relative;
+
+  width:min(760px, 92vw);
+
+  padding:54px 64px;
+
+  border-radius:30px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(circle at center, #fffdf9 0%, #fff6e9 100%);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.30);
+
+  animation:popWin .45s ease;
+}
+
+#celebrationBox h1{
+  font-size:68px;
+  margin:0;
+}
+
+#celebrationBox p{
+  font-size:30px;
+  margin-top:12px;
+}
+
+#closeCelebration{
+  position:absolute;
+  top:16px;
+  right:18px;
+  border:none;
+  background:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+.confetti{
+  position:fixed;
+  top:-30px;
+  width:14px;
+  height:14px;
+  z-index:10000;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:
+      translateY(115vh)
+      rotate(720deg);
+    opacity:0;
+  }
+}
+
+@keyframes popWin{
+  from{
+    transform:scale(.72);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+@keyframes floatParty{
+  0%,100%{
+    transform:translateX(-50%) translateY(0);
+  }
+  50%{
+    transform:translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes popIn{
+  from{
+    opacity:0;
+    transform:scale(.85);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+#letterTools{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin:0 0 24px;
+  flex-wrap:wrap;
+}
+
+#letterTools button{
+  padding:8px 14px;
+  border:none;
+  border-radius:10px;
+  background:#a38762;
+  color:white;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.selected-cell{
+  box-shadow:
+    0 0 0 3px rgba(245,180,70,.45) !important;
+}
+
+/* estilos por casilla */
+
+.ink-sepia{
+  color:#2e2a24 !important;
+  font-style:normal;
+}
+
+.ink-blue{
+  color:#2646b3 !important;
+  font-style:normal;
+}
+
+.ink-italic{
+  color:#2e2a24 !important;
+  font-style:italic;
+}
+/* MÓVIL */
+
+@media (max-width:900px){
+
+  body{
+    padding:16px;
+  }
+
+  h2{
+    font-size:28px;
+  }
+
+  .grid{
+    overflow-x:auto;
+    justify-content:flex-start;
+    padding:18px;
+  }
+
+  .clue{
+    padding:14px;
+  }
+
+  .clue-label{
+    font-size:16px;
+  }
+
+}
+
+@media print{
+
+  @page{
+    size:A4 landscape;
+    margin:10mm;
+  }
+
+  html,
+  body{
+    width:100%;
+    margin:0;
+    padding:0;
+    background:white !important;
+    color:black;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  h2{
+    text-align:center;
+    font-size:24pt;
+    margin-bottom:8mm;
+  }
+
+  #printBtn,
+  .hint-btn,
+  #celebrationOverlay,
+  #hintModal{
+    display:none !important;
+  }
+
+  /* DAMERO */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(13, 19mm);
+    gap:0;
+
+    width:max-content;
+    margin:0 auto 10mm auto;
+
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+
+  .cell,
+  .black{
+    width:19mm;
+    height:12mm;
+
+    border:1px solid black;
+    border-radius:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
+
+  .cell{
+    background:white !important;
+    position:relative;
+  }
+
+  /* negras realmente negras al imprimir */
+  .black{
+    background:#000 !important;
+    color:white !important;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  .number{
+    position:absolute;
+    top:1mm;
+    left:1mm;
+    font-size:9pt;
+    color:black;
+  }
+
+  .letter-input{
+    width:100%;
+    height:100%;
+    border:none;
+    background:transparent;
+    font-size:15pt;
+    font-weight:bold;
+    text-align:center;
+  }
+
+  /* DEFINICIONES */
+  #clues{
+    display:block;
+    width:100%;
+    margin-top:3mm;
+  }
+
+.clue{
+  display:block;
+  background:none;
+  border:none;
+  box-shadow:none;
+  gap:1mm;
+
+  padding:0;
+  margin:1 1 1mm 1;
+
+  page-break-inside:avoid;
+  break-inside:avoid;
+}
+
+.clue-label{
+  font-size:10pt;
+  font-weight:bold;
+  line-height:0.95;
+  margin-top:0.5;
+  padding:1mm;
+}
+
+.clue-answer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1mm;
+
+  width:100%;
+
+  margin-top:2mm;
+  margin-right:0;
+  margin-bottom:1mm;
+  margin-left:0;
+
+  padding:0;
+}
+
+.clue-cell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+
+  margin:0;
+  padding:0;
+}
+
+.clue-cell input{
+  width:5mm;
+  height:3mm;
+
+  border:none;
+  border-bottom:1px solid black;
+  border-radius:0;
+
+  background:transparent;
+
+  font-size:40pt;
+  margin:0;
+  padding:0;
+}
+
+.clue-number{
+  font-size:10pt;
+  line-height:1;
+  margin-top:0;
+  padding:0;
+  color:black;
+}
+
+}
+</style>
+</head>
+<body>
+
+<h2>LATIDO MERMADO 1</h2>
+
+<div style="text-align:center; margin-bottom:20px;">
+  <button onclick="window.print()" id="printBtn" class="continue-btn">
+    🖨 Imprimir
+  </button>
+</div>
+
+
+<div id="letterTools">
+  <button type="button" onclick="paintSelected('sepia')">Sepia</button>
+  <button type="button" onclick="paintSelected('blue')">Azul</button>
+  <button type="button" onclick="paintSelected('italic')">Cursiva</button>
+  <button type="button" onclick="paintSelected('clear')">Normal</button>
+</div>
+
+<div id="grid" class="grid"></div>
+
+<div id="clues"></div>
+
+<div id="result"></div>
+
+<script>
+
+const values = {};
+
+const solution = {
+70:"F",31:"A",48:"V",105:"I",10:"L",85:"A",
+50:"D",90:"I",35:"S",12:"C",62:"R",84:"E",73:"T",115:"A",
+1:"C",41:"A",17:"Z",52:"C",113:"A",77:"L",26:"E",97:"A",
+58:"L",106:"E",72:"U",8:"D",39:"A",86:"R",
+89:"A",5:"C",49:"E",66:"N",25:"D",100:"R",37:"A",
+24:"S",46:"U",104:"B",32:"Y",111:"U",60:"G",82:"A",
+30:"I",40:"L",20:"O",3:"T",102:"A",
+54:"E",29:"B",42:"U",14:"R",94:"N",68:"E",2:"A",
+45:"S",6:"O",88:"M",99:"A",
+36:"T",87:"O",27:"R",69:"A",108:"L",
+76:"A",83:"D",103:"Y",109:"U",15:"V",44:"A",7:"N",92:"T,23:"E",
+114:"D",59:"I",93:"E",33:"T",18:"A",
+16:"E",95:"S",64:"M",51:"E",81:"R",34:"O",
+112:"L",65:"E",101:"G",53:"U",11:"A",
+19:"C",63:"A",71:"R",110:"P",78:"A",43:"N",80:"T",4:"A",
+22:"O",55:"R",74:"A",67:"T",9:"E",
+107:"N",28:"U",38:"D",57:"O",
+75:"D",96:"O",21:"M",79:"O",
+61:"E",98:"M",56:"P",47:"A",91:"N",13:"E",
+
+
+
+
+
+
+};
+
+const clueData = [
+{
+  letter:"A",
+  text:"Dicho de un animal o de una planta: id en aumento",
+  hint:"",
+  cells:[133,9,98,80,34,122]
+},
+{
+  letter:"B",
+  text:"Arco vertical que mide la distancia entre un astro y el horizonte (plural)",
+  hint:"otra definición: Excelencia, mérito, valor.",
+  cells:[14,36,117,51,69,92,61]
+},
+{
+  letter:"C",
+  text:"Pase a tener en la mente algo del pasado.",
+  hint:"",
+  cells:[8,131,59,85,104,44,121,12]
+},
+{
+  letter:"D",
+  text:"Maquinas y dispones cautelosamente algo contra alguien, o para la consecución de algún designio.",
+  hint:"Tiene que ver semánticamente también con tejer.",
+  cells:[128,19,101,115,13]
+},
+{
+  letter:"E",
+  text:"Escaque del escudo.",
+  hint:"",
+  cells:[41,99,127,60,102,77]
+},
+{
+  letter:"F",
+  text:"Cobijabas con tierra el pie de los árboles, y principalmente el tronco de las vides y otras plantas.",
+  hint:"estás poniendo algo alrededor de otra cosa más alargada, como cuando te pones un colgante o una gargantilla",
+  cells:[110,1,134,53,94,58,18,87,79]
+},
+{
+  letter:"G",
+  text:"Que tienen vello",
+  hint:"",
+  cells:[50,27,109,66,5,75,37,90]
+},
+{
+  letter:"H",
+  text:"Comuniques a un cuerpo la propiedad magnética",
+  hint:"Se parece mucho a la primera palabra que probablemente se te haya venido a la mente pero que se pasa de letras.",
+  cells:[62,70,132,15,76,21]
+},
+{
+  letter:"I",
+  text:"Asombro, pasmo",
+  hint:"",
+  cells:[52,83,107,71,39,2,113]
+},
+{
+  letter:"J",
+  text:"Apartad algo de su posición perpendicular a otra cosa o al horizonte",
+  hint:"Imagínatelo visualmente, algo perpendicular a un plano que deja de estarlo poco a poco porque el ángulo deja de ser 90º",
+  cells:[20,3,63,16,81,106,42,100]
+},
+{
+  letter:"K",
+  text:"Hace retroceder, cambiando de dirección, la luz, el calor o el sonido al chocar con una superficie lisa de otro medio.",
+  hint:"",
+  cells:[11,47,114,33,65,86,123]
+},
+{
+  letter:"L",
+  text:"Desusado: cueva o caverna",
+  hint:"Es una palabra de origen árabe que no es larga",
+  cells:[25,57,10,118,96]
+},
+{
+  letter:"M",
+  text:"Componed, enmendad o disculpad un desacierto con acciones o palabras",
+  hint:"No deja de ser unir de nuevo algo que se ha roto",
+  cells:[28,74,84,124,95,48]
+},
+{
+  letter:"N",
+  text:"Indolentes, flojos, cobardes",
+  hint:"Es una palabra rara, de origen latino. La compartimos con el portugués y el italiano.",
+  cells:[97,6,88,22,54,105,45]
+},
+{
+  letter:"O",
+  text:"Haces salir algo del organismo",
+  hint:"Se usa más para referirse a impulsar con fuerza hacia fuera algo de donde sea",
+  cells:[31,23,55,93,130,108,38]
+},
+{
+  letter:"P",
+  text:"Falto de uno o más dientes",
+  hint:"",
+  cells:[46,129,32,73,40,125,89]
+},
+{
+  letter:"Q",
+  text:"Que tiene poco tamaño o un tamaño inferior a otros de su misma clase.",
+  hint:"Se usa para referirse a niños de una edad concreta, sobre todo antes (aunque hoy sigue siendo una palabra conocida).",
+  cells:[111,64,43,119,68,24,82]
+},
+{
+  letter:"R",
+  text:"Produzcamos ruido o destellos de manera súbita y llamativa.",
+  hint:"Estrellamos",
+  cells:[30,120,26,4,17,91,103,112,67,78,56]
+},
+{
+  letter:"S",
+  text:"En algunos motines de los tercios españoles, hombre nombrado como cabeza de ellos. (plural)",
+  hint:"Ese nombramiento es fruto de un consenso; han decidido que sea él",
+  cells:[49,72,126,116,29,7,35]
+},
+];
+
+const gridCells = [
+
+[1,"F"], [2,"I"], [3,"J"], [4,"R"], [5,"G"], [6,"N"], [7,"S"], null, [8,"C"], [9,"A"], [10,"L"], [11,"K"], [12,"C"], [13,"D"],
+[14,"B"], [15,"H"], null, [16,"J"], [17,"R"], null, [18,"F"], [19,"D"],
+[20,"J"], [21,"H"], [22,"N"], null, [23,"O"], null, [24,"Q"], [25,"L"], [26,"R"], null, [27,"G"], [28,"M"], [29,"S"], [30,"R"],
+[31,"O"], [32,"P"], [33,"K"], [34,"A"], [35,"S"], [null, "(...)"], [36,"B"], [37,"G"],
+[38,"O"], null, [39,"I"], [40,"P"], [41,"E"], [42,"J"], [43,"Q"],
+[44,"C"], [45,"N"], [null, ";"], [46,"P"], [47,"K"], null, [48,"M"], [49,"S"], [50,"G"], [51,"B"], [52,"I"], [53,"F"], [54,"N"], [55,"O"], [56,"R"], null, [57,"L"], [58,"F"], null, [59,"C"], [60,"E"], [61,"B"], [62,"H"], [63,"J"], [64,"Q"], [null, ","], [65,"K"], [66,"G"], null, [67,"R"],
+[68,"Q"], [69,"B"], [70,"H"], [71,"I"], [72,"S"], [73,"P"], [74,"M"], null, [75,"G"], [76,"C"], null, [77,"E"], [78,"R"], [79,"F"], null, [80,"A"], [81,"J"], [82,"Q"], [83,"I"], null, [84,"M"], [85,"C"], [86,"K"], [87,"F"], [88,"N"], [89,"P"], [90,"G"], [null, ","], [91,"R"], [92,"B"], null, [93,"O"], [94,"F"], [95,"M"], [96,"L"], 
+[97,"N"], [98,"A"], [99,"H"], [100,"J"], null, [101,"D"], [102,"E"], [103,"R"], null, [104,"C"], [105,"N"], [106,"J"], [107,"I"], [108,"O"], [null, ","], [109,"G"], [110,"F"], null, [111,"Q"], [112,"R"], [113,"I"], [114,"K"], [115,"D"], [116,"S"], [117,"B"], [118,"L"], null, [119,"Q"], [120,"R"], [121,"C"], [122,"A"], [123,"K"], [124,"M"], null, [125,"P"], [126,"S"], null, [127,"E"], [128,"D"], [129,"P"], null, [130,"O"], [131,"C"], null, [132,"H"], [133,"A"], [134,"F"], [null, "."], null, null, null, null, null
+];
+
+function sync(number){
+  document.querySelectorAll(`[data-number="${number}"]`)
+    .forEach(el => el.value = values[number] || "");
+  checkFinished();
+}
+
+
+let celebrationShown = false;
+
+let selectedInput = null;
+
+function showHint(text){
+
+  document.getElementById("hintText").textContent = text;
+
+  document.getElementById("hintModal").style.display = "flex";
+}
+
+function closeHint(){
+
+  document.getElementById("hintModal").style.display = "none";
+}
+
+function paintSelected(style){
+
+  if(!selectedInput) return;
+
+  selectedInput.classList.remove(
+    "ink-sepia",
+    "ink-blue",
+    "ink-italic"
+  );
+
+  if(style !== "clear"){
+    selectedInput.classList.add("ink-" + style);
+  }
+}
+
+
+function checkFinished(){
+
+  const solved = Object.keys(solution).every(number =>
+    (values[number] || "") === solution[number]
+  );
+
+  if(solved && !celebrationShown){
+
+    celebrationShown = true;
+
+    const overlay =
+      document.getElementById("celebrationOverlay");
+
+    overlay.style.display = "flex";
+
+    launchConfetti();
+
+  }
+}
+
+function closeCelebration(){
+
+  document.getElementById(
+    "celebrationOverlay"
+  ).style.display = "none";
+
+}
+
+function launchConfetti(){
+
+  const colors=[
+    "#ff4d6d",
+    "#ffbe0b",
+    "#8338ec",
+    "#3a86ff",
+    "#06d6a0",
+    "#fb5607"
+  ];
+
+  for(let i=0;i<260;i++){
+
+    const piece=document.createElement("div");
+
+    piece.className="confetti";
+
+    piece.style.left=Math.random()*100+"vw";
+
+    piece.style.background=
+      colors[Math.floor(Math.random()*colors.length)];
+
+    piece.style.borderRadius=
+      Math.random()>.5 ? "50%" : "2px";
+
+    piece.style.animationDuration=
+      (3 + Math.random()*2)+"s";
+
+    piece.style.transform=
+      `rotate(${Math.random()*360}deg)`;
+
+    document.body.appendChild(piece);
+
+    setTimeout(()=>{
+      piece.remove();
+    },5500);
+
+  }
+}
+
+function createGridInput(number,label){
+
+  const wrapper=document.createElement("div");
+  wrapper.className="cell";
+
+  const num=document.createElement("div");
+  num.className="number";
+  num.textContent=number+" "+label;
+
+  const input=document.createElement("input");
+input.addEventListener("focus", ()=>{
+
+  document
+    .querySelectorAll(".selected-cell")
+    .forEach(el =>
+      el.classList.remove("selected-cell")
+    );
+
+  selectedInput = input;
+
+  input.classList.add("selected-cell");
+});
+  input.className="letter-input";
+  input.maxLength=1;
+  input.dataset.number=number;
+input.addEventListener("focus", ()=>{
+
+  document
+    .querySelectorAll(".selected-cell")
+    .forEach(el =>
+      el.classList.remove("selected-cell")
+    );
+
+  selectedInput = input;
+
+  input.classList.add("selected-cell");
+});
+
+  input.addEventListener("input",e=>{
+    values[number]=e.target.value.toUpperCase();
+    sync(number);
+  });
+
+  wrapper.appendChild(num);
+  wrapper.appendChild(input);
+
+  return wrapper;
+}
+
+const grid=document.getElementById("grid");
+
+gridCells.forEach(cell=>{
+  if(cell===null || (Array.isArray(cell) && cell[0]===null)){
+    const black=document.createElement("div");
+    black.className="black";
+    if(Array.isArray(cell) && cell[1]){
+      black.textContent = cell[1];
+    }
+    grid.appendChild(black);
+  } else {
+    grid.appendChild(createGridInput(cell[0],cell[1]));
+  }
+});
+
+
+const clues=document.getElementById("clues");
+
+clueData.forEach(clue=>{
+
+  const row=document.createElement("div");
+  row.className="clue";
+
+  const label=document.createElement("div");
+  label.className="clue-label";
+  label.textContent=clue.letter + ". " + clue.text;
+
+  const hintBtn=document.createElement("button");
+  hintBtn.className="hint-btn";
+  hintBtn.textContent="Pista";
+  hintBtn.onclick=()=>showHint(clue.hint);
+
+  const answer=document.createElement("div");
+  answer.className="clue-answer";
+
+  clue.cells.forEach((number,index)=>{
+
+    const wrap=document.createElement("div");
+    wrap.className="clue-cell";
+
+    const input=document.createElement("input");
+    input.maxLength=1;
+    input.dataset.number=number;
+
+    input.addEventListener("input",e=>{
+
+      const val=e.target.value.toUpperCase();
+      values[number]=val;
+      sync(number);
+
+      if(val && index < clue.cells.length-1){
+        answer.children[index+1].querySelector("input").focus();
+      }
+
+    });
+
+    input.addEventListener("keydown",e=>{
+      if(e.key==="Backspace" && !e.target.value && index>0){
+        answer.children[index-1].querySelector("input").focus();
+      }
+    });
+
+    const num=document.createElement("div");
+    num.className="clue-number";
+    num.textContent=number;
+
+    wrap.appendChild(input);
+    wrap.appendChild(num);
+
+    answer.appendChild(wrap);
+
+  });
+
+  row.appendChild(label);
+  row.appendChild(hintBtn);
+  row.appendChild(answer);
+
+  clues.appendChild(row);
+
+});
+</script>
+
+<div id="celebrationOverlay">
+  <div id="celebrationBox">
+
+  <button id="closeCelebration" onclick="closeCelebration()">
+    ✕
+  </button>
+
+  <h1>🎉 ¡ENHORABUENA! 🎉</h1>
+
+  <p>Lo has resuelto :)</p>
+
+  <button onclick="closeCelebration()" class="continue-btn">
+    Seguir viendo el pasatiempo
+  </button>
+
+</div>
+</div>
+<div id="hintModal" class="hint-modal">
+  <div class="hint-content">
+    <button class="hint-close" onclick="closeHint()">✕</button>
+    <h3>Pista</h3>
+    <p id="hintText"></p>
+  </div>
+</div>
+</body>
+</html>
