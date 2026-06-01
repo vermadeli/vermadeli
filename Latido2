@@ -778,81 +778,81 @@ const clueData = [
 {
   letter:"I",
   text:"Cuerpo celular de la neurona.",
-  hint:"También significa harina muy gruesa. Y dado la vuelta es un profeta del Antiguo Testamento.",
+  hint:"También significa «harina muy gruesa». Y dado la vuelta es un profeta del Antiguo Testamento.",
   cells:[45,6,88,99]
 },
 {
   letter:"J",
-  text:"Apartad algo de su posición perpendicular a otra cosa o al horizonte",
-  hint:"Imagínatelo visualmente, algo perpendicular a un plano que deja de estarlo poco a poco porque el ángulo deja de ser 90º",
+  text:"Principal o que tiene más fuerza y vigor en cualquier concepto.",
+  hint:"",
   cells:[36,87,27,69,108]
 },
 {
   letter:"K",
-  text:"Hace retroceder, cambiando de dirección, la luz, el calor o el sonido al chocar con una superficie lisa de otro medio.",
-  hint:"",
+  text:"Sustancia que, añadida a otra, potencia su efecto principal.",
+  hint:"Tambien significa «que ayuda»",
   cells:[76,83,103,109,15,44,7,92,23]
 },
 {
   letter:"L",
-  text:"Desusado: cueva o caverna",
-  hint:"Es una palabra de origen árabe que no es larga",
+  text:"Asamblea política y legislativa de algunos Estados europeos y del Japón.",
+  hint:"¿Les darán de comer?",
   cells:[114,59,93,33,18]
 },
 {
   letter:"M",
-  text:"Componed, enmendad o disculpad un desacierto con acciones o palabras",
-  hint:"No deja de ser unir de nuevo algo que se ha roto",
+  text:"Sumo cuidado y atención diligente en hacer las cosas con perfección.",
+  hint:"",
   cells:[16,95,64,51,81,34]
 },
 {
   letter:"N",
-  text:"Indolentes, flojos, cobardes",
-  hint:"Es una palabra rara, de origen latino. La compartimos con el portugués y el italiano.",
+  text:"Medida itineraria, variable según los países o regiones, definida por el camino que regularmente se anda en una hora, y que en el antiguo sistema español equivale a 5572,7 m.",
+  hint:"",
   cells:[112,65,101,53,11]
 },
 {
   letter:"O",
-  text:"Haces salir algo del organismo",
-  hint:"Se usa más para referirse a impulsar con fuerza hacia fuera algo de donde sea",
+  text:"Coloquialmente, hambre violenta",
+  hint:"Por ella pactarán con quien sea y acabará de una vez su huelga de hambre...",
   cells:[19,63,71,110,78,43,80,4]
 },
 {
   letter:"P",
-  text:"Falto de uno o más dientes",
+  text:"Persona que ha perdido el juicio.",
   hint:"",
   cells:[22,55,74,67,9]
 },
 {
   letter:"Q",
-  text:"Que tiene poco tamaño o un tamaño inferior a otros de su misma clase.",
-  hint:"Se usa para referirse a niños de una edad concreta, sobre todo antes (aunque hoy sigue siendo una palabra conocida).",
+  text:"En los árboles y plantas, parte del tronco por la cual salen las ramas, y en estas, parte por donde arrojan los vástagos, y que tiene por lo regular forma redondeada.",
+  hint:"",
   cells:[107,28,38,57]
 },
 {
   letter:"R",
-  text:"Produzcamos ruido o destellos de manera súbita y llamativa.",
-  hint:"Estrellamos",
+  text:"Bóveda en forma de una media esfera u otra aproximada con que suele cubrirse todo un edificio o parte de él.",
+  hint:"A veces se emplea indebidamente para referirse a catedral por el influjo del italiano.",
   cells:[75,96,21,79]
 },
 {
   letter:"S",
-  text:"En algunos motines de los tercios españoles, hombre nombrado como cabeza de ellos. (plural)",
-  hint:"Ese nombramiento es fruto de un consenso; han decidido que sea él",
+  text:"Siembre de trigo las tierras.",
+  hint:"Del trigo sale el pan.",
   cells:[61,98,56,47,91,13]
 },
 ];
 
 const gridCells = [
 
-[1,"C"], [2,"H"], [3,"G"], [4,"O"], [null, "(,)"], [5,"E"], [6,"I"], [7,"K"], [8,"D"], [9,"P"], [null, "(,)"], [10,"A"], [11,"N"], null, [12,"B"], [13,"S"],
-[14,"H"], [15,"K"], [16,"M"], [17,"C"], [18,"L"], [null, "(,)"], [19,"O"],
+[1,"C"], [2,"H"], [3,"G"], [4,"O"], [null, ","], [5,"E"], [6,"I"], [7,"K"], [8,"D"], [9,"P"], [null, ","], [10,"A"], [11,"N"], null, [12,"B"], [13,"S"],
+[14,"H"], [15,"K"], [16,"M"], [17,"C"], [18,"L"], [null, ","], [19,"O"],
 [20,"G"], [21,"R"], [22,"P"], null, [23,"K"], [24,"F"], null, [25,"E"], [26,"C"], null, [27,"J"], [28,"Q"], [29,"H"], [30,"G"],
 [31,"A"], null, [32,"F"], null, [33,"L"], [34,"M"], [35,"B"], [36,"J"], [37,"E"],
-[38,"Q"], [39,"D"], [null, "(;)"], [40,"G"], [41,"C"], null, [42,"H"], [43,"O"],
-[44,"K"], [null, "(,)"], [45,"I"], [46,"F"], [47,"S"], [48,"A"], [49,"E"], null, [50,"B"], [51,"M"], null, [52,"C"], [53,"N"], [54,"H"], [55,"P"], [56,"S"], [57,"Q"], [null, "(,)"], [58,"D"], [59,"L"], [60,"F"], [61,"S"], [62,"B"], [63,"O"], [64,"M"], [65,"N"], [66,"E"], [67,"P"],
-[68,"H"], null, [69,"J"], [70,"A"], [71,"O"], [72,"D"], [73,"B"], [74,"P"], [75,"R"], [76,"K"], [null, "(;)"], [77,"C"], [78,"O"], null, [79,"R"], [80,"O"], [81,"M"], [82,"F"], [null, "(,)"], [83,"K"], [84,"B"], null, [85,"A"], [86,"D"], [87,"J"], [88,"I"], [89,"E"], null, [90,"B"], [91,"S"], [92,"K"], [93,"L"], [94,"H"], [95,"M"], [96,"R"], [null, "(,)"],
-[97,"C"], [98,"S"], [99,"I"], [100,"E"], [101,"N"], [102,"G"], null, [103,"K"], null, [104,"F"], [105,"A"], [106,"D"], [107,"Q"], null, [108,"J"], [109,"K"], [110,"O"], [111,"F"], [112,"N"], [113,"C"], [114,"L"], [115,"B"], [null, "(.)"]
+[38,"Q"], [39,"D"], [null, ";"], [40,"G"], [41,"C"], null, [42,"H"], [43,"O"],
+[44,"K"], [null, ","], [45,"I"], [46,"F"], [47,"S"], [48,"A"], [49,"E"], null, [50,"B"], [51,"M"], null, [52,"C"], [53,"N"], [54,"H"], [55,"P"], [56,"S"], [57,"Q"], [null, ","], [58,"D"], [59,"L"], [60,"F"], [61,"S"], [62,"B"], [63,"O"], [64,"M"], [65,"N"], [66,"E"], [67,"P"],
+[68,"H"], null, [69,"J"], [70,"A"], [71,"O"], [72,"D"], [73,"B"], [74,"P"], [75,"R"], [76,"K"], [null, ";"], [77,"C"], [78,"O"], null, [79,"R"], [80,"O"], [81,"M"], [82,"F"], [null, ","], [83,"K"], [84,"B"], null, [85,"A"], [86,"D"], [87,"J"], [88,"I"], [89,"E"], null, [90,"B"], [91,"S"], [92,"K"], [93,"L"], [94,"H"], [95,"M"], [96,"R"], [null, "(,)"],
+[97,"C"], [98,"S"], [99,"I"], [100,"E"], [101,"N"], [102,"G"], null, [103,"K"], null, [104,"F"], [105,"A"], [106,"D"], [107,"Q"], null, [108,"J"], [109,"K"], [110,"O"], [111,"F"], [112,"N"], [113,"C"], [114,"L"], [115,"B"], [null, "."]
 ];
 
 function sync(number){
