@@ -49,7 +49,7 @@ h2{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(13,72px);
+  grid-template-columns:repeat(12,72px);
   gap:5px;
   justify-content:center;
 
@@ -729,130 +729,130 @@ const solution = {
 const clueData = [
 {
   letter:"A",
-  text:"Dicho de un animal o de una planta: id en aumento",
+  text:"Poéticamente, pavesa o ceniza del fuego",
   hint:"",
-  cells:[133,9,98,80,34,122]
+  cells:[70,31,48,105,10,85]
 },
 {
   letter:"B",
-  text:"Arco vertical que mide la distancia entre un astro y el horizonte (plural)",
-  hint:"otra definición: Excelencia, mérito, valor.",
-  cells:[14,36,117,51,69,92,61]
+  text:"Separada, distinta",
+  hint:"🍷🪶",
+  cells:[50,90,35,12,62,84,73,115]
 },
 {
   letter:"C",
-  text:"Pase a tener en la mente algo del pasado.",
-  hint:"",
-  cells:[8,131,59,85,104,44,121,12]
+  text:"Anda de una parte a otra fingiendo hacer algo útil.",
+  hint:"Palabra rara. Aquí acaba el nombre del autor (en la siguiente empieza el título del poema)",
+  cells:[1,41,17,52,113,77,26,97]
 },
 {
   letter:"D",
-  text:"Maquinas y dispones cautelosamente algo contra alguien, o para la consecución de algún designio.",
-  hint:"Tiene que ver semánticamente también con tejer.",
-  cells:[128,19,101,115,13]
+  text:"Dicho de una masa: Fermentar con la levadura.",
+  hint:"",
+  cells:[58,106,72,8,39,86]
 },
 {
   letter:"E",
-  text:"Escaque del escudo.",
-  hint:"",
-  cells:[41,99,127,60,102,77]
+  text:"Depura, purifica, limpia, deja sin mancha ni defecto.",
+  hint:"Es una palabra rara que también se usa para hablar de limpiar con fuego metales preciosos.",
+  cells:[89,5,49,66,25,100,37]
 },
 {
   letter:"F",
-  text:"Cobijabas con tierra el pie de los árboles, y principalmente el tronco de las vides y otras plantas.",
+  text:"Avasalla, sojuzga, domina poderosa o violentamente",
   hint:"estás poniendo algo alrededor de otra cosa más alargada, como cuando te pones un colgante o una gargantilla",
-  cells:[110,1,134,53,94,58,18,87,79]
+  cells:[24,46,104,32,111,60,82]
 },
 {
   letter:"G",
-  text:"Que tienen vello",
-  hint:"",
-  cells:[50,27,109,66,5,75,37,90]
+  text:"Persona que se halla o se considera desposeída de los derechos de ciudadano.",
+  hint:"Tambien significa esclava de los lacedemonios, un pueblo que no era ítalo.",
+  cells:[30,40,20,3,102]
 },
 {
   letter:"H",
-  text:"Comuniques a un cuerpo la propiedad magnética",
-  hint:"Se parece mucho a la primera palabra que probablemente se te haya venido a la mente pero que se pasa de letras.",
-  cells:[62,70,132,15,76,21]
+  text:"De marfil (femenino)",
+  hint:"¿Cómo se dice marfil en latín?",
+  cells:[54,29,42,14,94,68,2]
 },
 {
   letter:"I",
-  text:"Asombro, pasmo",
-  hint:"",
-  cells:[52,83,107,71,39,2,113]
+  text:"Cuerpo celular de la neurona.",
+  hint:"También significa harina muy gruesa. Y dado la vuelta es un profeta del Antiguo Testamento.",
+  cells:[45,6,88,99]
 },
 {
   letter:"J",
   text:"Apartad algo de su posición perpendicular a otra cosa o al horizonte",
   hint:"Imagínatelo visualmente, algo perpendicular a un plano que deja de estarlo poco a poco porque el ángulo deja de ser 90º",
-  cells:[20,3,63,16,81,106,42,100]
+  cells:[36,87,27,69,108]
 },
 {
   letter:"K",
   text:"Hace retroceder, cambiando de dirección, la luz, el calor o el sonido al chocar con una superficie lisa de otro medio.",
   hint:"",
-  cells:[11,47,114,33,65,86,123]
+  cells:[76,83,103,109,15,44,7,92,23]
 },
 {
   letter:"L",
   text:"Desusado: cueva o caverna",
   hint:"Es una palabra de origen árabe que no es larga",
-  cells:[25,57,10,118,96]
+  cells:[114,59,93,33,18]
 },
 {
   letter:"M",
   text:"Componed, enmendad o disculpad un desacierto con acciones o palabras",
   hint:"No deja de ser unir de nuevo algo que se ha roto",
-  cells:[28,74,84,124,95,48]
+  cells:[16,95,64,51,81,34]
 },
 {
   letter:"N",
   text:"Indolentes, flojos, cobardes",
   hint:"Es una palabra rara, de origen latino. La compartimos con el portugués y el italiano.",
-  cells:[97,6,88,22,54,105,45]
+  cells:[112,65,101,53,11]
 },
 {
   letter:"O",
   text:"Haces salir algo del organismo",
   hint:"Se usa más para referirse a impulsar con fuerza hacia fuera algo de donde sea",
-  cells:[31,23,55,93,130,108,38]
+  cells:[19,63,71,110,78,43,80,4]
 },
 {
   letter:"P",
   text:"Falto de uno o más dientes",
   hint:"",
-  cells:[46,129,32,73,40,125,89]
+  cells:[22,55,74,67,9]
 },
 {
   letter:"Q",
   text:"Que tiene poco tamaño o un tamaño inferior a otros de su misma clase.",
   hint:"Se usa para referirse a niños de una edad concreta, sobre todo antes (aunque hoy sigue siendo una palabra conocida).",
-  cells:[111,64,43,119,68,24,82]
+  cells:[107,28,38,57]
 },
 {
   letter:"R",
   text:"Produzcamos ruido o destellos de manera súbita y llamativa.",
   hint:"Estrellamos",
-  cells:[30,120,26,4,17,91,103,112,67,78,56]
+  cells:[75,96,21,79]
 },
 {
   letter:"S",
   text:"En algunos motines de los tercios españoles, hombre nombrado como cabeza de ellos. (plural)",
   hint:"Ese nombramiento es fruto de un consenso; han decidido que sea él",
-  cells:[49,72,126,116,29,7,35]
+  cells:[61,98,56,47,91,13]
 },
 ];
 
 const gridCells = [
 
-[1,"F"], [2,"I"], [3,"J"], [4,"R"], [5,"G"], [6,"N"], [7,"S"], null, [8,"C"], [9,"A"], [10,"L"], [11,"K"], [12,"C"], [13,"D"],
-[14,"B"], [15,"H"], null, [16,"J"], [17,"R"], null, [18,"F"], [19,"D"],
-[20,"J"], [21,"H"], [22,"N"], null, [23,"O"], null, [24,"Q"], [25,"L"], [26,"R"], null, [27,"G"], [28,"M"], [29,"S"], [30,"R"],
-[31,"O"], [32,"P"], [33,"K"], [34,"A"], [35,"S"], [null, "(...)"], [36,"B"], [37,"G"],
-[38,"O"], null, [39,"I"], [40,"P"], [41,"E"], [42,"J"], [43,"Q"],
-[44,"C"], [45,"N"], [null, ";"], [46,"P"], [47,"K"], null, [48,"M"], [49,"S"], [50,"G"], [51,"B"], [52,"I"], [53,"F"], [54,"N"], [55,"O"], [56,"R"], null, [57,"L"], [58,"F"], null, [59,"C"], [60,"E"], [61,"B"], [62,"H"], [63,"J"], [64,"Q"], [null, ","], [65,"K"], [66,"G"], null, [67,"R"],
-[68,"Q"], [69,"B"], [70,"H"], [71,"I"], [72,"S"], [73,"P"], [74,"M"], null, [75,"G"], [76,"C"], null, [77,"E"], [78,"R"], [79,"F"], null, [80,"A"], [81,"J"], [82,"Q"], [83,"I"], null, [84,"M"], [85,"C"], [86,"K"], [87,"F"], [88,"N"], [89,"P"], [90,"G"], [null, ","], [91,"R"], [92,"B"], null, [93,"O"], [94,"F"], [95,"M"], [96,"L"], 
-[97,"N"], [98,"A"], [99,"H"], [100,"J"], null, [101,"D"], [102,"E"], [103,"R"], null, [104,"C"], [105,"N"], [106,"J"], [107,"I"], [108,"O"], [null, ","], [109,"G"], [110,"F"], null, [111,"Q"], [112,"R"], [113,"I"], [114,"K"], [115,"D"], [116,"S"], [117,"B"], [118,"L"], null, [119,"Q"], [120,"R"], [121,"C"], [122,"A"], [123,"K"], [124,"M"], null, [125,"P"], [126,"S"], null, [127,"E"], [128,"D"], [129,"P"], null, [130,"O"], [131,"C"], null, [132,"H"], [133,"A"], [134,"F"], [null, "."], null, null, null, null, null
+[1,"C"], [2,"H"], [3,"G"], [4,"O"], [null, "(,)"], [5,"E"], [6,"I"], [7,"K"], [8,"D"], [9,"P"], [null, "(,)"], [10,"A"], [11,"N"], null, [12,"B"], [13,"S"],
+[14,"H"], [15,"K"], [16,"M"], [17,"C"], [18,"L"], [null, "(,)"], [19,"O"],
+[20,"G"], [21,"R"], [22,"P"], null, [23,"K"], [24,"F"], null, [25,"E"], [26,"C"], null, [27,"J"], [28,"Q"], [29,"H"], [30,"G"],
+[31,"A"], null, [32,"F"], null, [33,"L"], [34,"M"], [35,"B"], [36,"J"], [37,"E"],
+[38,"Q"], [39,"D"], [null, "(;)"], [40,"G"], [41,"C"], null, [42,"H"], [43,"O"],
+[44,"K"], [null, "(,)"], [45,"I"], [46,"F"], [47,"S"], [48,"A"], [49,"E"], null, [50,"B"], [51,"M"], null, [52,"C"], [53,"N"], [54,"H"], [55,"P"], [56,"S"], [57,"Q"], [null, "(,)"], [58,"D"], [59,"L"], [60,"F"], [61,"S"], [62,"B"], [63,"O"], [64,"M"], [65,"N"], [66,"E"], [67,"P"],
+[68,"H"], null, [69,"J"], [70,"A"], [71,"O"], [72,"D"], [73,"B"], [74,"P"], [75,"R"], [76,"K"], [null, "(;)"], [77,"C"], [78,"O"], null, [79,"R"], [80,"O"], [81,"M"], [82,"F"], [null, "(,)"], [83,"K"], [84,"B"], null, [85,"A"], [86,"D"], [87,"J"], [88,"I"], [89,"E"], null, [90,"B"], [91,"S"], [92,"K"], [93,"L"], [94,"H"], [95,"M"], [96,"R"], [null, "(,)"],
+[97,"C"], [98,"S"], [99,"I"], [100,"E"], [101,"N"], [102,"G"], null, [103,"K"], null, [104,"F"], [105,"A"], [106,"D"], [107,"Q"], null, [108,"J"], [109,"K"], [110,"O"], [111,"F"], [112,"N"], [113,"C"], [114,"L"], [115,"B"], [null, "(.)"]
 ];
 
 function sync(number){
