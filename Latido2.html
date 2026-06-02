@@ -461,11 +461,6 @@ h2{
 
 /* estilos por casilla */
 
-.ink-sepia{
-  color:#2e2a24 !important;
-  font-style:normal;
-}
-
 .ink-blue{
   color:#2646b3 !important;
   font-style:normal;
@@ -682,7 +677,6 @@ h2{
 
 
 <div id="letterTools">
-  <button type="button" onclick="paintSelected('sepia')">Sepia</button>
   <button type="button" onclick="paintSelected('blue')">Azul</button>
   <button type="button" onclick="paintSelected('italic')">Cursiva</button>
   <button type="button" onclick="paintSelected('clear')">Normal</button>
@@ -883,7 +877,6 @@ function paintSelected(style){
   if(!selectedInput) return;
 
   selectedInput.classList.remove(
-    "ink-sepia",
     "ink-blue",
     "ink-italic"
   );
