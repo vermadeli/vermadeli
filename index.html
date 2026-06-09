@@ -142,6 +142,67 @@
       color: var(--primary-color);
     }
 
+    /* ========== ESTRELLA NUEVO VÍDEO ========== */
+
+.new-video-star {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 500;
+  font-size: 0;
+}
+
+.star-shape {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  animation: starPulse 2s ease-in-out infinite;
+}
+
+.star-shape::before {
+  content: '★';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 12px rgba(255, 107, 107, 0.4));
+}
+
+.star-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes starPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
     /* ========== MODAL DE IMAGEN ========== */
     
     .modal {
@@ -572,13 +633,37 @@
       .navbar-brand {
         font-size: 18px;
       }
+
+      .new-video-star {
+  top: 15px;
+  right: 15px;
+}
+
+.star-shape {
+  width: 60px;
+  height: 60px;
+}
+
+.star-shape::before {
+  font-size: 60px;
+}
+
+.star-text {
+  width: 50px;
+  height: 50px;
+  font-size: 9px;
+}
     }
 
   </style>
 
 </head>
 <body>
-
+<!-- ESTRELLA NUEVO VÍDEO -->
+<div class="new-video-star">
+  <div class="star-shape"></div>
+  <div class="star-text">nuevo<br>vídeo</div>
+</div>
 <!-- LANDING PAGE -->
 <div id="landing" class="landing-page">
   <div class="landing-content">
