@@ -694,6 +694,9 @@ h2{
   <button type="button" onclick="paintSelected('blue')">Azul</button>
   <button type="button" onclick="paintSelected('italic')">Cursiva</button>
   <button type="button" onclick="paintSelected('clear')">Normal</button>
+  <button type="button" onclick="resetAll()" class="continue-btn">
+  🔄 Borrar todo
+</button>
 </div>
 
 <div id="grid" class="grid"></div>
@@ -866,6 +869,7 @@ const gridCells = [
 function sync(number){
   document.querySelectorAll(`[data-number="${number}"]`)
     .forEach(el => el.value = values[number] || "");
+  localStorage.setItem("crucigrama_latido2", JSON.stringify(values));
   checkFinished();
 }
 
@@ -902,22 +906,16 @@ function paintSelected(style){
 
 
 function checkFinished(){
-
   const solved = Object.keys(solution).every(number =>
     (values[number] || "") === solution[number]
   );
 
   if(solved && !celebrationShown){
-
     celebrationShown = true;
-
-    const overlay =
-      document.getElementById("celebrationOverlay");
-
+    localStorage.setItem("crucigrama_latido2", JSON.stringify(values));
+    const overlay = document.getElementById("celebrationOverlay");
     overlay.style.display = "flex";
-
     launchConfetti();
-
   }
 }
 
@@ -969,6 +967,19 @@ function launchConfetti(){
   }
 }
 
+  function resetAll(){
+  if(confirm("¿Estás seguro de que quieres borrar todo?")){
+    Object.keys(values).forEach(key => delete values[key]);
+    document.querySelectorAll(".letter-input, .clue-cell input").forEach(input => {
+      input.value = "";
+      input.classList.remove("ink-blue", "ink-italic");
+    });
+    celebrationShown = false;
+    document.getElementById("celebrationOverlay").style.display = "none";
+    localStorage.removeItem("crucigrama_latido2");
+  }
+}
+
 function createGridInput(number,label){
 
   const wrapper=document.createElement("div");
@@ -1007,7 +1018,7 @@ input.addEventListener("focus", ()=>{
   input.classList.add("selected-cell");
 });
 
-  input.addEventListener("input",e=>{
+ input.addEventListener("input",e=>{
     values[number]=e.target.value.toUpperCase();
     sync(number);
 
@@ -1019,7 +1030,22 @@ input.addEventListener("focus", ()=>{
     if(nextInput) nextInput.focus();
   }
     
-  });
+});
+
+input.addEventListener("keydown", e=>{
+  if(e.key === "Backspace"){
+    setTimeout(()=>{
+      values[number] = "";
+      sync(number);
+      if(!e.target.value){
+        const prevInput = document.querySelector(
+          `input[data-number="${number - 1}"]`
+        );
+        if(prevInput) prevInput.focus();
+      }
+    }, 0);
+  }
+});
 
   wrapper.appendChild(num);
   wrapper.appendChild(input);
@@ -1107,6 +1133,25 @@ clueData.forEach(clue=>{
   clues.appendChild(row);
 
 });
+
+window.addEventListener("load", ()=>{
+  const saved = localStorage.getItem("crucigrama_latido2");
+  if(saved){
+    const data = JSON.parse(saved);
+    Object.assign(values, data);
+    document.querySelectorAll("[data-number]").forEach(el => {
+      if(values[el.dataset.number]){
+        el.value = values[el.dataset.number];
+      }
+    });
+    checkFinished();
+  }
+});
+
+window.addEventListener("beforeunload", ()=>{
+  localStorage.setItem("crucigrama_latido2", JSON.stringify(values));
+});
+  
 </script>
 
 <div id="celebrationOverlay">
