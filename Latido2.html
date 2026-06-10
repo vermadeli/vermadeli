@@ -249,6 +249,20 @@ h2{
   border-radius:24px;
   box-shadow:0 18px 45px rgba(0,0,0,.22);
 }
+  #celebrationBox textarea{
+  width:90%;
+  max-width:500px;
+  min-height:60px;
+  margin-top:16px;
+  padding:10px;
+  border:2px solid #d8cbbd;
+  border-radius:10px;
+  font-size:14px;
+  font-family:inherit;
+  resize:vertical;
+}
+
+  
 
 /* ===== MODAL PISTA ===== */
 
@@ -996,6 +1010,15 @@ input.addEventListener("focus", ()=>{
   input.addEventListener("input",e=>{
     values[number]=e.target.value.toUpperCase();
     sync(number);
+
+     // Avanzar automáticamente al siguiente input
+  if(e.target.value){
+    const nextInput = document.querySelector(
+      `input[data-number="${number + 1}"]`
+    );
+    if(nextInput) nextInput.focus();
+  }
+    
   });
 
   wrapper.appendChild(num);
@@ -1096,6 +1119,10 @@ clueData.forEach(clue=>{
   <h1>🎉 ¡ENHORABUENA! 🎉</h1>
 
   <p>Lo has resuelto :)</p>
+
+     <textarea id="celebrationMessage" placeholder="Fragmento de La siesta del Conde, de Ferrán de Calatrava: «Cata, conde, la cerveza, cómo es de rubia y tostada;
+ la una, suave de cuerpo, ligeramente afrutada; la otra, de aroma intenso, amarga y bien lupulada»."></textarea>
+
 
   <button onclick="closeCelebration()" class="continue-btn">
     Seguir viendo el pasatiempo
