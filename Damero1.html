@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>LATIDO MERMADO</title>
+<title>LATIDO MERMADO 2</title>
 
 <style>
 body{
@@ -49,7 +49,7 @@ h2{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(13,72px);
+  grid-template-columns:repeat(12,72px);
   gap:5px;
   justify-content:center;
 
@@ -249,6 +249,20 @@ h2{
   border-radius:24px;
   box-shadow:0 18px 45px rgba(0,0,0,.22);
 }
+  #celebrationBox textarea{
+  width:90%;
+  max-width:500px;
+  min-height:60px;
+  margin-top:16px;
+  padding:10px;
+  border:2px solid #d8cbbd;
+  border-radius:10px;
+  font-size:14px;
+  font-family:inherit;
+  resize:vertical;
+}
+
+  
 
 /* ===== MODAL PISTA ===== */
 
@@ -461,11 +475,6 @@ h2{
 
 /* estilos por casilla */
 
-.ink-sepia{
-  color:#2e2a24 !important;
-  font-style:normal;
-}
-
 .ink-blue{
   color:#2646b3 !important;
   font-style:normal;
@@ -672,6 +681,26 @@ h2{
 </head>
 <body>
 
+<h2>LATIDO MERMADO 2</h2>
+
+<div style="text-align:center; margin-bottom:20px;">
+  <button onclick="window.print()" id="printBtn" class="continue-btn">
+    🖨 Imprimir
+  </button>
+</div>
+
+
+<div id="letterTools">
+  <button type="button" onclick="paintSelected('blue')">Azul</button>
+  <button type="button" onclick="paintSelected('italic')">Cursiva</button>
+  <button type="button" onclick="paintSelected('clear')">Normal</button>
+  <button type="button" onclick="resetAll()" class="continue-btn">
+  🔄 Borrar todo
+</button>
+</div>
+
+  <body>
+
 <h2>LATIDO MERMADO 1</h2>
 
 <div style="text-align:center; margin-bottom:20px;">
@@ -858,6 +887,7 @@ const gridCells = [
 function sync(number){
   document.querySelectorAll(`[data-number="${number}"]`)
     .forEach(el => el.value = values[number] || "");
+  localStorage.setItem("crucigrama_latido2", JSON.stringify(values));
   checkFinished();
 }
 
@@ -883,7 +913,6 @@ function paintSelected(style){
   if(!selectedInput) return;
 
   selectedInput.classList.remove(
-    "ink-sepia",
     "ink-blue",
     "ink-italic"
   );
@@ -895,22 +924,16 @@ function paintSelected(style){
 
 
 function checkFinished(){
-
   const solved = Object.keys(solution).every(number =>
     (values[number] || "") === solution[number]
   );
 
   if(solved && !celebrationShown){
-
     celebrationShown = true;
-
-    const overlay =
-      document.getElementById("celebrationOverlay");
-
+    localStorage.setItem("crucigrama_latido2", JSON.stringify(values));
+    const overlay = document.getElementById("celebrationOverlay");
     overlay.style.display = "flex";
-
     launchConfetti();
-
   }
 }
 
@@ -962,6 +985,19 @@ function launchConfetti(){
   }
 }
 
+  function resetAll(){
+  if(confirm("¿Estás seguro de que quieres borrar todo?")){
+    Object.keys(values).forEach(key => delete values[key]);
+    document.querySelectorAll(".letter-input, .clue-cell input").forEach(input => {
+      input.value = "";
+      input.classList.remove("ink-blue", "ink-italic");
+    });
+    celebrationShown = false;
+    document.getElementById("celebrationOverlay").style.display = "none";
+    localStorage.removeItem("crucigrama_latido2");
+  }
+}
+
 function createGridInput(number,label){
 
   const wrapper=document.createElement("div");
@@ -1000,10 +1036,34 @@ input.addEventListener("focus", ()=>{
   input.classList.add("selected-cell");
 });
 
-  input.addEventListener("input",e=>{
+ input.addEventListener("input",e=>{
     values[number]=e.target.value.toUpperCase();
     sync(number);
-  });
+
+     // Avanzar automáticamente al siguiente input
+  if(e.target.value){
+    const nextInput = document.querySelector(
+      `input[data-number="${number + 1}"]`
+    );
+    if(nextInput) nextInput.focus();
+  }
+    
+});
+
+input.addEventListener("keydown", e=>{
+  if(e.key === "Backspace"){
+    setTimeout(()=>{
+      values[number] = "";
+      sync(number);
+      if(!e.target.value){
+        const prevInput = document.querySelector(
+          `input[data-number="${number - 1}"]`
+        );
+        if(prevInput) prevInput.focus();
+      }
+    }, 0);
+  }
+});
 
   wrapper.appendChild(num);
   wrapper.appendChild(input);
@@ -1091,6 +1151,25 @@ clueData.forEach(clue=>{
   clues.appendChild(row);
 
 });
+
+window.addEventListener("load", ()=>{
+  const saved = localStorage.getItem("crucigrama_latido2");
+  if(saved){
+    const data = JSON.parse(saved);
+    Object.assign(values, data);
+    document.querySelectorAll("[data-number]").forEach(el => {
+      if(values[el.dataset.number]){
+        el.value = values[el.dataset.number];
+      }
+    });
+    checkFinished();
+  }
+});
+
+window.addEventListener("beforeunload", ()=>{
+  localStorage.setItem("crucigrama_latido2", JSON.stringify(values));
+});
+  
 </script>
 
 <div id="celebrationOverlay">
@@ -1103,6 +1182,9 @@ clueData.forEach(clue=>{
   <h1>🎉 ¡ENHORABUENA! 🎉</h1>
 
   <p>Lo has resuelto :)</p>
+
+     <textarea id="celebrationMessage" placeholder="Fragmento de Siempre, de Maruja Vieira: «contigo regresan la brisa y las estrellas.(...) los pájaros, me devuelves la música, el murmullo de los ríos lejanos, la claridad del monte, la perfecta verdad de que te amo.»."></textarea>
+
 
   <button onclick="closeCelebration()" class="continue-btn">
     Seguir viendo el pasatiempo
@@ -1118,4 +1200,5 @@ clueData.forEach(clue=>{
   </div>
 </div>
 </body>
+</html>
 </html>
