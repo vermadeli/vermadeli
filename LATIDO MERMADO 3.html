@@ -1055,16 +1055,16 @@ input.addEventListener("focus", ()=>{
 
 input.addEventListener("keydown", e=>{
   if(e.key === "Backspace"){
-    setTimeout(()=>{
-      values[number] = "";
-      sync(number);
-      if(!e.target.value){
-        const prevInput = document.querySelector(
-          `input[data-number="${number - 1}"]`
-        );
-        if(prevInput) prevInput.focus();
-      }
-    }, 0);
+     e.preventDefault();
+    values[number] = "";
+    e.target.value = "";
+    sync(number);
+    
+    // Retroceder al input anterior
+    const prevInput = document.querySelector(
+      `input[data-number="${number - 1}"]`
+    );
+    if(prevInput) prevInput.focus();
   }
 });
 
@@ -1131,8 +1131,15 @@ clueData.forEach(clue=>{
     });
 
     input.addEventListener("keydown",e=>{
-      if(e.key==="Backspace" && !e.target.value && index>0){
-        answer.children[index-1].querySelector("input").focus();
+      if(e.key==="Backspace"){
+        e.preventDefault();
+        values[number]="";
+        e.target.value="";
+        sync(number);
+        
+        if(index>0){
+          answer.children[index-1].querySelector("input").focus();
+        }
       }
     });
 
