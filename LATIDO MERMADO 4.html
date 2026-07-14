@@ -838,7 +838,7 @@ const gridCells = [
 function sync(number){
   document.querySelectorAll(`[data-number="${number}"]`)
     .forEach(el => el.value = values[number] || "");
-  localStorage.setItem("crucigrama_latido3", JSON.stringify(values));
+  localStorage.setItem("crucigrama_latido4", JSON.stringify(values));
   checkFinished();
 }
 
@@ -881,7 +881,7 @@ function checkFinished(){
 
   if(solved && !celebrationShown){
     celebrationShown = true;
-    localStorage.setItem("crucigrama_latido3", JSON.stringify(values));
+    localStorage.setItem("crucigrama_latido4", JSON.stringify(values));
     const overlay = document.getElementById("celebrationOverlay");
     overlay.style.display = "flex";
     launchConfetti();
@@ -945,7 +945,7 @@ function launchConfetti(){
     });
     celebrationShown = false;
     document.getElementById("celebrationOverlay").style.display = "none";
-    localStorage.removeItem("crucigrama_latido3");
+    localStorage.removeItem("crucigrama_latido4");
   }
 }
 
@@ -1111,7 +1111,7 @@ clueData.forEach(clue=>{
 });
 
 window.addEventListener("load", ()=>{
-  const saved = localStorage.getItem("crucigrama_latido3");
+  const saved = localStorage.getItem("crucigrama_latido4");
   if(saved){
     const data = JSON.parse(saved);
     Object.assign(values, data);
@@ -1125,7 +1125,7 @@ window.addEventListener("load", ()=>{
 });
 
 window.addEventListener("beforeunload", ()=>{
-  localStorage.setItem("crucigrama_latido3", JSON.stringify(values));
+  localStorage.setItem("crucigrama_latido4", JSON.stringify(values));
 });
   
 </script>
