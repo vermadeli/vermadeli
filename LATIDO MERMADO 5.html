@@ -722,20 +722,20 @@ const values = {};
 
 const solution = {
 56:"C",130:"O",68:"N",30:"V",85:"O",94:"Y",16:"A",
-118:"M",70:"I",95:"S",6:"A",83:"N",41:"T",20:"R",60:"O",134:"P",106:"O",17:"S",
+118:"M",60:"O",83:"N",106:"O",134:"P",41:"T",92:"E",20:"R",6:"A",17:"S",
 13:"E",102:"S",116:"P",49:"O",79:"L",133:"I",86:"Q",29:"U",44:"E",
 123:"I",109:"N",24:"S",63:"U",97:"L",73:"T",57:"A",37:"M",3:"O",107:"S",
 127:"R",90:"A",33:"Y",80:"A",45:"N",18:"D",100:"O",55:"L",32:"A",
 53:"E",11:"S",121:"Q",38:"U",77:"E",27:"L",82:"A",
 28:"L",2:"L",67:"A",129:"M",76:"B",93:"R",104:"I",51:"A",
-88:"E",111:"N",103:"C",39:"E",125:"N",52:"D",117:"I",74:"A",4:"S",
-114:"S",35:"O",9:"R",66:"C",89:"H",47:"E",
-101:"H",42:"O",22:"J",128:"A",78:"L",12:"D",61:"R",8:"A",136:"R",
+88:"E",111:"N",103:"C",10:"O",125:"N",74:"A",52:"D",
+114:"S",35:"O",9:"R",66:"C",89:"H",47:"E",95:"S",
+101:"H",42:"O",22:"J",128:"A",78:"L",12:"D",61:"R",8:"A",136:"R",39:"E",
 115:"U",5:"P",137:"A",50:"M",96:"O",36:"S",
 105:"M",139:"U",120:"S",91:"C",122:"U",34:"L",71:"O",131:"S",54:"A",
-92:"E",72:"N",14:"T",46:"R",10:"O",58:"N",138:"Q",87:"U",124:"E",64:"N",
+70:"I",72:"N",14:"T",46:"R",117:"I",58:"N",138:"Q",87:"U",124:"E",64:"N",
 99:"L",23:"A",69:"C",135:"A",1:"Y",119:"O",43:"S",
-25:"D",126:"E",62:"Y",19:"E",112:"C",81:"T",98:"O",
+25:"D",126:"E",62:"Y",19:"E",112:"C",81:"T",98:"O",4:"S",
 65:"A",75:"N",84:"T",140:"E",59:"F",31:"I",7:"J",113:"A",
 48:"D",26:"E",15:"R",40:"R",110:"U",108:"Y",21:"E",132:"N",
 
@@ -750,9 +750,9 @@ const clueData = [
 },
 {
   letter:"B",
-  text:"Dicho de una persona: que siente o manifiesta aversión al trato con otras personas (plural).",
-  hint:"",
-  cells:[118,70,95,6,83,41,20,60,134,106,17]
+  text:"Dicho de un edificio redondo, especialmente de un templo clásico: Que tiene, en vez de muros, un círculo de columnas que sustentan el techo (femenino, plural)",
+  hint:"Viene del griego y literalmente significa «de una sola ala».",
+  cells:[118,60,83,106,134,41,92,20,6,17]
 },
 {
   letter:"C",
@@ -786,21 +786,21 @@ const clueData = [
 },
 {
   letter:"H",
-  text:"Pegabas fuego, incendiabas.",
-  hint:"Los gases, en esos casos, ascienden",
-  cells:[88,111,103,39,125,52,117,74,4]
+  text:"Inflamad, empeorad una llaga o parte lastimada del cuerpo.",
+  hint:"Es una condena.",
+  cells:[88,111,103,10,125,74,52]
 },
 {
   letter:"I",
-  text:"Soldado bisoño.",
-  hint:"Palabra rara que viene del inglés («soldier»), aunque a mí se me parece más a los bombones F. Rocher desordenados.",
-  cells:[114,35,9,66,89,47]
+  text:"Soldados bisoños",
+  hint:"Palabra rara que viene del inglés («soldier»).",
+  cells:[114,35,9,66,89,47,95]
 },
 {
   letter:"J",
-  text:"Dar a la masa forma de hojaldre",
+  text:"Daré a la masa forma de hojaldre",
   hint:"",
-  cells:[101,42,22,128,78,12,61,8,136]
+  cells:[101,42,22,128,78,12,61,8,136,39]
 },
 {
   letter:"K",
@@ -816,21 +816,21 @@ const clueData = [
 },
 {
   letter:"M",
-  text:" Establezcan o reconozcan una relación o dependencia de alguien o de algo con otra persona o cosa.",
-  hint:"No es la palabra más común del mundo pero tiene mucho sentido, es bastante lógica.",
-  cells:[92,72,14,46,10,58,138,87,124,64]
+  text:"Enreden o enmarañen algo.",
+  hint:"",
+  cells:[70,72,14,46,117,58,138,87,124,64]
 },
 {
   letter:"N",
   text:"Serviles, rastreros.",
-  hint:"Como dato curioso diré que es sinónimo de la C.",
+  hint:"Como dato curioso diré que en una de sus acepciones es sinónimo de la palabra C de este Latido mermado.",
   cells:[99,23,69,135,1,119,43]
 },
 {
   letter:"O",
-  text:"En desuso: bajo o despreciable.",
+  text:"En desuso: bajos o despreciables.",
   hint:"Comparte etimología con una palabra que significa «defecación de los excrementos»",
-  cells:[25,126,62,19,112,81,98]
+  cells:[25,126,62,19,112,81,98,4]
 },
 {
   letter:"P",
@@ -850,10 +850,10 @@ const clueData = [
 
 const gridCells = [
 
-[null, "(...)"], [1,"N"], null, [2,"G"], [3,"D"], [4,"H"], null, [5,"K"], [6,"B"], [7,"P"], [8,"J"], [9,"I"], [10,"M"], [11,"F"], null, [12,"J"], [13,"C"], [14,"M"], [15,"Q"], [16,"A"], [17,"B"], null, [18,"E"], [19,"O"], null, [20,"B"], [21,"Q"], [22,"J"], [23,"N"], [24,"D"], null, [25,"O"], [26,"Q"], null, [27,"F"], [28,"G"], [29,"C"], [30,"A"],
-[31,"P"], [32,"E"], [null, "."], [33,"E"], null, [34,"L"], [35,"I"], [36,"K"], null, [37,"D"], [38,"F"], [39,"H"], [40,"Q"], [41,"B"], [42,"J"], [43,"N"], null, 
+[null, "(...)"], [1,"N"], null, [2,"G"], [3,"D"], [4,"O"], null, [5,"K"], [6,"B"], [7,"P"], [8,"J"], [9,"I"], [10,"H"], [11,"F"], null, [12,"J"], [13,"C"], [14,"M"], [15,"Q"], [16,"A"], [17,"B"], null, [18,"E"], [19,"O"], null, [20,"B"], [21,"Q"], [22,"J"], [23,"N"], [24,"D"], null, [25,"O"], [26,"Q"], null, [27,"F"], [28,"G"], [29,"C"], [30,"A"],
+[31,"P"], [32,"E"], [null, "."], [33,"E"], null, [34,"L"], [35,"I"], [36,"K"], null, [37,"D"], [38,"F"], [39,"J"], [40,"Q"], [41,"B"], [42,"J"], [43,"N"], null, 
 [44,"C"], [45,"E"], null, [46,"M"], [47,"I"], [48,"Q"], [49,"C"], [50,"K"], [51,"G"], null, [52,"H"], [53,"F"], null, [54,"L"], [55,"E"], [56,"A"], [57,"D"], [58,"M"], [59,"P"], [60,"B"], [61,"J"], [null, ". (¡"], [62,"O"], null, [63,"D"], [64,"M"], [65,"P"], null, [66,"I"], [67,"G"],
-[68,"A"], [69,"N"], [70,"B"], [71,"L"], [72,"M"], null, [73,"D"], [74,"H"], [75,"P"], null, [76,"G"], [77,"F"], [78,"J"], [79,"C"], [80,"E"], [null, "!) ¡"], [81,"O"], [82,"F"], [83,"B"], [84,"P"], [85,"A"], null, [86,"C"], [87,"M"], [88,"H"],  null, [89,"I"], [90,"E"], [91,"L"], [92,"M"], [93,"G"], [null, "!"], [94,"A"], null, [95,"B"], [96,"K"], [97,"D"], [98,"O"], null, [99,"N"], [100,"E"], null, [101,"J"], [102,"C"], [103,"H"], [104,"G"], [105,"L"], [106,"B"], [107,"D"], [null, "."],  [108,"Q"], null, [109,"D"], [110,"Q"], [111,"H"], [112,"O"], [113,"P"], null, [114,"I"], [115,"K"], [116,"C"], [117,"H"], [118,"B"], [119,"N"], [120,"L"], null, [121,"F"], [122,"L"], [123,"D"], [124,"M"], [125,"H"], null, [126,"O"], [127,"E"], [128,"J"], [129,"G"], [130,"A"], [131,"L"], [null, "."], [132,"Q"], [133,"C"], null, [134,"B"], [135,"N"], [136,"J"], [137,"K"], null, [138,"M"], [139,"L"], [140,"A"], [null, "."], null, null, null, null, null,
+[68,"A"], [69,"N"], [70,"M"], [71,"L"], [72,"M"], null, [73,"D"], [74,"H"], [75,"P"], null, [76,"G"], [77,"F"], [78,"J"], [79,"C"], [80,"E"], [null, "!) ¡"], [81,"O"], [82,"F"], [83,"B"], [84,"P"], [85,"A"], null, [86,"C"], [87,"M"], [88,"H"],  null, [89,"I"], [90,"E"], [91,"L"], [92,"B"], [93,"G"], [null, "!"], [94,"A"], null, [95,"I"], [96,"K"], [97,"D"], [98,"O"], null, [99,"N"], [100,"E"], null, [101,"J"], [102,"C"], [103,"H"], [104,"G"], [105,"L"], [106,"B"], [107,"D"], [null, "."],  [108,"Q"], null, [109,"D"], [110,"Q"], [111,"H"], [112,"O"], [113,"P"], null, [114,"I"], [115,"K"], [116,"C"], [117,"M"], [118,"B"], [119,"N"], [120,"L"], null, [121,"F"], [122,"L"], [123,"D"], [124,"M"], [125,"H"], null, [126,"O"], [127,"E"], [128,"J"], [129,"G"], [130,"A"], [131,"L"], [null, "."], [132,"Q"], [133,"C"], null, [134,"B"], [135,"N"], [136,"J"], [137,"K"], null, [138,"M"], [139,"L"], [140,"A"], [null, "."], null, null, null, null, null,
 
   ];
 
