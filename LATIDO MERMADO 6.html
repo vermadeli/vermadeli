@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <title>LATIDO MERMADO 6</title>
 
@@ -542,7 +543,7 @@ h5{
 
   h2{
     text-align:center;
-    font-size:24pt;
+    font-size:10pt;
     margin-bottom:8mm;
   }
 
@@ -568,8 +569,8 @@ h5{
 
   .cell,
   .black{
-    width:19mm;
-    height:12mm;
+    width:5mm;
+    height:5mm;
 
     border:1px solid black;
     border-radius:0;
@@ -604,7 +605,7 @@ h5{
     height:100%;
     border:none;
     background:transparent;
-    font-size:15pt;
+    font-size:10pt;
     font-weight:bold;
     text-align:center;
   }
@@ -718,6 +719,8 @@ h5{
 
 <script>
 
+const STORAGE_KEY = 'Latido_mermado_6';
+
 const values = {};
 
 const solution = {
@@ -726,10 +729,10 @@ const solution = {
 30:"S",69:"A",16:"N",118:"G",46:"U",85:"I",108:"N",5:"O",56:"S",
 90:"A",12:"R",40:"R",110:"E",82:"D",66:"R",34:"E",81:"S",
 19:"R",94:"E",64:"T",42:"R",80:"A",103:"T",29:"O",95:"S",
-10:"I",3:"N",48:"M",65:"U",77:"T",121:"A",27:"B",116:"A",73:"N",
+10:"I",3:"N",48:"M",65:"U",70:"T",121:"A",27:"B",116:"A",73:"N",
 92:"E",35:"S",51:"M",114:"A",25:"L",100:"T",71:"E",105:"S",
 4:"G",120:"R",67:"I",17:"T",60:"A",54:"R",78:"A",
-30:"O",1:"V",88:"E",115:"M",104:"O",24:"S",
+39:"O",1:"V",88:"E",115:"M",104:"O",24:"S",
 97:"B",77:"R",28:"I",112:"D",47:"E",68:"S",
 31:"A",8:"Q",119:"U",58:"E",89:"J",49:"A",36:"D",
 79:"R",52:"I",75:"M",113:"E",
@@ -752,13 +755,13 @@ const clueData = [
 {
   letter:"B",
   text:"Coloquial: vergüenza que se siente por lo que hacen o dicen otros.",
-  hint:"",
+  hint:"También se puede escribir sin la primera letra. Y, no será lo habitual, pero lo he oído como sinónimo de «grimilla» alguna vez.",
   cells:[2,22,55,14,76,117,41]
 },
 {
   letter:"C",
   text:"Dicho de una variedad de naranja: Que tiene la pulpa de color rojizo (masculino, plural)",
-  hint:"Piensa en cosas que sean de color rojo",
+  hint:"Iba a poner una pista formal, pero me quedo con: ¡¡¡¡¡nos guisan!!!! 🙃 (seguro que eso pensarán las naranjas)",
   cells:[30,69,16,118,46,85,108,5,56]
 },
 {
@@ -775,34 +778,36 @@ const clueData = [
 {
   letter:"F",
   text:"Alteraban o variaban algo ",
-  cells:[10,3,48,65,77,121,27,116,73]
+  cells:[10,3,48,65,70,121,27,116,73]
 },
 {
   letter:"G",
   text:"Barniz vítreo que por medio de la fusión se adhiere a la porcelana, loza, metales y otras sustancias elaboradas. (Plural).",
-  hint:"Está en los dientes, pero no en los que son metales.",
+  hint:"Está en los dientes de forma natural, y artificial en los metales.",
   cells:[92,35,51,114,25,100,71,105]
 },
 {
   letter:"H",
   text:"Manifestar en un espectáculo desaprobación y desagrado con demostraciones ruidosas",
+  hint: "Este verbo, conjugado en la primera o tercera persona del singular del presente de subjuntivo, es el anagrama de un animal salvaje que vive en la selva y que se presta a los trabalenguas.".
   cells:[4,120,67,17,60,54,78]
 },
 {
   letter:"I",
   text:"Pongamos huevos.",
-  cells:[30,1,88,115,104,24]
+  cells:[39,1,88,115,104,24]
 },
 {
   letter:"J",
   text:"Ates una pieza o trozo de carne para que no se deforme al guisarla.",
   hint:"¿Con qué se atan las cosas?",
+   hint:"Significa novias en inglés.",
   cells:[97,77,28,112,47,68]
 },
 {
   letter:"K",
   text:"Acongojad, afligid, fatigad.",
-  hint:"También se dice de una efermedad, cuando afecta al ser humano (se quejará).",
+  hint:"También se dice de una efermedad, cuando afecta al ser humano",
   cells:[31,8,119,58,89,49,36]
 },
 {
@@ -825,13 +830,13 @@ const clueData = [
 {
   letter:"O",
   text:"Pedazo de pan grueso e irregular.",
-  hint:"Piensa en sinonimos de las palabras que se te ocurran, auaue no tengan que ver con esta acepción.",
+  hint:"Piensa en sinonimos de las palabras que se te ocurran, aunque no tengan que ver con esta acepción.",
   cells:[59,62,45,96,21,53,37]
 },
 {
   letter:"P",
   text:"Estad o encontraos en determinado estado o situación.",
-  hint:"...o dando pasos. ¡D nada!",
+  hint:"Esta vez no hay pista. ¡D nada!",
   cells:[18,102,93,26,87]
 },
 {
@@ -855,14 +860,14 @@ const gridCells = [
 [1,"I"], [2,"B"], [3,"F"], null, [4,"H"], [5,"C"], [6,"R"], [7,"A"], null, [8,"K"], [9,"M"], [10,"F"], [11,"R"], [12,"D"], [13,"A"], null, [14,"B"], [15,"R"], [16,"C"], [17,"H"], [18,"P"], [19,"E"], [20,"N"], [21,"O"], null, [22,"B"], [23,"Q"], [24,"I"], null, [25,"G"], [26,"P"], [27,"F"], [28,"J"], [29,"E"], [30,"C"], null,
 [31,"K"], [32,"M"], [33,"A"], [34,"D"], [35,"G"], null, [36,"K"], [37,"O"], null, [38,"N"], [39,"I"], [40,"D"], [41,"B"], [42,"E"], [null, "(...)"],[43,"R"],
 [44,"N"], null, [45,"O"], [46,"C"], [47,"J"], [48,"F"], [49,"K"], [50,"A"], null, [51,"G"], [52,"L"], null, [53,"O"], [54,"E"], [55,"B"], [56,"C"], [57,"R"], [58,"K"], [59,"O"], [60,"H"], null, [61,"A"], [62,"O"], [63,"M"], null, [64,"R"], [65,"F"], null, [66,"D"], [67,"H"],
-[68,"J"], [69,"C"], null, [70,"F"], [71,"G"], null, [72,"E"], [73,"F"], [74,"Q"], [75,"L"], [76,"B"], [77,"J"], [78,"H"], [79,"L"], [80,"R"], [81,"D"], null, [82,"D"], [83,"M"], null, [84,"Q"], [85,"C"], null, [86,"Q"], null, [87,"P"], [88,"I"], [89,"K"], [90,"D"], [91,"Q"], [92,"G"], null, [93,"D"], [94,"E"], null, [95,"E"], [96,"O"], [97,"J"], [98,"A"], [99,"R"], null, [100,"G"], [101,"Q"], [102,"P"], [103,"E"], [104,"I"], [105,"G"], null, [106,"M"], [107,"N"], [108,"C"], [109,"Q"], [110,"D"], [111,"N"], null, [112,"J"], [113,"L"], null, [114,"G"], [115,"I"], [116,"F"], [117,"B"], [118,"C"], [119,"K"], [120,"H"], [121,"F"], [null, "."],
+[68,"J"], [69,"C"], null, [70,"F"], [71,"G"], null, [72,"E"], [73,"F"], [74,"Q"], [75,"L"], [76,"B"], [77,"J"], [78,"H"], [79,"L"], [80,"R"], [81,"D"], null, [82,"D"], [83,"M"], null, [84,"Q"], [85,"C"], null, [86,"Q"], null, [87,"P"], [88,"I"], [89,"K"], [90,"D"], [91,"Q"], [92,"G"], null, [93,"D"], [94,"E"], null, [95,"E"], [96,"O"], [97,"J"], [98,"A"], [99,"R"], null, [100,"G"], [101,"Q"], [102,"P"], [103,"E"], [104,"I"], [105,"G"], null, [106,"M"], [107,"N"], [108,"C"], [109,"Q"], [110,"D"], [111,"N"], null, [112,"J"], [113,"L"], null, [114,"G"], [115,"I"], [116,"F"], [117,"B"], [118,"C"], [119,"K"], [120,"H"], [121,"F"], [null, "."], null,
 
   ];
 
 function sync(number){
   document.querySelectorAll(`[data-number="${number}"]`)
     .forEach(el => el.value = values[number] || "");
-  localStorage.setItem("crucigrama_latido5", JSON.stringify(values));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
   checkFinished();
 }
 
@@ -905,7 +910,7 @@ function checkFinished(){
 
   if(solved && !celebrationShown){
     celebrationShown = true;
-    localStorage.setItem("crucigrama_latido5", JSON.stringify(values));
+     localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
     const overlay = document.getElementById("celebrationOverlay");
     overlay.style.display = "flex";
     launchConfetti();
@@ -969,7 +974,8 @@ function launchConfetti(){
     });
     celebrationShown = false;
     document.getElementById("celebrationOverlay").style.display = "none";
-    localStorage.removeItem("crucigrama_latido5");
+    // eliminar el guardado específico de este crucigrama
+    localStorage.removeItem(STORAGE_KEY);
   }
 }
 
@@ -1135,7 +1141,7 @@ clueData.forEach(clue=>{
 });
 
 window.addEventListener("load", ()=>{
-  const saved = localStorage.getItem("crucigrama_latido5");
+  const saved = localStorage.getItem("latido_mermado_6");
   if(saved){
     const data = JSON.parse(saved);
     Object.assign(values, data);
@@ -1149,8 +1155,31 @@ window.addEventListener("load", ()=>{
 });
 
 window.addEventListener("beforeunload", ()=>{
-  localStorage.setItem("crucigrama_latido5", JSON.stringify(values));
+  localStorage.setItem("latido_mermado_6, JSON.stringify(values));
 });
+
+  function loadSaved(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    // merge en values
+    Object.assign(values, saved);
+    // rellenar los inputs ya existentes
+    Object.keys(values).forEach(n => {
+      // sólo sincroniza si hay inputs en DOM
+      if(document.querySelector(`[data-number="${n}"]`)){
+        sync(n);
+      }
+    });
+  }catch(e){
+    console.warn('No se pudo recuperar guardado:', e);
+  }
+}
+
+  // Intento seguro: carga al finalizar la carga de la página.
+// Si la cuadrícula se genera dinámicamente más tarde, asegúrate de
+// llamar loadSaved() justo después de crear los inputs.
+loadSaved();
+window.addEventListener('load', loadSaved);
   
 </script>
 
