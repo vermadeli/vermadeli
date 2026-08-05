@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>LATIDO MERMADO 6</title>
+
+<style>
+body{
+  font-family: Georgia, "Times New Roman", serif;
+  background: linear-gradient(180deg,#f7f2e8 0%, #efe7d8 100%);
+  margin:0;
+  padding:32px;
+  color:#2e2a24;
+}
+
+/* TÍTULO */
+
+h2{
+  text-align:center;
+  font-size:38px;
+  font-weight:600;
+  letter-spacing:.08em;
+  margin:8px 0 28px;
+  color:#3b3025;
+}
+
+h5{
+  text-align:center;
+  font-size:20px;
+  font-weight:300;
+  letter-spacing:.08em;
+  margin:8px 0 28px;
+  color:#002f93;
+}
+
+
+/* BOTÓN */
+
+.continue-btn{
+  margin-top:16px;
+  padding:12px 22px;
+  border:none;
+  border-radius:14px;
+  background:#7a654c;
+  color:white;
+  font-size:15px;
+  font-family:inherit;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+  transition:.18s ease;
+}
+
+.continue-btn:hover{
+  background:#65533f;
+  transform:translateY(-1px);
+}
+
+/* CUADRÍCULA */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(15,72px);
+  gap:5px;
+  justify-content:center;
+
+  width:max-content;
+  margin:0 auto 42px;
+  padding:26px;
+
+  background:rgba(255,255,255,.45);
+  border-radius:22px;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.65);
+}
+
+/* CASILLAS */
+
+.cell{
+  position:relative;
+  width:72px;
+  height:72px;
+
+  background:#fffdf8;
+
+  border:1px solid #d5c7b5;
+  border-radius:12px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    0 2px 4px rgba(0,0,0,.04);
+}
+
+/* NEGRAS */
+
+.black{
+  width:72px;
+  height:72px;
+
+  background:linear-gradient(145deg,#2f2f2f,#171717);
+  border-radius:12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+  font-size:30px;
+  font-weight:bold;
+}
+
+/* NUMERITOS */
+
+.number{
+  position:absolute;
+  top:6px;
+  left:7px;
+  font-size:11px;
+  color:#8b7a66;
+  font-weight:600;
+}
+
+/* INPUTS CUADRÍCULA */
+
+.letter-input{
+  width:100%;
+  height:100%;
+
+  border:none;
+  background:transparent;
+
+  text-align:center;
+  text-transform:uppercase;
+
+  font-size:34px;
+  font-weight:600;
+  color:#2e2a24;
+}
+
+.letter-input:focus{
+  outline:none;
+  background:#fff3c9;
+  border-radius:12px;
+}
+
+/* BLOQUES DE DEFINICIÓN */
+
+.clue{
+  max-width:1120px;
+
+  margin:14px auto;
+  padding:18px 22px;
+
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(8px);
+
+  border:1px solid rgba(170,150,120,.22);
+  border-radius:18px;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.06);
+}
+
+/* TEXTO DEFINICIÓN */
+
+.clue-label{
+  font-size:18px;
+  line-height:1.42;
+  font-weight:600;
+  color:#342b22;
+  margin-bottom:10px;
+}
+
+/* BOTÓN PISTA */
+
+.hint-btn{
+  padding:7px 12px;
+  border:none;
+  border-radius:10px;
+
+  background:#a38762;
+  color:white;
+
+  font-size:13px;
+  font-family:inherit;
+  cursor:pointer;
+
+  transition:.15s ease;
+}
+
+.hint-btn:hover{
+  background:#8a7050;
+}
+
+/* RESPUESTA */
+
+.clue-answer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
+}
+
+/* CASILLAS RESPUESTA */
+
+.clue-cell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* INPUT DEFINICIÓN */
+
+.clue-cell input{
+  width:42px;
+  height:42px;
+
+  border:1px solid #d8cbbd;
+  border-radius:10px;
+
+  background:#fffefb;
+
+  font-size:24px;
+  text-align:center;
+  text-transform:uppercase;
+
+  transition:.15s ease;
+}
+
+.clue-cell input:focus{
+  outline:none;
+  border-color:#a98b63;
+  box-shadow:0 0 0 3px rgba(169,139,99,.12);
+}
+
+/* NÚMERO BAJO CASILLA */
+
+.clue-number{
+  margin-top:4px;
+  font-size:11px;
+  color:#7b6b58;
+  font-weight:600;
+}
+
+/* RESULTADO */
+
+#result{
+  text-align:center;
+  font-size:28px;
+  margin-top:24px;
+  color:#2f7d32;
+}
+
+/* MODALES */
+
+.hint-content,
+#celebrationBox{
+  background:#fffdf9;
+  border-radius:24px;
+  box-shadow:0 18px 45px rgba(0,0,0,.22);
+}
+  #celebrationBox textarea{
+  width:90%;
+  max-width:500px;
+  min-height:60px;
+  margin-top:16px;
+  padding:10px;
+  border:2px solid #d8cbbd;
+  border-radius:10px;
+  font-size:14px;
+  font-family:inherit;
+  resize:vertical;
+}
+
+  
+
+/* ===== MODAL PISTA ===== */
+
+.hint-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(4px);
+  z-index:9998;
+
+  align-items:center;
+  justify-content:center;
+}
+
+.hint-content{
+  position:relative;
+
+  width:min(520px, 90vw);
+  padding:34px;
+
+  text-align:center;
+
+  background:#fffdf9;
+  border-radius:26px;
+
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+
+  animation:popIn .28s ease;
+}
+
+.hint-content h3{
+  font-size:34px;
+  margin:0 0 12px;
+}
+
+.hint-content p{
+  font-size:22px;
+  line-height:1.45;
+}
+
+.hint-close{
+  position:absolute;
+  top:14px;
+  right:18px;
+
+  border:none;
+  background:none;
+
+  font-size:28px;
+  cursor:pointer;
+}
+
+
+/* ===== CELEBRACIÓN ===== */
+
+#celebrationOverlay{
+  position:fixed;
+  inset:0;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at top left, rgba(255,0,128,.22), transparent 35%),
+    radial-gradient(circle at top right, rgba(255,220,0,.22), transparent 35%),
+    radial-gradient(circle at bottom left, rgba(0,190,255,.20), transparent 35%),
+    rgba(0,0,0,.58);
+
+  backdrop-filter:blur(6px);
+
+  z-index:9999;
+}
+
+#celebrationOverlay::before{
+  content:"🌈     🎉     🎺     ✨     🌈     🎊     🎺     ✨";
+  position:absolute;
+  top:8%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:56px;
+  white-space:nowrap;
+  animation:floatParty 4s ease-in-out infinite;
+}
+
+#celebrationOverlay::after{
+  content:"✨     🎺     🌈     🎉     ✨";
+  position:absolute;
+  bottom:6%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:44px;
+  opacity:.95;
+}
+
+#celebrationBox{
+  position:relative;
+
+  width:min(760px, 92vw);
+
+  padding:54px 64px;
+
+  border-radius:30px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(circle at center, #fffdf9 0%, #fff6e9 100%);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.30);
+
+  animation:popWin .45s ease;
+}
+
+#celebrationBox h1{
+  font-size:68px;
+  margin:0;
+}
+
+#celebrationBox p{
+  font-size:30px;
+  margin-top:12px;
+}
+
+#closeCelebration{
+  position:absolute;
+  top:16px;
+  right:18px;
+  border:none;
+  background:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+.confetti{
+  position:fixed;
+  top:-30px;
+  width:14px;
+  height:14px;
+  z-index:10000;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:
+      translateY(115vh)
+      rotate(720deg);
+    opacity:0;
+  }
+}
+
+@keyframes popWin{
+  from{
+    transform:scale(.72);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+@keyframes floatParty{
+  0%,100%{
+    transform:translateX(-50%) translateY(0);
+  }
+  50%{
+    transform:translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes popIn{
+  from{
+    opacity:0;
+    transform:scale(.85);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+#letterTools{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin:0 0 24px;
+  flex-wrap:wrap;
+}
+
+#letterTools button{
+  padding:8px 14px;
+  border:none;
+  border-radius:10px;
+  background:#a38762;
+  color:white;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.selected-cell{
+  box-shadow:
+    0 0 0 3px rgba(245,180,70,.45) !important;
+}
+
+/* estilos por casilla */
+
+.ink-blue{
+  color:#2646b3 !important;
+  font-style:normal;
+}
+
+.ink-italic{
+  color:#2e2a24 !important;
+  font-style:italic;
+}
+/* MÓVIL */
+
+@media (max-width:900px){
+
+  body{
+    padding:16px;
+  }
+
+  h2{
+    font-size:28px;
+  }
+
+  .grid{
+    overflow-x:auto;
+    justify-content:flex-start;
+    padding:18px;
+  }
+
+  .clue{
+    padding:14px;
+  }
+
+  .clue-label{
+    font-size:16px;
+  }
+
+}
+
+@media print{
+
+  @page{
+    size:A4 landscape;
+    margin:10mm;
+  }
+
+  html,
+  body{
+    width:100%;
+    margin:0;
+    padding:0;
+    background:white !important;
+    color:black;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  h2{
+    text-align:center;
+    font-size:10pt;
+    margin-bottom:8mm;
+  }
+
+  #printBtn,
+  .hint-btn,
+  #celebrationOverlay,
+  #hintModal{
+    display:none !important;
+  }
+
+  /* DAMERO */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(13, 19mm);
+    gap:0;
+
+    width:max-content;
+    margin:0 auto 10mm auto;
+
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+
+  .cell,
+  .black{
+    width:5mm;
+    height:5mm;
+
+    border:1px solid black;
+    border-radius:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
+
+  .cell{
+    background:white !important;
+    position:relative;
+  }
+
+  /* negras realmente negras al imprimir */
+  .black{
+    background:#000 !important;
+    color:white !important;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  .number{
+    position:absolute;
+    top:1mm;
+    left:1mm;
+    font-size:9pt;
+    color:black;
+  }
+
+  .letter-input{
+    width:100%;
+    height:100%;
+    border:none;
+    background:transparent;
+    font-size:10pt;
+    font-weight:bold;
+    text-align:center;
+  }
+
+  /* DEFINICIONES */
+  #clues{
+    display:block;
+    width:100%;
+    margin-top:3mm;
+  }
+
+.clue{
+  display:block;
+  background:none;
+  border:none;
+  box-shadow:none;
+  gap:1mm;
+
+  padding:0;
+  margin:1 1 1mm 1;
+
+  page-break-inside:avoid;
+  break-inside:avoid;
+}
+
+.clue-label{
+  font-size:10pt;
+  font-weight:bold;
+  line-height:0.95;
+  margin-top:0.5;
+  padding:1mm;
+}
+
+.clue-answer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1mm;
+
+  width:100%;
+
+  margin-top:2mm;
+  margin-right:0;
+  margin-bottom:1mm;
+  margin-left:0;
+
+  padding:0;
+}
+
+.clue-cell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+
+  margin:0;
+  padding:0;
+}
+
+.clue-cell input{
+  width:5mm;
+  height:3mm;
+
+  border:none;
+  border-bottom:1px solid black;
+  border-radius:0;
+
+  background:transparent;
+
+  font-size:40pt;
+  margin:0;
+  padding:0;
+}
+
+.clue-number{
+  font-size:10pt;
+  line-height:1;
+  margin-top:0;
+  padding:0;
+  color:black;
+}
+
+}
+</style>
+</head>
+<body>
+
+<h2>LATIDO MERMADO 7</h2>
+
+
+<div style="text-align:center; margin-bottom:20px;">
+  <button onclick="window.print()" id="printBtn" class="continue-btn">
+    🖨 Imprimir
+  </button>
+</div>
+
+
+<div id="letterTools">
+  <button type="button" onclick="paintSelected('blue')">Azul</button>
+  <button type="button" onclick="paintSelected('italic')">Cursiva</button>
+  <button type="button" onclick="paintSelected('clear')">Normal</button>
+  <button type="button" onclick="resetAll()" class="continue-btn">
+  🔄 Borrar todo
+</button>
+</div>
+
+<div id="grid" class="grid"></div>
+
+<div id="clues"></div>
+
+<div id="result"></div>
+
+<script>
+
+const STORAGE_KEY = 'Latido_mermado_7';
+
+const values = {};
+
+const solution = {
+129:"B",34:"A",36:"B",74:"I",17:"R",87:"U",51:"S",93:"A",
+98:"R",25:"E",22:"H",19:"U",120:"Y",79:"O",
+56:"A",82:"R",105:"R",30:"E",44:"N",47:"D",68:"A",132:"R",114:"L",88:"A",
+117:"U",6:"R",92:"N",133:"A",
+84:"L",12:"E",86:"G",40:"U",38:"L",76:"E",115:"Y",54:"O",
+23:"I",33:"N",107:"Q",43:"U",130:"I",83:"E",78:"R",5:"E",
+21:"O",127:"B",101:"Y",131:"E",24:"C",8:"T",7:"O",
+65:"A",64:"B",27:"R",13:"U",121:"P",18:"C",46:"I",113:"O",14:"N",
+31:"R",95:"U",57:"M",77:"B",126:"O",94:"S",48:"O",
+42:"E",45:"N",11:"C",81:"A",69:"N",80:"T",97:"A",2:"R",
+67:"N",108:"U",20:"L",102:"O",
+10:"A",118:"B",123:"J",66:"U",111:"R",58:"A",35:"R",
+59:"S",89:"A",53:"C",122:"A",71:"B",52:"U",75:"C",73:"H",28:"E",
+103:"P",70:"U",9:"R",55:"P",32:"U",99:"R",60:"A",
+100:"O",1:"P",125:"R",63:"I",4:"M",91:"E",
+128:"E",50:"N",29:"C",110:"A",112:"B",109:"E",26:"C",119:"E",
+41:"S",49:"E",134:"N",72:"E",116:"N",15:"C",124:"A",
+3:"I",96:"N",37:"O",39:"P",16:"I",106:"A",
+104:"A",62:"R",90:"P",85:"A",61:"R",
+
+};
+
+const clueData = [
+{
+  letter:"A",
+  text:"Suceso gracioso y festivo.",
+  hint:"Es sinonimo de broma",
+  cells:[129,34,36,74,17,87,51,93]
+},
+{
+  letter:"B",
+  text:"Coloquial: vergüenza que se siente por lo que hacen o dicen otros.",
+  hint:"También se puede escribir sin la primera letra. Y, no será lo habitual, pero lo he oído como sinónimo de «grimilla» alguna vez.",
+  cells:[98,25,22,19,120,79]
+},
+{
+  letter:"C",
+  text:"Dicho de una variedad de naranja: Que tiene la pulpa de color rojizo (masculino, plural)",
+  hint:"Iba a poner una pista formal, pero me quedo con: ¡¡¡¡¡nos guisan!!!! 🙃 (seguro que eso pensarán las naranjas)",
+  cells:[56,82,105,30,44,47,68,132,114,88]
+},
+{
+  letter:"D",
+  text:"Amedrentes, atemorices.",
+  hint:"Es un verbo que tambien significa apartar o echarse para atrás por el miedo",
+  cells:[117,6,92,133]
+},
+{
+  letter:"E",
+  text:"Pintura o efigie principalmente de una persona (plural).",
+  cells:[84,12,86,40,38,76,115,54]
+},
+{
+  letter:"F",
+  text:"Alteraban o variaban algo ",
+  cells:[23,33,107,43,130,83,78,5]
+},
+{
+  letter:"G",
+  text:"Barniz vítreo que por medio de la fusión se adhiere a la porcelana, loza, metales y otras sustancias elaboradas. (Plural).",
+  hint:"Está en los dientes de forma natural, y artificial en los metales.",
+  cells:[21,127,101,131,24,8,7]
+},
+{
+  letter:"H",
+  text:"Manifestar en un espectáculo desaprobación y desagrado con demostraciones ruidosas",
+  hint: "Este verbo, conjugado en la primera o tercera persona del singular del presente de subjuntivo, es el anagrama de un animal salvaje que vive en la selva y que se presta a los trabalenguas.",
+  cells:[65,64,27,13,121,18,46,113,14]
+},
+{
+  letter:"I",
+  text:"Pongamos huevos.",
+  cells:[31,95,57,77,126,94,48]
+},
+{
+  letter:"J",
+  text:"Ates una pieza o trozo de carne para que no se deforme al guisarla.",
+  hint:"¿Con qué se atan las cosas?",
+  cells:[42,45,11,81,69,80,97,2]
+},
+{
+  letter:"K",
+  text:"Acongojad, afligid, fatigad.",
+  hint:"También se dice de una efermedad, cuando afecta al ser humano",
+  cells:[67,108,20,102]
+},
+{
+  letter:"L",
+  text:"Componga en verso.",
+  hint: "Yo pienso en irme",
+  cells:[10,118,123,66,111,58,35]
+},
+{
+  letter:"M",
+  text:"Deidad dotada de un poder misterioso y fascinador.",
+  hint:"Es sinonimo de musa.",
+  cells:[59,89,53,122,71,52,75,73,28]
+},
+{
+  letter:"N",
+  text:"Lengua de tierra que une dos continentes o una península con un continente.",
+  cells:[103,70,9,55,32,99,60]
+},
+{
+  letter:"O",
+  text:"Pedazo de pan grueso e irregular.",
+  hint:"Piensa en sinonimos de las palabras que se te ocurran, aunque no tengan que ver con esta acepción.",
+  cells:[100,1,125,63,4,91]
+},
+{
+  letter:"P",
+  text:"Estad o encontraos en determinado estado o situación.",
+  hint:"Esta vez no hay pista. ¡D nada!",
+  cells:[128,50,29,110,112,109,26,119]
+},
+{
+  letter:"Q",
+  text:"Conjunto de dispositivos manejados durante la representación teatral para realizar los cambios de decorado y los efectos escénicos.",
+  hint:"También significa enredo o engaño",
+  cells:[41,49,134,72,116,15,124]
+},
+{
+  letter:"R",
+  text:"Ave rapaz nocturna, de unos 35 cm de longitud, con plumaje muy suave, blanco en el pecho y vientre, y pardo en el dorso, cabeza redonda, pico corto y encorvado en la punta, ojos grandes, brillantes y de iris amarillo, y cara blanca en forma de corazón.",
+  hint:"Sinónimo de lechuza. ¿Estará hecha de gresite?",
+  cells:[3,96,37,39,16,106]
+},
+{
+  letter:"R",
+  text:"Ave rapaz nocturna, de unos 35 cm de longitud, con plumaje muy suave, blanco en el pecho y vientre, y pardo en el dorso, cabeza redonda, pico corto y encorvado en la punta, ojos grandes, brillantes y de iris amarillo, y cara blanca en forma de corazón.",
+  hint:"Sinónimo de lechuza. ¿Estará hecha de gresite?",
+  cells:[104,62,90,85,61]
+},
+
+
+];
+
+const gridCells = [
+
+[1,"O"], [2,"J"], [3,"R"], [4,"O"], [5,"F"], [6,"D"], [7,"G"], null, [8,"G"], [9,"N"], [10,"L"], [11,"J"], [12,"E"], null, [13,"H"], [14,"H"], null, [15,"Q"], [16,"R"], [17,"A"], [18,"H"], [19,"B"], [20,"K"], [21,"G"], [null,","], null, [22,"B"], [23,"F"], [24,"G"], [25,"B"], null, [26,"P"], [27,"H"], [28,"M"], [29,"P"], [30,"C"], [31,"I"], null, [32,"N"], [33,"F"], null, [34,"A"], [35,"L"], [36,"A"], [37,"R"], [38,"E"], [null,","], null, [39,"R"], [40,"E"], [41,"Q"], [42,"J"], null, [43,"F"], [44,"C"], null, [45,"J"], [46,"H"], [47,"C"], [48,"I"], null, [49,"Q"], [50,"P"], null, [51,"A"], [52,"M"], null, [53,"M"], [54,"E"], [55,"N"], [56,"C"], [null,";"], null, [57,"I"], [58,"L"], [59,"M"], null, [60,"N"], [61,"S"], [62,"S"], [63,"O"], [64,"H"], [65,"H"], [null,","], null, [66,"L"], [67,"K"], [68,"C"], null, [69,"J"], [70,"N"], [71,"M"], [72,"Q"], [null,":"], null, [73,"M"], [74,"A"], [75,"M"], [76,"E"], null, [77,"I"], [78,"F"], [79,"B"], [80,"J"], [81,"J"], [82,"C"], null, [83,"F"], [84,"E"], null, [85,"S"], [86,"E"], [87,"A"], [88,"C"], [null,","], null, [89,"M"], [90,"S"], [91,"O"], [92,"D"], [93,"A"], [94,"I"], null, [95,"I"], [96,"R"], null, [97,"J"], [98,"B"], [99,"N"], [100,"O"], [101,"G"], [102,"K"], [null,","], null, [103,"N"], [104,"S"], [105,"C"], [106,"R"], null, [107,"F"], [108,"K"], [109,"P"], null, [110,"P"], [111,"L"], [112,"P"], [113,"H"], [114,"C"], null, [115,"E"], null, [116,"Q"], [117,"D"], [118,"L"], [119,"P"], null, [120,"B"], null, [121,"H"], [122,"M"], [123,"L"], [124,"Q"], [125,"O"], [126,"I"], null, [127,"G"], [128,"P"], [129,"A"], [130,"F"], [131,"G"], [132,"C"], [133,"D"], [134,"Q"], [null,"."]
+  ];
+
+function sync(number){
+  document.querySelectorAll(`[data-number="${number}"]`)
+    .forEach(el => el.value = values[number] || "");
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+  checkFinished();
+}
+
+
+let celebrationShown = false;
+
+let selectedInput = null;
+
+function showHint(text){
+
+  document.getElementById("hintText").textContent = text;
+
+  document.getElementById("hintModal").style.display = "flex";
+}
+
+function closeHint(){
+
+  document.getElementById("hintModal").style.display = "none";
+}
+
+function paintSelected(style){
+
+  if(!selectedInput) return;
+
+  selectedInput.classList.remove(
+    "ink-blue",
+    "ink-italic"
+  );
+
+  if(style !== "clear"){
+    selectedInput.classList.add("ink-" + style);
+  }
+}
+
+
+function checkFinished(){
+  const solved = Object.keys(solution).every(number =>
+    (values[number] || "") === solution[number]
+  );
+
+  if(solved && !celebrationShown){
+    celebrationShown = true;
+     localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+    const overlay = document.getElementById("celebrationOverlay");
+    overlay.style.display = "flex";
+    launchConfetti();
+  }
+}
+
+function closeCelebration(){
+
+  document.getElementById(
+    "celebrationOverlay"
+  ).style.display = "none";
+
+}
+
+function launchConfetti(){
+
+  const colors=[
+    "#ff4d6d",
+    "#ffbe0b",
+    "#8338ec",
+    "#3a86ff",
+    "#06d6a0",
+    "#fb5607"
+  ];
+
+  for(let i=0;i<260;i++){
+
+    const piece=document.createElement("div");
+
+    piece.className="confetti";
+
+    piece.style.left=Math.random()*100+"vw";
+
+    piece.style.background=
+      colors[Math.floor(Math.random()*colors.length)];
+
+    piece.style.borderRadius=
+      Math.random()>.5 ? "50%" : "2px";
+
+    piece.style.animationDuration=
+      (3 + Math.random()*2)+"s";
+
+    piece.style.transform=
+      `rotate(${Math.random()*360}deg)`;
+
+    document.body.appendChild(piece);
+
+    setTimeout(()=>{
+      piece.remove();
+    },5500);
+
+  }
+}
+
+  function resetAll(){
+  if(confirm("¿Estás seguro de que quieres borrar todo?")){
+    Object.keys(values).forEach(key => delete values[key]);
+    document.querySelectorAll(".letter-input, .clue-cell input").forEach(input => {
+      input.value = "";
+      input.classList.remove("ink-blue", "ink-italic");
+    });
+    celebrationShown = false;
+    document.getElementById("celebrationOverlay").style.display = "none";
+    // eliminar el guardado específico de este crucigrama
+    localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
+function createGridInput(number,label){
+
+  const wrapper=document.createElement("div");
+  wrapper.className="cell";
+
+  const num=document.createElement("div");
+  num.className="number";
+  num.textContent=number+" "+label;
+
+  const input=document.createElement("input");
+input.addEventListener("focus", ()=>{
+
+  document
+    .querySelectorAll(".selected-cell")
+    .forEach(el =>
+      el.classList.remove("selected-cell")
+    );
+
+  selectedInput = input;
+
+  input.classList.add("selected-cell");
+});
+  input.className="letter-input";
+  input.maxLength=1;
+  input.dataset.number=number;
+input.addEventListener("focus", ()=>{
+
+  document
+    .querySelectorAll(".selected-cell")
+    .forEach(el =>
+      el.classList.remove("selected-cell")
+    );
+
+  selectedInput = input;
+
+  input.classList.add("selected-cell");
+});
+
+ input.addEventListener("input",e=>{
+    values[number]=e.target.value.toUpperCase();
+    sync(number);
+
+     // Avanzar automáticamente al siguiente input
+  if(e.target.value){
+    const nextInput = document.querySelector(
+      `input[data-number="${number + 1}"]`
+    );
+    if(nextInput) nextInput.focus();
+  }
+    
+});
+
+input.addEventListener("keydown", e=>{
+  if(e.key === "Backspace"){
+     e.preventDefault();
+    values[number] = "";
+    e.target.value = "";
+    sync(number);
+    
+    // Retroceder al input anterior
+    const prevInput = document.querySelector(
+      `input[data-number="${number - 1}"]`
+    );
+    if(prevInput) prevInput.focus();
+  }
+});
+
+  wrapper.appendChild(num);
+  wrapper.appendChild(input);
+
+  return wrapper;
+}
+
+const grid=document.getElementById("grid");
+
+gridCells.forEach(cell=>{
+  if(cell===null || (Array.isArray(cell) && cell[0]===null)){
+    const black=document.createElement("div");
+    black.className="black";
+    if(Array.isArray(cell) && cell[1]){
+      black.textContent = cell[1];
+    }
+    grid.appendChild(black);
+  } else {
+    grid.appendChild(createGridInput(cell[0],cell[1]));
+  }
+});
+
+
+const clues=document.getElementById("clues");
+
+clueData.forEach(clue=>{
+
+  const row=document.createElement("div");
+  row.className="clue";
+
+  const label=document.createElement("div");
+  label.className="clue-label";
+  label.textContent=clue.letter + ". " + clue.text;
+
+  const hintBtn=document.createElement("button");
+  hintBtn.className="hint-btn";
+  hintBtn.textContent="Pista";
+  hintBtn.onclick=()=>showHint(clue.hint);
+
+  const answer=document.createElement("div");
+  answer.className="clue-answer";
+
+  clue.cells.forEach((number,index)=>{
+
+    const wrap=document.createElement("div");
+    wrap.className="clue-cell";
+
+    const input=document.createElement("input");
+    input.maxLength=1;
+    input.dataset.number=number;
+
+    input.addEventListener("input",e=>{
+
+      const val=e.target.value.toUpperCase();
+      values[number]=val;
+      sync(number);
+
+      if(val && index < clue.cells.length-1){
+        answer.children[index+1].querySelector("input").focus();
+      }
+
+    });
+
+    input.addEventListener("keydown",e=>{
+      if(e.key==="Backspace"){
+        e.preventDefault();
+        values[number]="";
+        e.target.value="";
+        sync(number);
+        
+        if(index>0){
+          answer.children[index-1].querySelector("input").focus();
+        }
+      }
+    });
+
+    const num=document.createElement("div");
+    num.className="clue-number";
+    num.textContent=number;
+
+    wrap.appendChild(input);
+    wrap.appendChild(num);
+
+    answer.appendChild(wrap);
+
+  });
+
+  row.appendChild(label);
+  row.appendChild(hintBtn);
+  row.appendChild(answer);
+
+  clues.appendChild(row);
+
+});
+
+window.addEventListener("load", ()=>{
+  const saved = localStorage.getItem("latido_mermado_7");
+  if(saved){
+    const data = JSON.parse(saved);
+    Object.assign(values, data);
+    document.querySelectorAll("[data-number]").forEach(el => {
+      if(values[el.dataset.number]){
+        el.value = values[el.dataset.number];
+      }
+    });
+    checkFinished();
+  }
+});
+
+window.addEventListener("beforeunload", ()=>{
+  localStorage.setItem("latido_mermado_7", JSON.stringify(values));
+});
+
+  function loadSaved(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    // merge en values
+    Object.assign(values, saved);
+    // rellenar los inputs ya existentes
+    Object.keys(values).forEach(n => {
+      // sólo sincroniza si hay inputs en DOM
+      if(document.querySelector(`[data-number="${n}"]`)){
+        sync(n);
+      }
+    });
+  }catch(e){
+    console.warn('No se pudo recuperar guardado:', e);
+  }
+}
+
+  // Intento seguro: carga al finalizar la carga de la página.
+// Si la cuadrícula se genera dinámicamente más tarde, asegúrate de
+// llamar loadSaved() justo después de crear los inputs.
+loadSaved();
+window.addEventListener('load', loadSaved);
+  
+</script>
+
+<div id="celebrationOverlay">
+  <div id="celebrationBox">
+
+  <button id="closeCelebration" onclick="closeCelebration()">
+    ✕
+  </button>
+
+ <h1>🎉 ¡ENHORABUENA! 🎉</h1>
+
+  <p>Lo has resuelto :)</p>
+
+    <h5>Solución: "Primero tracé un círculo, hice crecer un árbol, puse un nido en su copa; más arriba, una nube: hice brotar el agua, apenas un arroyo, para que árbol y nube y pájaro bebieran." "Poesía", Braulio Arenas</h5>
+ <button onclick="closeCelebration()" class="continue-btn">
+    Seguir viendo el pasatiempo
+  </button>
+
+</div>
+</div>
+<div id="hintModal" class="hint-modal">
+  <div class="hint-content">
+    <button class="hint-close" onclick="closeHint()">✕</button>
+    <h3>Pista</h3>
+    <p id="hintText"></p>
+  </div>
+</div>
+</body>
+</html>
