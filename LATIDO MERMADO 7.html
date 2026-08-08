@@ -835,7 +835,8 @@ const clueData = [
 {
   letter:"N",
   text:"Dignidad imperial, real, consular, cardenalicia",
- hint:" [h6]Creo que no hacen falta más pistas de las que hay.[/h6]",
+hint:"Creo que no hacen falta más pistas de las que hay.",
+  hintColor:"#6a0dad",
   cells:[1,108,61,121,70,82,60]
 },
 {
@@ -895,8 +896,16 @@ let celebrationShown = false;
 
 let selectedInput = null;
 
-function showHint(text){ const hintEl = document.getElementById("hintText"); // Reemplaza los marcadores [h6]...[/h6] por el span con la clase .h6 if (/[h6].?[/h6]/.test(text)){ const safe = text.replace(/[h6](.?)[/h6]/g, '<span class="h6">$1</span>'); hintEl.innerHTML = safe; } else { hintEl.textContent = text; } document.getElementById("hintModal").style.display = "flex"; }
-function closeHint(){
+function showHint(text, color){
+  const hintEl = document.getElementById("hintText");
+  if(hintEl){
+    hintEl.textContent = text;
+    if(color) hintEl.style.color = color;
+    else hintEl.style.color = "";
+    document.getElementById("hintModal").style.display = "flex";
+  }
+}
+}function closeHint(){
 
   document.getElementById("hintModal").style.display = "none";
 }
@@ -1095,7 +1104,7 @@ clueData.forEach(clue=>{
   const hintBtn=document.createElement("button");
   hintBtn.className="hint-btn";
   hintBtn.textContent="Pista";
-  hintBtn.onclick=()=>showHint(clue.hint);
+hintBtn.onclick=()=>showHint(clue.hint, clue.hintColor);
 
   const answer=document.createElement("div");
   answer.className="clue-answer";
