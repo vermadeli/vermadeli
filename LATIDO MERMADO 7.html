@@ -789,7 +789,7 @@ const clueData = [
 {
   letter:"F",
   text:"Indaga, averigua o examina cuidadosamente algo.",
-  hint:"No me avises, que ni iré".
+  hint:"No me avises, que ni iré",
   cells:[11,96,107,43,74,128,27,119]
 },
 {
@@ -1153,7 +1153,7 @@ clueData.forEach(clue=>{
 });
 
 window.addEventListener("load", ()=>{
-  const saved = localStorage.getItem("latido_mermado_7");
+  const saved = localStorage.getItem("Latido_mermado_7");
   if(saved){
     const data = JSON.parse(saved);
     Object.assign(values, data);
@@ -1167,7 +1167,7 @@ window.addEventListener("load", ()=>{
 });
 
 window.addEventListener("beforeunload", ()=>{
-  localStorage.setItem("latido_mermado_7", JSON.stringify(values));
+  localStorage.setItem("Latido_mermado_7", JSON.stringify(values));
 });
 
   function loadSaved(){
