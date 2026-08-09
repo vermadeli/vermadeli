@@ -736,9 +736,9 @@ const solution = {
 118:"B",10:"A",112:"B",3:"I",132:"R",13:"U",94:"S",34:"A",
 99:"R",109:"E",73:"H",19:"U",120:"Y",7:"O",
 65:"A",2:"R",125:"R",30:"E",134:"N",47:"D",85:"A",6:"R",
-32:"U",116:"N",46:"C",130:"I",9:"R",58:"A",14:"N",
+32:"U",116:"N",11:"C",130:"I",9:"R",58:"A",14:"N",
 20:"L",131:"E",86:"G",66:"U",114:"L",28:"E",101:"Y",37:"O",
-11:"I",96:"N",107:"Q",43:"U",74:"I",128:"E",27:"R",119:"E",
+46:"I",96:"N",107:"Q",43:"U",74:"I",128:"E",27:"R",119:"E",
 54:"O",127:"B",115:"Y",25:"E",75:"C",8:"T",126:"O",
 124:"A",36:"B",111:"R",52:"U",103:"P",80:"T",21:"O",
 35:"R",95:"U",4:"M",129:"B",48:"O",59:"S",113:"O",
@@ -766,7 +766,6 @@ const clueData = [
 {
   letter:"B",
   text:"Repugno o llevo mal algo.",
-  hint:"Si piensas en evitar o apartarse de algo igual es más fácil.",
   cells:[99,109,73,19,120,7]
 },
 {
@@ -779,7 +778,7 @@ const clueData = [
   letter:"D",
   text:"Ataran o sujetaran al yugo bueyes, mulas u otras bestias.",
   hint:"La lógica es la misma que para la palabra anterior.",
-  cells:[32,116,46,130,9,58,14]
+  cells:[32,116,11,130,9,58,14]
 },
 {
   letter:"E",
@@ -790,13 +789,12 @@ const clueData = [
   letter:"F",
   text:"Indaga, averigua o examina cuidadosamente algo.",
   hint:"No me avises, que ni iré",
-  cells:[11,96,107,43,74,128,27,119]
+  cells:[46,96,107,43,74,128,27,119]
 },
 {
   letter:"G",
   text:"Interpuesto, intermedio, puesto delante.",
-  hint:"Si fuese un sustantivo significaría réplica.",
-  cells:[54,115,101,25,75,8,126]
+  cells:[54,127,115,25,75,8,126]
 },
 {
   letter:"H",
@@ -812,7 +810,7 @@ const clueData = [
 },
 {
   letter:"J",
-  text:"Hagan que un objeto quede atascado en altura o lugar fuera de alcance.",
+  text:"Hicieran que un objeto quede atascado en altura o lugar fuera de alcance.",
   hint:"La otra opción era meterlo en cal",
   cells:[76,33,53,122,84,104,17,110,44]
 },
@@ -828,7 +826,7 @@ const clueData = [
 },
 {
   letter:"M",
-  text:" Instrumento musical metálico, a modo de trompeta, que se alarga y acorta recogiéndose en sí mismo para producir la diferencia de voces que pide la música.",
+  text:"Instrumento musical metálico, a modo de trompeta, que se alarga y acorta recogiéndose en sí mismo para producir la diferencia de voces que pide la música.",
   hint:"No lo escuchaba.",
   cells:[51,97,15,56,71,117,18,22,5]
 },
@@ -859,7 +857,6 @@ hint:"Creo que no hacen falta más pistas de las que hay.",
 {
   letter:"R",
   text:"Indigencia, pobreza, escasez.",
-  hint:"De ser un lugar es un sitio en el que cuando estás, no sabes nada.",
   cells:[23,69,79,55,63,88]
 },
 {
@@ -875,8 +872,8 @@ hint:"Creo que no hacen falta más pistas de las que hay.",
 
 const gridCells = [
 
-[1,"N"], [2,"C"], [3,"A"], [4,"I"], [5,"M"], [6,"C"], [7,"B"], null, [8,"G"], [9,"D"], [10,"A"], [11,"F"], [12,"P"], null, [13,"A"], [14,"D"], null, [15,"M"], [16,"O"], [17,"J"], [18,"M"], [19,"B"], [20,"E"], [21,"H"], [null,","], [22,"M"], [23,"S"], [24,"P"], [25,"G"], null, [26,"Q"], [27,"F"], [28,"E"], [29,"P"], [30,"C"], [31,"S"], null, [32,"D"], [33,"J"], null, 
-  [34,"A"], [35,"I"], [36,"H"], [37,"E"], [38,"K"], [null,","], [39,"O"], [40,"L"], [41,"Q"], [42,"Q"], null, [43,"F"], [44,"J"], null, [45,"K"], [46,"D"], [47,"C"], [48,"I"], null, 
+[1,"N"], [2,"C"], [3,"A"], [4,"I"], [5,"M"], [6,"C"], [7,"B"], null, [8,"G"], [9,"D"], [10,"A"], [11,"D"], [12,"P"], null, [13,"A"], [14,"D"], null, [15,"M"], [16,"O"], [17,"J"], [18,"M"], [19,"B"], [20,"E"], [21,"H"], [null,","], [22,"M"], [23,"S"], [24,"P"], [25,"G"], null, [26,"Q"], [27,"F"], [28,"E"], [29,"P"], [30,"C"], [31,"S"], null, [32,"D"], [33,"J"], null, 
+  [34,"A"], [35,"I"], [36,"H"], [37,"E"], [38,"K"], [null,","], [39,"O"], [40,"L"], [41,"Q"], [42,"Q"], null, [43,"F"], [44,"J"], null, [45,"K"], [46,"F"], [47,"C"], [48,"I"], null, 
   [49,"P"], [50,"O"], null, [51,"M"], [52,"H"], null, [53,"J"], [54,"G"], [55,"S"], [56,"J"], [null,","], [57,"O"], [58,"D"], [59,"I"], null, [60,"N"], [61,"N"], [62,"S"], [63,"R"], [64,"L"], 
   [65,"C"], null, [66,"E"], [67,"Q"], [68,"R"], null, [69,"R"], [70,"N"], [71,"M"], [72,"Q"], [null,":"], [73,"B"], [74,"F"], [75,"G"], [76,"J"], null, [77,"P"], [78,"O"], [79,"S"], [80,"H"], [81,"S"], 
   [82,"N"], null, [83,"P"], [84,"J"], null, [85,"C"], [86,"E"], [87,"K"], [88,"S"], [null,","], [89,"L"], [90,"S"], [91,"O"], [92,"P"], [93,"Q"], [94,"A"], null, [95,"I"], [96,"F"], null, [97,"M"], [98,"L"], 
