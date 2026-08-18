@@ -728,7 +728,7 @@ h5{
 
 <script>
 
-const STORAGE_KEY = 'Latido_mermado_7';
+const STORAGE_KEY = 'Latido_mermado_8';
 
 const values = {};
 
@@ -1159,7 +1159,7 @@ hintBtn.onclick=()=>showHint(clue.hint, clue.hintColor);
 });
 
 window.addEventListener("load", ()=>{
-  const saved = localStorage.getItem("Latido_mermado_7");
+  const saved = localStorage.getItem("Latido_mermado_8");
   if(saved){
     const data = JSON.parse(saved);
     Object.assign(values, data);
@@ -1173,7 +1173,7 @@ window.addEventListener("load", ()=>{
 });
 
 window.addEventListener("beforeunload", ()=>{
-  localStorage.setItem("Latido_mermado_7", JSON.stringify(values));
+  localStorage.setItem("Latido_mermado_8", JSON.stringify(values));
 });
 
   function loadSaved(){
