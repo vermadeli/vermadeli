@@ -548,6 +548,7 @@ h5{
     color:black;
     -webkit-print-color-adjust:exact !important;
     print-color-adjust:exact !important;
+    font-family: Georgia, "Times New Roman", serif;
   }
 
   h2{
@@ -563,11 +564,12 @@ h5{
     display:none !important;
   }
 
-  /* DAMERO */
+  /* DAMERO: cada casilla 1cm x 1cm */
   .grid{
     display:grid;
-    grid-template-columns:repeat(13, 19mm);
-    gap:0;
+    /* usar 15 columnas como en la versión pantalla; si quieres otro número ajusta el 15 a lo necesario */
+    grid-template-columns:repeat(15, 10mm);
+    gap:0mm;
 
     width:max-content;
     margin:0 auto 10mm auto;
@@ -578,14 +580,17 @@ h5{
 
   .cell,
   .black{
-    width:5mm;
-    height:5mm;
+    width:10mm;
+    height:10mm;
 
     border:1px solid black;
     border-radius:0;
     box-sizing:border-box;
     margin:0;
     padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
 
   .cell{
@@ -605,18 +610,23 @@ h5{
     position:absolute;
     top:1mm;
     left:1mm;
-    font-size:9pt;
+    font-size:7pt;
     color:black;
   }
 
+  /* LETRAS EN LA CUADRÍCULA: tamaño moderado para 1cm */
   .letter-input{
     width:100%;
     height:100%;
     border:none;
     background:transparent;
-    font-size:10pt;
+    font-size:11pt;        /* tamaño legible pero no exagerado dentro de 1cm */
     font-weight:bold;
     text-align:center;
+    text-transform:uppercase;
+    line-height:1;
+    padding:0;
+    margin:0;
   }
 
   /* DEFINICIONES */
@@ -626,75 +636,78 @@ h5{
     margin-top:3mm;
   }
 
-.clue{
-  display:block;
-  background:none;
-  border:none;
-  box-shadow:none;
-  gap:1mm;
+  .clue{
+    display:block;
+    background:none;
+    border:none;
+    box-shadow:none;
+    gap:1mm;
 
-  padding:0;
-  margin:1 1 1mm 1;
+    padding:0;
+    margin:1mm 1mm 1mm 1mm;
 
-  page-break-inside:avoid;
-  break-inside:avoid;
-}
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
 
-.clue-label{
-  font-size:10pt;
-  font-weight:bold;
-  line-height:0.95;
-  margin-top:0.5;
-  padding:1mm;
-}
+  .clue-label{
+    font-size:10pt;
+    font-weight:bold;
+    line-height:0.95;
+    margin-top:0.5mm;
+    padding:1mm;
+  }
 
-.clue-answer{
-  display:flex;
-  flex-wrap:wrap;
-  gap:1mm;
+  .clue-answer{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1mm;
 
-  width:100%;
+    width:100%;
 
-  margin-top:2mm;
-  margin-right:0;
-  margin-bottom:1mm;
-  margin-left:0;
+    margin-top:2mm;
+    margin-right:0;
+    margin-bottom:1mm;
+    margin-left:0;
 
-  padding:0;
-}
+    padding:0;
+  }
 
-.clue-cell{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-end;
+  .clue-cell{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
 
-  margin:0;
-  padding:0;
-}
+    margin:0;
+    padding:0;
+  }
 
-.clue-cell input{
-  width:5mm;
-  height:3mm;
+  /* INPUTS DE LAS DEFINICIONES: tamaño reducido y proporcional */
+  .clue-cell input{
+    width:8mm;
+    height:8mm;
 
-  border:none;
-  border-bottom:1px solid black;
-  border-radius:0;
+    border:none;
+    border-bottom:1px solid black;
+    border-radius:0;
 
-  background:transparent;
+    background:transparent;
 
-  font-size:40pt;
-  margin:0;
-  padding:0;
-}
+    font-size:10pt;   /* más razonable que 40pt */
+    text-align:center;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
 
-.clue-number{
-  font-size:10pt;
-  line-height:1;
-  margin-top:0;
-  padding:0;
-  color:black;
-}
+  .clue-number{
+    font-size:10pt;
+    line-height:1;
+    margin-top:0;
+    padding:0;
+    color:black;
+  }
 
 }
 </style>
