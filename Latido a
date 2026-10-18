@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>LATIDO MERMADO 7</title>
+
+<style>
+body{
+  font-family: Georgia, "Times New Roman", serif;
+  background: linear-gradient(180deg,#f7f2e8 0%, #efe7d8 100%);
+  margin:0;
+  padding:32px;
+  color:#2e2a24;
+}
+
+/* TÍTULO */
+
+h2{
+  text-align:center;
+  font-size:38px;
+  font-weight:600;
+  letter-spacing:.08em;
+  margin:8px 0 28px;
+  color:#3b3025;
+}
+
+h5{
+  text-align:center;
+  font-size:20px;
+  font-weight:300;
+  letter-spacing:.08em;
+  margin:8px 0 28px;
+  color:#002f93;
+}
+  h6{
+  text-align:center;
+  font-size:20px;
+  font-weight:300;
+  letter-spacing:.08em;
+  margin:8px 0 28px;
+  color: #6a0dad !important;
+  font-style: normal;
+}
+  
+
+
+/* BOTÓN */
+
+.continue-btn{
+  margin-top:16px;
+  padding:12px 22px;
+  border:none;
+  border-radius:14px;
+  background:#7a654c;
+  color:white;
+  font-size:15px;
+  font-family:inherit;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+  transition:.18s ease;
+}
+
+.continue-btn:hover{
+  background:#65533f;
+  transform:translateY(-1px);
+}
+
+/* CUADRÍCULA */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(15,72px);
+  gap:5px;
+  justify-content:center;
+
+  width:max-content;
+  margin:0 auto 42px;
+  padding:26px;
+
+  background:rgba(255,255,255,.45);
+  border-radius:22px;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.65);
+}
+
+/* CASILLAS */
+
+.cell{
+  position:relative;
+  width:72px;
+  height:72px;
+
+  background:#fffdf8;
+
+  border:1px solid #d5c7b5;
+  border-radius:12px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    0 2px 4px rgba(0,0,0,.04);
+}
+
+/* NEGRAS */
+
+.black{
+  width:72px;
+  height:72px;
+
+  background:linear-gradient(145deg,#2f2f2f,#171717);
+  border-radius:12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+  font-size:30px;
+  font-weight:bold;
+}
+
+/* NUMERITOS */
+
+.number{
+  position:absolute;
+  top:6px;
+  left:7px;
+  font-size:11px;
+  color:#8b7a66;
+  font-weight:600;
+}
+
+/* INPUTS CUADRÍCULA */
+
+.letter-input{
+  width:100%;
+  height:100%;
+
+  border:none;
+  background:transparent;
+
+  text-align:center;
+  text-transform:uppercase;
+
+  font-size:34px;
+  font-weight:600;
+  color:#2e2a24;
+}
+
+.letter-input:focus{
+  outline:none;
+  background:#fff3c9;
+  border-radius:12px;
+}
+
+/* BLOQUES DE DEFINICIÓN */
+
+.clue{
+  max-width:1120px;
+
+  margin:14px auto;
+  padding:18px 22px;
+
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(8px);
+
+  border:1px solid rgba(170,150,120,.22);
+  border-radius:18px;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.06);
+}
+
+/* TEXTO DEFINICIÓN */
+
+.clue-label{
+  font-size:18px;
+  line-height:1.42;
+  font-weight:600;
+  color:#342b22;
+  margin-bottom:10px;
+}
+
+/* BOTÓN PISTA */
+
+.hint-btn{
+  padding:7px 12px;
+  border:none;
+  border-radius:10px;
+
+  background:#a38762;
+  color:white;
+
+  font-size:13px;
+  font-family:inherit;
+  cursor:pointer;
+
+  transition:.15s ease;
+}
+
+.hint-btn:hover{
+  background:#8a7050;
+}
+
+/* RESPUESTA */
+
+.clue-answer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
+}
+
+/* CASILLAS RESPUESTA */
+
+.clue-cell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* INPUT DEFINICIÓN */
+
+.clue-cell input{
+  width:42px;
+  height:42px;
+
+  border:1px solid #d8cbbd;
+  border-radius:10px;
+
+  background:#fffefb;
+
+  font-size:24px;
+  text-align:center;
+  text-transform:uppercase;
+
+  transition:.15s ease;
+}
+
+.clue-cell input:focus{
+  outline:none;
+  border-color:#a98b63;
+  box-shadow:0 0 0 3px rgba(169,139,99,.12);
+}
+
+/* NÚMERO BAJO CASILLA */
+
+.clue-number{
+  margin-top:4px;
+  font-size:11px;
+  color:#7b6b58;
+  font-weight:600;
+}
+
+/* RESULTADO */
+
+#result{
+  text-align:center;
+  font-size:28px;
+  margin-top:24px;
+  color:#2f7d32;
+}
+
+/* MODALES */
+
+.hint-content,
+#celebrationBox{
+  background:#fffdf9;
+  border-radius:24px;
+  box-shadow:0 18px 45px rgba(0,0,0,.22);
+}
+  #celebrationBox textarea{
+  width:90%;
+  max-width:500px;
+  min-height:60px;
+  margin-top:16px;
+  padding:10px;
+  border:2px solid #d8cbbd;
+  border-radius:10px;
+  font-size:14px;
+  font-family:inherit;
+  resize:vertical;
+}
+
+  
+
+/* ===== MODAL PISTA ===== */
+
+.hint-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(4px);
+  z-index:9998;
+
+  align-items:center;
+  justify-content:center;
+}
+
+.hint-content{
+  position:relative;
+
+  width:min(520px, 90vw);
+  padding:34px;
+
+  text-align:center;
+
+  background:#fffdf9;
+  border-radius:26px;
+
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+
+  animation:popIn .28s ease;
+}
+
+.hint-content h3{
+  font-size:34px;
+  margin:0 0 12px;
+}
+
+.hint-content p{
+  font-size:22px;
+  line-height:1.45;
+}
+
+.hint-close{
+  position:absolute;
+  top:14px;
+  right:18px;
+
+  border:none;
+  background:none;
+
+  font-size:28px;
+  cursor:pointer;
+}
+
+
+/* ===== CELEBRACIÓN ===== */
+
+#celebrationOverlay{
+  position:fixed;
+  inset:0;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at top left, rgba(255,0,128,.22), transparent 35%),
+    radial-gradient(circle at top right, rgba(255,220,0,.22), transparent 35%),
+    radial-gradient(circle at bottom left, rgba(0,190,255,.20), transparent 35%),
+    rgba(0,0,0,.58);
+
+  backdrop-filter:blur(6px);
+
+  z-index:9999;
+}
+
+#celebrationOverlay::before{
+  content:"🌈     🎉     🎺     ✨     🌈     🎊     🎺     ✨";
+  position:absolute;
+  top:8%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:56px;
+  white-space:nowrap;
+  animation:floatParty 4s ease-in-out infinite;
+}
+
+#celebrationOverlay::after{
+  content:"✨     🎺     🌈     🎉     ✨";
+  position:absolute;
+  bottom:6%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:44px;
+  opacity:.95;
+}
+
+#celebrationBox{
+  position:relative;
+
+  width:min(760px, 92vw);
+
+  padding:54px 64px;
+
+  border-radius:30px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(circle at center, #fffdf9 0%, #fff6e9 100%);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.30);
+
+  animation:popWin .45s ease;
+}
+
+#celebrationBox h1{
+  font-size:68px;
+  margin:0;
+}
+
+#celebrationBox p{
+  font-size:30px;
+  margin-top:12px;
+}
+
+#closeCelebration{
+  position:absolute;
+  top:16px;
+  right:18px;
+  border:none;
+  background:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+.confetti{
+  position:fixed;
+  top:-30px;
+  width:14px;
+  height:14px;
+  z-index:10000;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:
+      translateY(115vh)
+      rotate(720deg);
+    opacity:0;
+  }
+}
+
+@keyframes popWin{
+  from{
+    transform:scale(.72);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+@keyframes floatParty{
+  0%,100%{
+    transform:translateX(-50%) translateY(0);
+  }
+  50%{
+    transform:translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes popIn{
+  from{
+    opacity:0;
+    transform:scale(.85);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+#letterTools{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin:0 0 24px;
+  flex-wrap:wrap;
+}
+
+#letterTools button{
+  padding:8px 14px;
+  border:none;
+  border-radius:10px;
+  background:#a38762;
+  color:white;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.selected-cell{
+  box-shadow:
+    0 0 0 3px rgba(245,180,70,.45) !important;
+}
+
+/* estilos por casilla */
+
+.ink-blue{
+  color:#2646b3 !important;
+  font-style:normal;
+}
+
+.ink-italic{
+  color:#2e2a24 !important;
+  font-style:italic;
+}
+/* MÓVIL */
+
+@media (max-width:900px){
+
+  body{
+    padding:16px;
+  }
+
+  h2{
+    font-size:28px;
+  }
+
+  .grid{
+    overflow-x:auto;
+    justify-content:flex-start;
+    padding:18px;
+  }
+
+  .clue{
+    padding:14px;
+  }
+
+  .clue-label{
+    font-size:16px;
+  }
+
+}
+
+@media print{
+
+  @page{
+    size:A4 landscape;
+    margin:10mm;
+  }
+
+  html,
+  body{
+    width:100%;
+    margin:0;
+    padding:0;
+    background:white !important;
+    color:black;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  h2{
+    text-align:center;
+    font-size:10pt;
+    margin-bottom:8mm;
+  }
+
+  #printBtn,
+  .hint-btn,
+  #celebrationOverlay,
+  #hintModal{
+    display:none !important;
+  }
+
+  /* DAMERO */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(13, 19mm);
+    gap:0;
+
+    width:max-content;
+    margin:0 auto 10mm auto;
+
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+
+  .cell,
+  .black{
+    width:5mm;
+    height:5mm;
+
+    border:1px solid black;
+    border-radius:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
+
+  .cell{
+    background:white !important;
+    position:relative;
+  }
+
+  /* negras realmente negras al imprimir */
+  .black{
+    background:#000 !important;
+    color:white !important;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  .number{
+    position:absolute;
+    top:1mm;
+    left:1mm;
+    font-size:9pt;
+    color:black;
+  }
+
+  .letter-input{
+    width:100%;
+    height:100%;
+    border:none;
+    background:transparent;
+    font-size:10pt;
+    font-weight:bold;
+    text-align:center;
+  }
+
+  /* DEFINICIONES */
+  #clues{
+    display:block;
+    width:100%;
+    margin-top:3mm;
+  }
+
+.clue{
+  display:block;
+  background:none;
+  border:none;
+  box-shadow:none;
+  gap:1mm;
+
+  padding:0;
+  margin:1 1 1mm 1;
+
+  page-break-inside:avoid;
+  break-inside:avoid;
+}
+
+.clue-label{
+  font-size:10pt;
+  font-weight:bold;
+  line-height:0.95;
+  margin-top:0.5;
+  padding:1mm;
+}
+
+.clue-answer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1mm;
+
+  width:100%;
+
+  margin-top:2mm;
+  margin-right:0;
+  margin-bottom:1mm;
+  margin-left:0;
+
+  padding:0;
+}
+
+.clue-cell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+
+  margin:0;
+  padding:0;
+}
+
+.clue-cell input{
+  width:5mm;
+  height:3mm;
+
+  border:none;
+  border-bottom:1px solid black;
+  border-radius:0;
+
+  background:transparent;
+
+  font-size:40pt;
+  margin:0;
+  padding:0;
+}
+
+.clue-number{
+  font-size:10pt;
+  line-height:1;
+  margin-top:0;
+  padding:0;
+  color:black;
+}
+
+}
+</style>
+</head>
+<body>
+
+<h2>LATIDO MERMADO 7</h2>
+
+
+<div style="text-align:center; margin-bottom:20px;">
+  <button onclick="window.print()" id="printBtn" class="continue-btn">
+    🖨 Imprimir
+  </button>
+</div>
+
+
+<div id="letterTools">
+  <button type="button" onclick="paintSelected('blue')">Azul</button>
+  <button type="button" onclick="paintSelected('italic')">Cursiva</button>
+  <button type="button" onclick="paintSelected('clear')">Normal</button>
+  <button type="button" onclick="resetAll()" class="continue-btn">
+  🔄 Borrar todo
+</button>
+</div>
+
+<div id="grid" class="grid"></div>
+
+<div id="clues"></div>
+
+<div id="result"></div>
+
+<script>
+
+const STORAGE_KEY = 'Latido_mermado_7';
+
+const values = {};
+
+const solution = {
+94:"P",3:"R",122:"O",1:"P",106:"U",36:"G",104:"N",9:"A",89:"N",
+20:"S",109:"E",5:"N",107:"E",10:"S",111:"C",11:"A",125:"L",
+44:"A",90:"C",32:"L",124:"A",53:"M",119:"A",
+87:"L",14:"A",93:"S",22:"T",120:"R",4:"O",
+26:"I",85:"N",51:"D",117:"O",45:"L",99:"E",
+7:"N",92:"E",41:"F",84:"E",114:"L",35:"I",86:"B",52:"A",123:"T",29:"O",
+88:"A",60:"L",101:"G",58:"A",110:"R",61:"A",116:"D",66:"A",
+15:"S",82:"O",13:"R",83:"N",115:"A",37:"N",
+65:"S",112:"A",16:"Q",95:"U",2:"E",
+54:"I",80:"N",8:"C",113:"L",18:"E",118:"M",19:"E",64:"N",121:"T",21:"E",
+71:"T",103:"A",24:"Q",6:"U",79:"E",97:"A",28:"R",
+27:"E",55:"N",46:"Y",23:"E",81:"S",31:"O",
+105:"Q",17:"U",68:"E",12:"B",108:"R",73:"A",98:"D",76:"A",
+25:"U",96:"M",77:"B",48:"R",78:"O",30:"S",72:"O",
+42:"I",34:"S",100:"L",91:"A",43:"N",
+39:"E",67:"J",49:"E",62:"M",47:"P",74:"L",33:"O",
+102:"R",38:"O",50:"N",75:"C",59:"O",
+70:"O",69:"R",57:"M",63:"E",40:"S",56:"I",
+
+
+
+};
+
+const clueData = [
+{
+  letter:"A",
+  text:"Cerdo salvaje que vive en Asia, de mayor tamaño que el jabalí, cuyos colmillos salen de la boca dirigiéndose hacia arriba y luego se encorvan hacia atrás. Su carne es comestible.",
+  hint:"Termina con una nacionalidad europea.",
+  cells:[94,3,122,1,106,36,104,9,89]
+},
+{
+  letter:"B",
+  text:"Repugno o llevo mal algo.",
+  cells:[20,109,5,107,10,111,11,125]
+},
+{
+  letter:"C",
+  text:"Someter al dominio, señorío o disposición de alguien.",
+  hint:"Como a los caballos.",
+  cells:[44,90,32,124,53,119]
+},
+{
+  letter:"D",
+  text:"Atarán o sujetaraán al yugo bueyes, mulas u otras bestias.",
+  hint:"La lógica es la misma que para la palabra anterior.",
+  cells:[87,14,93,22,120,4]
+},
+{
+  letter:"E",
+  text:"Persona que aplica el derecho sin rigor y desenfadadamente.",
+  cells:[26,85,51,117,45,99]
+},
+{
+  letter:"F",
+  text:"Indaga, averigua o examina cuidadosamente algo.",
+  hint:"No me avises, que ni iré",
+  cells:[7,92,41,84,114,35,86,52,123,29]
+},
+{
+  letter:"G",
+  text:"Interpuesto, intermedio, puesto delante.",
+  cells:[88,60,101,58,110,61,116,66]
+},
+{
+  letter:"H",
+  text:"Áspero, violento, rudo, destemplado.",
+  hint:"¡Puto bar!",
+  cells:[15,82,13,83,115,37]
+},
+{
+  letter:"I",
+  text:"Pomposo y magnífico.",
+  hint:"Seguro que también es buen bailarín",
+  cells:[65,112,16,95,2]
+},
+{
+  letter:"J",
+  text:"Hicieran que un objeto quede atascado en altura o lugar fuera de alcance.",
+  hint:"La otra opción era meterlo en cal",
+  cells:[54,80,8,113,18,118,19,64,121,21]
+},
+{
+  letter:"K",
+  text:"Falto de valor y fuerza para obligar o tener efecto, por ser contrario a las leyes, o por carecer de las solemnidades que se requieren en la sustancia o en el modo.",
+  cells:[71,103,24,6,79,97,28]
+},
+{
+  letter:"L",
+  text:"Retractarse, renegar, a veces públicamente, de una creencia o compromiso que antes se ha profesado o asumido.",
+  cells:[27,55,46,23,81,31]
+},
+{
+  letter:"M",
+  text:"Instrumento musical metálico, a modo de trompeta, que se alarga y acorta recogiéndose en sí mismo para producir la diferencia de voces que pide la música.",
+  hint:"No lo escuchaba.",
+  cells:[105,17,68,12,108,73,98,76]
+},
+{
+  letter:"N",
+  text:"Dignidad imperial, real, consular, cardenalicia",
+hint:"Creo que no hacen falta más pistas de las que hay.",
+  hintColor:"#6a0dad",
+  cells:[25,96,77,48,78,30,72]
+},
+{
+  letter:"O",
+  text:"Someten a una persona, una colectividad, una nación o un pueblo privándolos de sus derechos y libertades.",
+  cells:[42,34,100,91,43]
+},
+{
+  letter:"P",
+  text:"Registre, ponga en matrícula a alguien.",
+  hint:"Y póngalo el primero de la lista.",
+  cells:[39,67,49,62,47,74,33]
+},
+{
+  letter:"Q",
+  text:"Hombre de mucha sabiduría.",
+  hint:"Del siglo I",
+  cells:[102,38,50,75,59]
+},
+{
+  letter:"R",
+  text:"Indigencia, pobreza, escasez.",
+  cells:[70,69,57,63,40,56]
+},
+
+
+];
+
+const gridCells = [
+
+[1,"A"], [2,"I"], [3,"A"], [4,"D"], null, [5,"B"], [6,"K"], [7,"F"], [8,"J"], [9,"A"], null, 
+[10,"B"], [11,"B"], [12,"M"], [13,"H"], [14,"D"], [15,"H"], null, [16,"I"], [17,"M"], [18,"J"], 
+null, [19,"J"], [20,"B"], [21,"J"], null, [null,"«"], [22,"D"], [23,"L"], null, [24,"K"], 
+[25,"N"], [26,"E"], [27,"L"], [28,"K"], [29,"F"], [null,"»"], null, [30,"N"], [31,"L"], 
+[32,"C"], [33,"P"], null, [34,"O"], [35,"F"], [36,"A"], [37,"H"], [38,"Q"], null, [39,"P"], 
+[40,"R"], [null,","], null, [41,"F"], [42,"O"], [43,"O"], [44,"C"], [45,"E"], [null,","], 
+null, [46,"L"], null, [47,"P"], [48,"N"], [49,"P"], [50,"Q"], [51,"E"], [52,"F"], null, [53,"C"], 
+[54,"J"], [55,"L"], [56,"R"], [57,"R"], [58,"G"], [null,";"], null, [59,"Q"], [60,"G"], [61,"G"], 
+[null,","], null, [62,"P"], [63,"R"], [64,"J"], [65,"I"], [66,"G"], [67,"P"], [68,"M"], [null,"-"]
+, null, [69,"R"], [70,"R"], [71,"K"], [72,"N"], null, [73,"M"], [74,"P"], null, [75,"Q"], 
+[76,"M"], [77,"N"], [78,"N"], [null,","], null, [79,"K"], [80,"J"], null, [81,"L"], [82,"H"], 
+[83,"H"], [null,","], null, [84,"F"], [85,"E"], null, [86,"F"], [87,"D"], [88,"G"], [89,"A"], 
+[90,"C"], [91,"O"], null, [92,"F"], [93,"D"], [94,"A"], [95,"I"], [96,"N"], [97,"K"], [null,"-"], null, 
+[98,"M"], [99,"E"], [100,"O"], null, [101,"G"], [102,"Q"], [103,"K"], [104,"A"], null, [105,"M"], 
+[106,"A"], [107,"B"], [108,"M"], [109,"B"], [110,"G"], null, [111,"B"], [112,"I"], [113,"J"], [114,"F"], 
+[115,"H"], [116,"G"], [117,"E"], [null,","], null, [118,"J"], [119,"C"], [120,"D"], null, [121,"J"], 
+[122,"A"], [123,"F"], [124,"C"], [125,"B"], [null,"."]
+
+  ];
+
+function sync(number){
+  document.querySelectorAll(`[data-number="${number}"]`)
+    .forEach(el => el.value = values[number] || "");
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+  checkFinished();
+}
+
+
+let celebrationShown = false;
+
+let selectedInput = null;
+
+function showHint(text, color){
+  const hintEl = document.getElementById("hintText");
+  if(hintEl){
+    hintEl.textContent = text;
+    if(color) hintEl.style.color = color;
+    else hintEl.style.color = "";
+    document.getElementById("hintModal").style.display = "flex";
+  }
+}
+function closeHint(){
+
+  document.getElementById("hintModal").style.display = "none";
+}
+
+function paintSelected(style){
+
+  if(!selectedInput) return;
+
+  selectedInput.classList.remove(
+    "ink-blue",
+    "ink-italic"
+  );
+
+  if(style !== "clear"){
+    selectedInput.classList.add("ink-" + style);
+  }
+}
+
+
+function checkFinished(){
+  const solved = Object.keys(solution).every(number =>
+    (values[number] || "") === solution[number]
+  );
+
+  if(solved && !celebrationShown){
+    celebrationShown = true;
+     localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+    const overlay = document.getElementById("celebrationOverlay");
+    overlay.style.display = "flex";
+    launchConfetti();
+  }
+}
+
+function closeCelebration(){
+
+  document.getElementById(
+    "celebrationOverlay"
+  ).style.display = "none";
+
+}
+
+function launchConfetti(){
+
+  const colors=[
+    "#ff4d6d",
+    "#ffbe0b",
+    "#8338ec",
+    "#3a86ff",
+    "#06d6a0",
+    "#fb5607"
+  ];
+
+  for(let i=0;i<260;i++){
+
+    const piece=document.createElement("div");
+
+    piece.className="confetti";
+
+    piece.style.left=Math.random()*100+"vw";
+
+    piece.style.background=
+      colors[Math.floor(Math.random()*colors.length)];
+
+    piece.style.borderRadius=
+      Math.random()>.5 ? "50%" : "2px";
+
+    piece.style.animationDuration=
+      (3 + Math.random()*2)+"s";
+
+    piece.style.transform=
+      `rotate(${Math.random()*360}deg)`;
+
+    document.body.appendChild(piece);
+
+    setTimeout(()=>{
+      piece.remove();
+    },5500);
+
+  }
+}
+
+  function resetAll(){
+  if(confirm("¿Estás seguro de que quieres borrar todo?")){
+    Object.keys(values).forEach(key => delete values[key]);
+    document.querySelectorAll(".letter-input, .clue-cell input").forEach(input => {
+      input.value = "";
+      input.classList.remove("ink-blue", "ink-italic");
+    });
+    celebrationShown = false;
+    document.getElementById("celebrationOverlay").style.display = "none";
+    // eliminar el guardado específico de este crucigrama
+    localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
+function createGridInput(number,label){
+
+  const wrapper=document.createElement("div");
+  wrapper.className="cell";
+
+  const num=document.createElement("div");
+  num.className="number";
+  num.textContent=number+" "+label;
+
+  const input=document.createElement("input");
+input.addEventListener("focus", ()=>{
+
+  document
+    .querySelectorAll(".selected-cell")
+    .forEach(el =>
+      el.classList.remove("selected-cell")
+    );
+
+  selectedInput = input;
+
+  input.classList.add("selected-cell");
+});
+  input.className="letter-input";
+  input.maxLength=1;
+  input.dataset.number=number;
+input.addEventListener("focus", ()=>{
+
+  document
+    .querySelectorAll(".selected-cell")
+    .forEach(el =>
+      el.classList.remove("selected-cell")
+    );
+
+  selectedInput = input;
+
+  input.classList.add("selected-cell");
+});
+
+ input.addEventListener("input",e=>{
+    values[number]=e.target.value.toUpperCase();
+    sync(number);
+
+     // Avanzar automáticamente al siguiente input
+  if(e.target.value){
+    const nextInput = document.querySelector(
+      `input[data-number="${number + 1}"]`
+    );
+    if(nextInput) nextInput.focus();
+  }
+    
+});
+
+input.addEventListener("keydown", e=>{
+  if(e.key === "Backspace"){
+     e.preventDefault();
+    values[number] = "";
+    e.target.value = "";
+    sync(number);
+    
+    // Retroceder al input anterior
+    const prevInput = document.querySelector(
+      `input[data-number="${number - 1}"]`
+    );
+    if(prevInput) prevInput.focus();
+  }
+});
+
+  wrapper.appendChild(num);
+  wrapper.appendChild(input);
+
+  return wrapper;
+}
+
+const grid=document.getElementById("grid");
+
+gridCells.forEach(cell=>{
+  if(cell===null || (Array.isArray(cell) && cell[0]===null)){
+    const black=document.createElement("div");
+    black.className="black";
+    if(Array.isArray(cell) && cell[1]){
+      black.textContent = cell[1];
+    }
+    grid.appendChild(black);
+  } else {
+    grid.appendChild(createGridInput(cell[0],cell[1]));
+  }
+});
+
+
+const clues=document.getElementById("clues");
+
+clueData.forEach(clue=>{
+
+  const row=document.createElement("div");
+  row.className="clue";
+
+  const label=document.createElement("div");
+  label.className="clue-label";
+  label.textContent=clue.letter + ". " + clue.text;
+
+  const hintBtn=document.createElement("button");
+  hintBtn.className="hint-btn";
+  hintBtn.textContent="Pista";
+hintBtn.onclick=()=>showHint(clue.hint, clue.hintColor);
+
+  const answer=document.createElement("div");
+  answer.className="clue-answer";
+
+  clue.cells.forEach((number,index)=>{
+
+    const wrap=document.createElement("div");
+    wrap.className="clue-cell";
+
+    const input=document.createElement("input");
+    input.maxLength=1;
+    input.dataset.number=number;
+
+    input.addEventListener("input",e=>{
+
+      const val=e.target.value.toUpperCase();
+      values[number]=val;
+      sync(number);
+
+      if(val && index < clue.cells.length-1){
+        answer.children[index+1].querySelector("input").focus();
+      }
+
+    });
+
+    input.addEventListener("keydown",e=>{
+      if(e.key==="Backspace"){
+        e.preventDefault();
+        values[number]="";
+        e.target.value="";
+        sync(number);
+        
+        if(index>0){
+          answer.children[index-1].querySelector("input").focus();
+        }
+      }
+    });
+
+    const num=document.createElement("div");
+    num.className="clue-number";
+    num.textContent=number;
+
+    wrap.appendChild(input);
+    wrap.appendChild(num);
+
+    answer.appendChild(wrap);
+
+  });
+
+  row.appendChild(label);
+  row.appendChild(hintBtn);
+  row.appendChild(answer);
+
+  clues.appendChild(row);
+
+});
+
+window.addEventListener("load", ()=>{
+  const saved = localStorage.getItem("Latido_mermado_7");
+  if(saved){
+    const data = JSON.parse(saved);
+    Object.assign(values, data);
+    document.querySelectorAll("[data-number]").forEach(el => {
+      if(values[el.dataset.number]){
+        el.value = values[el.dataset.number];
+      }
+    });
+    checkFinished();
+  }
+});
+
+window.addEventListener("beforeunload", ()=>{
+  localStorage.setItem("Latido_mermado_7", JSON.stringify(values));
+});
+
+  function loadSaved(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    // merge en values
+    Object.assign(values, saved);
+    // rellenar los inputs ya existentes
+    Object.keys(values).forEach(n => {
+      // sólo sincroniza si hay inputs en DOM
+      if(document.querySelector(`[data-number="${n}"]`)){
+        sync(n);
+      }
+    });
+  }catch(e){
+    console.warn('No se pudo recuperar guardado:', e);
+  }
+}
+
+  // Intento seguro: carga al finalizar la carga de la página.
+// Si la cuadrícula se genera dinámicamente más tarde, asegúrate de
+// llamar loadSaved() justo después de crear los inputs.
+loadSaved();
+window.addEventListener('load', loadSaved);
+  
+</script>
+
+<div id="celebrationOverlay">
+  <div id="celebrationBox">
+
+  <button id="closeCelebration" onclick="closeCelebration()">
+    ✕
+  </button>
+
+ <h1>🎉 ¡ENHORABUENA! 🎉</h1>
+
+  <p>Lo has resuelto :)</p>
+
+    <h5>Solución: "Primero tracé un círculo, hice crecer un árbol, puse un nido en su copa; más arriba, una nube: hice brotar el agua, apenas un arroyo, para que árbol y nube y pájaro bebieran." "Poesía", Braulio Arenas</h5>
+ <button onclick="closeCelebration()" class="continue-btn">
+    Seguir viendo el pasatiempo
+  </button>
+
+</div>
+</div>
+<div id="hintModal" class="hint-modal">
+  <div class="hint-content">
+    <button class="hint-close" onclick="closeHint()">✕</button>
+    <h3>Pista</h3>
+    <p id="hintText"></p>
+  </div>
+</div>
+</body>
+</html>
