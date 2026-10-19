@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>LATIDO MERMADO 7</title>
+<title>LATIDO MERMADO 9</title>
 
 <style>
 body{
@@ -701,7 +701,7 @@ h5{
 </head>
 <body>
 
-<h2>LATIDO MERMADO 7</h2>
+<h2>LATIDO MERMADO 9</h2>
 
 
 <div style="text-align:center; margin-bottom:20px;">
@@ -728,29 +728,29 @@ h5{
 
 <script>
 
-const STORAGE_KEY = 'Latido_mermado_7';
+const STORAGE_KEY = 'Latido_mermado_9';
 
 const values = {};
 
 const solution = {
-94:"P",3:"R",122:"O",1:"P",106:"U",36:"G",104:"N",9:"A",89:"N",
-20:"S",109:"E",5:"N",107:"E",10:"S",111:"C",11:"A",125:"L",
-44:"A",90:"C",32:"L",124:"A",53:"M",119:"A",
+94:"P",110:"R",122:"O",1:"P",25:"U",36:"G",104:"N",9:"A",89:"N",
+20:"S",49:"E",5:"N",27:"E",81:"S",111:"C",61:"A",125:"L",
+44:"A",90:"C",32:"L",73:"A",53:"M",119:"A",13:"R",
 87:"L",14:"A",93:"S",22:"T",120:"R",4:"O",
-26:"I",85:"N",51:"D",117:"O",45:"L",99:"E",
-7:"N",92:"E",41:"F",84:"E",114:"L",35:"I",86:"B",52:"A",123:"T",29:"O",
-88:"A",60:"L",101:"G",58:"A",110:"R",61:"A",116:"D",66:"A",
-15:"S",82:"O",13:"R",83:"N",115:"A",37:"N",
-65:"S",112:"A",16:"Q",95:"U",2:"E",
-54:"I",80:"N",8:"C",113:"L",18:"E",118:"M",19:"E",64:"N",121:"T",21:"E",
-71:"T",103:"A",24:"Q",6:"U",79:"E",97:"A",28:"R",
-27:"E",55:"N",46:"Y",23:"E",81:"S",31:"O",
-105:"Q",17:"U",68:"E",12:"B",108:"R",73:"A",98:"D",76:"A",
-25:"U",96:"M",77:"B",48:"R",78:"O",30:"S",72:"O",
-42:"I",34:"S",100:"L",91:"A",43:"N",
-39:"E",67:"J",49:"E",62:"M",47:"P",74:"L",33:"O",
+26:"I",85:"N",51:"D",117:"O",60:"L",99:"E",
+7:"N",92:"E",41:"F",109:"E",114:"L",35:"I",77:"B",52:"A",123:"T",97:"A",
+88:"A",45:"L",101:"G",58:"A",108:"R",11:"A",116:"D",66:"A",
+15:"S",70:"O",28:"R",83:"N",115:"A",37:"N",
+65:"S",112:"A",16:"Q",106:"U",21:"E",
+54:"I",80:"N",8:"C",113:"L",18:"E",96:"M",39:"E",64:"N",121:"T",2:"E",
+71:"T",103:"A",24:"Q",6:"U",79:"E",
+63:"E",55:"N",46:"Y",23:"E",10:"S",31:"O",
+105:"Q",17:"U",68:"E",12:"B",3:"R",124:"A",98:"D",76:"A",
+95:"U",118:"M",86:"B",48:"R",78:"O",40:"S",72:"O",
+56:"I",43:"N",34:"S",29:"O",100:"L",91:"A",
+19:"E",67:"J",84:"E",62:"M",47:"P",74:"L",33:"O",
 102:"R",38:"O",50:"N",75:"C",59:"O",
-70:"O",69:"R",57:"M",63:"E",40:"S",56:"I",
+82:"O",69:"R",57:"M",107:"E",30:"S",42:"I",
 
 
 
@@ -759,105 +759,102 @@ const solution = {
 const clueData = [
 {
   letter:"A",
-  text:"Cerdo salvaje que vive en Asia, de mayor tamaño que el jabalí, cuyos colmillos salen de la boca dirigiéndose hacia arriba y luego se encorvan hacia atrás. Su carne es comestible.",
-  hint:"Termina con una nacionalidad europea.",
-  cells:[94,3,122,1,106,36,104,9,89]
+  text:"Defienden, amparan.",
+  cells:[94,110,122,1,25,36,104,9,89]
 },
 {
   letter:"B",
-  text:"Repugno o llevo mal algo.",
-  cells:[20,109,5,107,10,111,11,125]
+  text:"En algunos países, mayordomo mayor de la casa real.",
+  hint:""Mayor" se está refiriendo a "anciano". Otra acepción lo vincula a la nobleza y a la guerra.",
+  cells:[20,49,5,27,81,111,61,125]
 },
 {
   letter:"C",
-  text:"Someter al dominio, señorío o disposición de alguien.",
-  hint:"Como a los caballos.",
-  cells:[44,90,32,124,53,119]
+  text:"Confiere, por voz común, algún cargo u honor.",
+  hint:"Se parece mucho a la primera palabra que puede que hayas pensado.",
+  cells:[44,90,32,73,53,13]
 },
 {
   letter:"D",
-  text:"Atarán o sujetaraán al yugo bueyes, mulas u otras bestias.",
-  hint:"La lógica es la misma que para la palabra anterior.",
+  text:"Afirmo una cosa cargándola de peso",
+  hint:"También vale si piensas en soltar.",
   cells:[87,14,93,22,120,4]
 },
 {
   letter:"E",
-  text:"Persona que aplica el derecho sin rigor y desenfadadamente.",
-  cells:[26,85,51,117,45,99]
+  text:"Condición e inclinación natural propia de cada persona.",
+  cells:[26,85,51,117,60,99]
 },
 {
   letter:"F",
-  text:"Indaga, averigua o examina cuidadosamente algo.",
-  hint:"No me avises, que ni iré",
-  cells:[7,92,41,84,114,35,86,52,123,29]
+  text:"Dicho de una persona: Soñadora, que no se apercibe de la realidad.",
+  hint:"Literalmente, anda por las nubes.",
+  cells:[7,92,41,109,114,35,77,52,123,97]
 },
 {
   letter:"G",
-  text:"Interpuesto, intermedio, puesto delante.",
-  cells:[88,60,101,58,110,61,116,66]
+  text:"Tumulto causado por algún tropel de gente.",
+  hint:"También puede referirse a tropas que van a caballo para saquear tierras enemigas.",
+  cells:[88,45,101,58,108,11,116,66]
 },
 {
   letter:"H",
-  text:"Áspero, violento, rudo, destemplado.",
-  hint:"¡Puto bar!",
-  cells:[15,82,13,83,115,37]
+  text:"Duermen o pernoctan.",
+  hint:"Es difícil. Yo si la viera por primera vez pensaría que signfica "son irónicos".",
+  cells:[15,70,28,83,115,37]
 },
 {
   letter:"I",
-  text:"Pomposo y magnífico.",
-  hint:"Seguro que también es buen bailarín",
-  cells:[65,112,16,95,2]
+  text:"Jugador que saca la pelota.",
+  cells:[65,112,16,106,21,29]
 },
 {
   letter:"J",
-  text:"Hicieran que un objeto quede atascado en altura o lugar fuera de alcance.",
-  hint:"La otra opción era meterlo en cal",
-  cells:[54,80,8,113,18,118,19,64,121,21]
+  text:"Dicho del tiempo: Riguroso, muy desapacible.",
+  cells:[54,80,8,113,18,96,39,64,121,2]
 },
 {
   letter:"K",
-  text:"Falto de valor y fuerza para obligar o tener efecto, por ser contrario a las leyes, o por carecer de las solemnidades que se requieren en la sustancia o en el modo.",
-  cells:[71,103,24,6,79,97,28]
+  text:"Cada uno de los vástagos que transmiten la acción del árbol de levas a las válvulas de admisión y de escape del motor.",
+  cells:[71,103,24,6,79]
 },
 {
   letter:"L",
-  text:"Retractarse, renegar, a veces públicamente, de una creencia o compromiso que antes se ha profesado o asumido.",
-  cells:[27,55,46,23,81,31]
+  text:"Endurezco con yeso o escayola los apósitos y vendajes destinados a sostener en posición conveniente los huesos rotos o dislocados.",
+  hint:"Si me oyesen...",
+  cells:[63,55,46,23,10,31]
 },
 {
   letter:"M",
-  text:"Instrumento musical metálico, a modo de trompeta, que se alarga y acorta recogiéndose en sí mismo para producir la diferencia de voces que pide la música.",
-  hint:"No lo escuchaba.",
-  cells:[105,17,68,12,108,73,98,76]
+  text:"Paso estrecho entre montañas.",
+  cells:[105,17,68,12,3,124,98,76]
 },
 {
   letter:"N",
-  text:"Dignidad imperial, real, consular, cardenalicia",
-hint:"Creo que no hacen falta más pistas de las que hay.",
-  hintColor:"#6a0dad",
-  cells:[25,96,77,48,78,30,72]
+  text:"Que tiene sombra o la causa.",
+  cells:[95,118,86,48,78,40,72]
 },
 {
   letter:"O",
-  text:"Someten a una persona, una colectividad, una nación o un pueblo privándolos de sus derechos y libertades.",
-  cells:[42,34,100,91,43]
+  text:"Pone al sol hierbas, plantas, etc., para facilitar su fermentación, o secarlas.",
+  cells:[56,43,34,29,100,91]
 },
 {
   letter:"P",
-  text:"Registre, ponga en matrícula a alguien.",
-  hint:"Y póngalo el primero de la lista.",
-  cells:[39,67,49,62,47,74,33]
+  text:"Hecho, texto o cláusula que se cita para comprobar, ilustrar o autorizar un aserto, doctrina u opinión.",
+  cells:[19,67,84,62,47,74,33]
 },
 {
   letter:"Q",
-  text:"Hombre de mucha sabiduría.",
-  hint:"Del siglo I",
+  text:"Pez abundante en el Caribe, de unos 25 cm de longitud, de color azul en el lomo, y el resto con fajas longitudinales azules y amarillas.",
+  hint:"Otra acepción: Dicho de la voz o de un sonido: Áspero y bronco.",
   cells:[102,38,50,75,59]
 },
 {
   letter:"R",
-  text:"Indigencia, pobreza, escasez.",
-  cells:[70,69,57,63,40,56]
+  text:"Tela fuerte de seda, muy tupida y prensada, que hace visos y aguas.",
+  hint:"Nos reímos, pero mañana iremos a ver al mísero emisor que ha forrado con esta tela el somier.",
+  cells:[82,69,57,107,30,42]
 },
 
 
@@ -865,23 +862,23 @@ hint:"Creo que no hacen falta más pistas de las que hay.",
 
 const gridCells = [
 
-[1,"A"], [2,"I"], [3,"A"], [4,"D"], null, [5,"B"], [6,"K"], [7,"F"], [8,"J"], [9,"A"], null, 
-[10,"B"], [11,"B"], [12,"M"], [13,"H"], [14,"D"], [15,"H"], null, [16,"I"], [17,"M"], [18,"J"], 
-null, [19,"J"], [20,"B"], [21,"J"], null, [null,"«"], [22,"D"], [23,"L"], null, [24,"K"], 
-[25,"N"], [26,"E"], [27,"L"], [28,"K"], [29,"F"], [null,"»"], null, [30,"N"], [31,"L"], 
-[32,"C"], [33,"P"], null, [34,"O"], [35,"F"], [36,"A"], [37,"H"], [38,"Q"], null, [39,"P"], 
-[40,"R"], [null,","], null, [41,"F"], [42,"O"], [43,"O"], [44,"C"], [45,"E"], [null,","], 
-null, [46,"L"], null, [47,"P"], [48,"N"], [49,"P"], [50,"Q"], [51,"E"], [52,"F"], null, [53,"C"], 
-[54,"J"], [55,"L"], [56,"R"], [57,"R"], [58,"G"], [null,";"], null, [59,"Q"], [60,"G"], [61,"G"], 
-[null,","], null, [62,"P"], [63,"R"], [64,"J"], [65,"I"], [66,"G"], [67,"P"], [68,"M"], [null,"-"]
-, null, [69,"R"], [70,"R"], [71,"K"], [72,"N"], null, [73,"M"], [74,"P"], null, [75,"Q"], 
-[76,"M"], [77,"N"], [78,"N"], [null,","], null, [79,"K"], [80,"J"], null, [81,"L"], [82,"H"], 
-[83,"H"], [null,","], null, [84,"F"], [85,"E"], null, [86,"F"], [87,"D"], [88,"G"], [89,"A"], 
-[90,"C"], [91,"O"], null, [92,"F"], [93,"D"], [94,"A"], [95,"I"], [96,"N"], [97,"K"], [null,"-"], null, 
+[1,"A"], [2,"J"], [3,"C"], [4,"D"], null, [5,"B"], [6,"K"], [7,"F"], [8,"J"], [9,"A"], null, 
+[10,"L"], [11,"G"], [12,"M"], [13,"K"], [14,"D"], [15,"H"], null, [16,"I"], [17,"M"], [18,"J"], 
+null, [19,"P"], [20,"B"], [21,"I"], null, [null,"«"], [22,"D"], [23,"L"], null, [24,"K"], 
+[25,"A"], [26,"E"], [27,"L"], [28,"H"], [29,"O"], [null,"»"], [30,"R"], [31,"L"], 
+[32,"C"], [33,"P"], null, [34,"O"], [35,"F"], [36,"A"], [37,"H"], [38,"Q"], null, [39,"J"], 
+[40,"N"], [null,","], [41,"F"], [42,"R"], [43,"O"], [44,"C"], [45,"G"], [null,","], 
+null, [46,"L"], null, [47,"P"], [48,"N"], [49,"B"], [50,"Q"], [51,"E"], [52,"F"], null, [53,"C"], 
+[54,"J"], [55,"L"], [56,"O"], [57,"R"], [58,"G"], [null,";"], null, [59,"Q"], [60,"G"], [61,"E"], 
+[null,","], null, [62,"P"], [63,"L"], [64,"J"], [65,"I"], [66,"G"], [67,"P"], [68,"M"], [null,"-"]
+, null, [69,"R"], [70,"H"], [71,"K"], [72,"N"], null, [73,"C"], [74,"P"], null, [75,"Q"], 
+[76,"M"], [77,"F"], [78,"N"], [null,","], null, [79,"K"], [80,"J"], null, [81,"B"], [82,"R"], 
+[83,"H"], [null,","], null, [84,"P"], [85,"E"], null, [86,"N"], [87,"D"], [88,"G"], [89,"A"], 
+[90,"C"], [91,"O"], null, [92,"F"], [93,"D"], [94,"A"], [95,"N"], [96,"N"], [97,"F"], [null,"-"], null, 
 [98,"M"], [99,"E"], [100,"O"], null, [101,"G"], [102,"Q"], [103,"K"], [104,"A"], null, [105,"M"], 
-[106,"A"], [107,"B"], [108,"M"], [109,"B"], [110,"G"], null, [111,"B"], [112,"I"], [113,"J"], [114,"F"], 
+[106,"I"], [107,"R"], [108,"G"], [109,"F"], [110,"A"], null, [111,"B"], [112,"I"], [113,"J"], [114,"F"], 
 [115,"H"], [116,"G"], [117,"E"], [null,","], null, [118,"J"], [119,"C"], [120,"D"], null, [121,"J"], 
-[122,"A"], [123,"F"], [124,"C"], [125,"B"], [null,"."]
+[122,"A"], [123,"F"], [124,"M"], [125,"B"], [null,"."]
 
   ];
 
@@ -1164,7 +1161,7 @@ hintBtn.onclick=()=>showHint(clue.hint, clue.hintColor);
 });
 
 window.addEventListener("load", ()=>{
-  const saved = localStorage.getItem("Latido_mermado_7");
+  const saved = localStorage.getItem("Latido_mermado_9");
   if(saved){
     const data = JSON.parse(saved);
     Object.assign(values, data);
@@ -1178,7 +1175,7 @@ window.addEventListener("load", ()=>{
 });
 
 window.addEventListener("beforeunload", ()=>{
-  localStorage.setItem("Latido_mermado_7", JSON.stringify(values));
+  localStorage.setItem("Latido_mermado_9", JSON.stringify(values));
 });
 
   function loadSaved(){
