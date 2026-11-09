@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LATIDO MERMADO 11</title>
 
 <style>
@@ -563,74 +562,37 @@ h5{
 
 /* MÓVIL */
 
-@media (max-width: 600px) {
-  body {
-    padding: 12px;
+@media (max-width:900px){
+
+  body{
+    padding:16px;
   }
 
-  h2 {
-    font-size: 24px;
-    line-height: 1.2;
-    letter-spacing: .04em;
+  h2{
+    font-size:28px;
   }
 
-  /* Las 14 columnas se ajustan al ancho disponible. */
-  .grid {
-    --cell-size: min(72px, calc((100vw - 68px) / 14));
-    grid-template-columns: repeat(14, var(--cell-size));
-    gap: 2px;
-    justify-content: center;
-    width: max-content;
-    padding: 8px;
-    margin: 0 auto 24px;
+  .grid{
+overflow-x:auto
+    justify-content:flex-start;
+    padding:18px;
   }
 
-  .cell,
-  .black {
-    box-sizing: border-box;
-    width: var(--cell-size);
-    height: var(--cell-size);
-    border-radius: 6px;
+  .clue{
+    padding:14px;
   }
 
-  .letter-input {
-    font-size: clamp(14px, 4vw, 24px);
+  .clue-label{
+    font-size:16px;
   }
 
-  .black {
-    font-size: clamp(14px, 4vw, 22px);
+  .active-clue-card{
+    position:static;
+    transform:none;
+    width:auto;
+    margin:0 auto 20px;
   }
 
-  .number {
-    top: 2px;
-    left: 3px;
-    font-size: 8px;
-  }
-
-  /* Las respuestas mantienen la misma proporción que el tablero. */
-  .clue-cell input {
-    box-sizing: border-box;
-    width: var(--cell-size);
-    height: var(--cell-size);
-    font-size: clamp(14px, 4vw, 22px);
-    border-radius: 6px;
-  }
-
-  .clue-answer {
-    gap: 4px;
-  }
-
-  .clue-number {
-    font-size: 8px;
-  }
-
-  .clue {
-    padding: 12px;
-  }
-
-  .clue-label {
-    font-size: 15px;
-  }
 }
 @media print{
 
