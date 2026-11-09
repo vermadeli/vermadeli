@@ -419,7 +419,15 @@ h5{
   z-index:10000;
   animation:fall linear forwards;
 }
+#activeClueTitle{
+  cursor:grab;
+  touch-action:none;
+  user-select:none;
+}
 
+#activeClueTitle:active{
+  cursor:grabbing;
+}
 @keyframes fall{
   to{
     transform:
@@ -1292,7 +1300,57 @@ window.addEventListener("load", ()=>{
 window.addEventListener("beforeunload", ()=>{
   localStorage.setItem("crucigrama_latido11", JSON.stringify(values));
 });
-  
+  const cluePanel = document.getElementById("activeClue");
+const clueHandle = document.getElementById("activeClueTitle");
+
+let draggingClue = false;
+let dragOffsetX = 0;
+let dragOffsetY = 0;
+
+clueHandle.addEventListener("pointerdown", event => {
+  const rect = cluePanel.getBoundingClientRect();
+
+  // Al empezar a arrastrar, fija la posición actual del recuadro.
+  cluePanel.style.position = "fixed";
+  cluePanel.style.left = `${rect.left}px`;
+  cluePanel.style.top = `${rect.top}px`;
+  cluePanel.style.right = "auto";
+  cluePanel.style.transform = "none";
+
+  draggingClue = true;
+  dragOffsetX = event.clientX - rect.left;
+  dragOffsetY = event.clientY - rect.top;
+
+  clueHandle.setPointerCapture(event.pointerId);
+  event.preventDefault();
+});
+
+clueHandle.addEventListener("pointermove", event => {
+  if(!draggingClue) return;
+
+  const maxLeft = window.innerWidth - cluePanel.offsetWidth;
+  const maxTop = window.innerHeight - cluePanel.offsetHeight;
+
+  const left = Math.max(0, Math.min(
+    event.clientX - dragOffsetX,
+    maxLeft
+  ));
+
+  const top = Math.max(0, Math.min(
+    event.clientY - dragOffsetY,
+    maxTop
+  ));
+
+  cluePanel.style.left = `${left}px`;
+  cluePanel.style.top = `${top}px`;
+});
+
+function stopDraggingClue(){
+  draggingClue = false;
+}
+
+clueHandle.addEventListener("pointerup", stopDraggingClue);
+clueHandle.addEventListener("pointercancel", stopDraggingClue);
 </script>
 
 <div id="celebrationOverlay">
